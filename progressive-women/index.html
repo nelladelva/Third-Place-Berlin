@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Progressive Women Berlin</title>
+<style>
+  :root {
+    --pink: #D98CA3;
+    --rose: #B9647D;
+    --ink: #2a2223;
+    --grey: #6b6b6b;
+    --line: #f0dde2;
+    --cream: #FDF5F7;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .backlink { text-align:center; padding:14px 20px 0; font-family: Arial, sans-serif; }
+  .backlink a { color:#8a7176; text-decoration:none; font-size:12px; letter-spacing:0.5px; }
+
+  header { text-align: center; padding: 44px 20px 30px; }
+  .mark {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--pink);
+    margin: 0 auto 18px; display: flex; align-items: center; justify-content: center;
+    font-family: Arial, sans-serif; color: #fff; font-weight: 800; font-size: 20px;
+  }
+  header .name { font-family: Arial, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.3px; }
+  header .name .accent { color: var(--rose); }
+  .tagline { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 2.5px; color: var(--grey); margin-top: 10px; text-transform: uppercase; }
+
+  nav.sitenav { font-family: Arial, sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-top: 24px; }
+  nav.sitenav a { color: var(--ink); text-decoration: none; margin: 0 12px; border-bottom: 2px solid transparent; }
+  nav.sitenav a:hover { border-bottom-color: var(--rose); }
+
+  main { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+
+  h1.hero { text-align: center; font-size: 30px; margin: 0 0 14px; }
+  p.lead { text-align: center; font-size: 18px; color: var(--ink); max-width: 560px; margin: 0 auto; }
+
+  h2.section-title {
+    font-family: Arial, sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    margin: 0 0 18px; padding-left: 12px; border-left: 4px solid var(--rose);
+  }
+  section.pillars h2.section-title { border-left-color: var(--pink); }
+
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pillar { text-align: center; }
+  .pillar .dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 10px; background: var(--rose); }
+  .pillar:nth-child(2) .dot { background: var(--pink); }
+  .pillar h3 { font-family: Arial, sans-serif; font-size: 14px; margin: 0 0 6px; }
+  .pillar p { font-family: Arial, sans-serif; font-size: 13px; color: var(--grey); margin: 0; }
+
+  .event-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px 24px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;
+  }
+  .event-card .title { font-family: Georgia, serif; font-size: 19px; margin-bottom: 6px; color: var(--rose); }
+  .event-card .meta { color: var(--grey); font-size: 13px; }
+
+  .signup-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 30px 26px;
+  }
+  .signup-card p.lead-small { font-family: Arial, sans-serif; font-size: 13px; color: var(--grey); text-align: center; margin: 0 0 22px; }
+  .signup-card label { display: block; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; margin: 14px 0 6px; color: var(--ink); }
+  .signup-card label .opt { font-weight: 400; color: var(--grey); }
+  .signup-card input, .signup-card textarea {
+    width: 100%; font-family: Arial, sans-serif; font-size: 14px; padding: 10px 12px;
+    border: 1px solid #e7d4d9; border-radius: 6px; background: #fffbfc; color: var(--ink);
+  }
+  .signup-card input:focus, .signup-card textarea:focus { outline: 2px solid var(--pink); border-color: var(--pink); }
+  .signup-card textarea { resize: vertical; min-height: 60px; }
+  .signup-card button {
+    width: 100%; margin-top: 22px; padding: 13px; border: none; border-radius: 6px;
+    background: var(--rose); color: #fff; font-family: Arial, sans-serif; font-weight: 700;
+    font-size: 14px; letter-spacing: 1px; cursor: pointer;
+  }
+  .signup-card button:hover { background: #a1546c; }
+  .signup-card .privacy-note { font-family: Arial, sans-serif; font-size: 11px; color: var(--grey); text-align: center; margin-top: 12px; }
+
+  footer { text-align: center; padding: 40px 20px 60px; font-family: Arial, sans-serif; font-size: 12px; color: var(--grey); }
+  footer .contact { margin-top: 6px; }
+
+  @media (max-width: 520px) {
+    .pillar-grid { grid-template-columns: 1fr; gap: 22px; }
+    h1.hero { font-size: 24px; }
+    p.lead { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="backlink">
+  <a href="../index.html">&larr; Back to Third Place Berlin</a>
+</div>
+
+<header>
+  <div class="mark">PW</div>
+  <div class="name">Progressive Women <span class="accent">Berlin</span></div>
+  <div class="tagline">Community · Solidarity · Growth</div>
+  <nav class="sitenav">
+    <a href="#about">About</a>
+    <a href="#signup">Sign Up</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h1 class="hero">A community for women who lead with their values.</h1>
+    <p class="lead">Progressive Women Berlin brings together feminists, organizers, professionals, and thinkers building a life here on their own terms.</p>
+  </section>
+
+  <section class="about" id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>Progressive Women Berlin is a space for women who care — about each other, about the city they're building a life in, and about the causes that shape that life. We meet to talk honestly, support one another, and turn conversation into real solidarity.</p>
+  </section>
+
+  <section class="pillars">
+    <h2 class="section-title">What We Do</h2>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="dot"></div>
+        <h3>Discussion Circles</h3>
+        <p>Honest conversation on the issues that shape our lives — political, personal, and everything between.</p>
+      </div>
+      <div class="pillar">
+        <div class="dot"></div>
+        <h3>Mutual Support</h3>
+        <p>A network to lean on — advice, referrals, and real solidarity when you need it.</p>
+      </div>
+      <div class="pillar">
+        <div class="dot"></div>
+        <h3>Advocacy &amp; Action</h3>
+        <p>Turning conversation into action, from local organizing to everyday allyship.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="who">
+    <h2 class="section-title">Who We're For</h2>
+    <p>Progressive women of every background building a life in Berlin — organizers, professionals, students, and anyone who wants community that shares their values.</p>
+  </section>
+
+  <section class="event">
+    <h2 class="section-title">Upcoming Event</h2>
+    <div class="event-card">
+      <div class="title">First Gathering — Details Coming Soon</div>
+      <div class="meta">Sign up below to be the first to hear when and where.</div>
+    </div>
+  </section>
+
+  <section class="signup" id="signup">
+    <h2 class="section-title">Sign Up</h2>
+    <div class="signup-card">
+      <p class="lead-small">Tell us a bit about you and we'll bring you into the fold — event invites, introductions, the works.</p>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>Name</label>
+        <input type="text" name="Name" required />
+
+        <label>Email</label>
+        <input type="email" name="Email" required />
+
+        <label>Phone <span class="opt">(optional)</span></label>
+        <input type="tel" name="Phone" placeholder="+49 ..." />
+
+        <label>What draws you here? <span class="opt">(optional)</span></label>
+        <textarea name="Notes"></textarea>
+
+        <input type="hidden" name="_subject" value="New Progressive Women Berlin sign-up" />
+        <button type="submit">Join the community</button>
+      </form>
+      <p class="privacy-note">Your details are shared only with the organizing team, to invite you to future events.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Progressive Women Berlin — part of the Third Place Berlin community.
+  <div class="contact">[email address] &nbsp;·&nbsp; [Instagram handle] &nbsp;·&nbsp; [website]</div>
+</footer>
+
+</body>
+</html>
