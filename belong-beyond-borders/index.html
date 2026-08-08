@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BBB — Belong Beyond Borders</title>
+<style>
+  :root {
+    --gold: #D9A441;
+    --indigo: #3C4A7A;
+    --ink: #232323;
+    --grey: #6b6b6b;
+    --line: #e6e3da;
+    --cream: #FAF8F4;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .backlink { text-align:center; padding:14px 20px 0; font-family: Arial, sans-serif; }
+  .backlink a { color:#8a8478; text-decoration:none; font-size:12px; letter-spacing:0.5px; }
+
+  header { text-align: center; padding: 44px 20px 30px; }
+  .mark {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--indigo);
+    margin: 0 auto 18px; display: flex; align-items: center; justify-content: center;
+    font-family: Arial, sans-serif; color: #fff; font-weight: 800; font-size: 18px;
+  }
+  header .name { font-family: Arial, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.3px; }
+  header .name .accent { color: var(--gold); }
+  .tagline { font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 2.5px; color: var(--grey); margin-top: 10px; text-transform: uppercase; }
+
+  nav.sitenav { font-family: Arial, sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; margin-top: 24px; }
+  nav.sitenav a { color: var(--ink); text-decoration: none; margin: 0 12px; border-bottom: 2px solid transparent; }
+  nav.sitenav a:hover { border-bottom-color: var(--gold); }
+
+  main { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+
+  h1.hero { text-align: center; font-size: 30px; margin: 0 0 14px; }
+  p.lead { text-align: center; font-size: 18px; color: var(--ink); max-width: 560px; margin: 0 auto; }
+
+  h2.section-title {
+    font-family: Arial, sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    margin: 0 0 18px; padding-left: 12px; border-left: 4px solid var(--indigo);
+  }
+  section.pillars h2.section-title { border-left-color: var(--gold); }
+
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pillar { text-align: center; }
+  .pillar .dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 10px; background: var(--indigo); }
+  .pillar:nth-child(2) .dot { background: var(--gold); }
+  .pillar h3 { font-family: Arial, sans-serif; font-size: 14px; margin: 0 0 6px; }
+  .pillar p { font-family: Arial, sans-serif; font-size: 13px; color: var(--grey); margin: 0; }
+
+  .event-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px 24px; font-family: Arial, sans-serif; font-size: 14px; text-align: center;
+  }
+  .event-card .title { font-family: Georgia, serif; font-size: 19px; margin-bottom: 6px; color: var(--indigo); }
+  .event-card .meta { color: var(--grey); font-size: 13px; }
+
+  .signup-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 30px 26px;
+  }
+  .signup-card p.lead-small { font-family: Arial, sans-serif; font-size: 13px; color: var(--grey); text-align: center; margin: 0 0 22px; }
+  .signup-card label { display: block; font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; margin: 14px 0 6px; color: var(--ink); }
+  .signup-card label .opt { font-weight: 400; color: var(--grey); }
+  .signup-card input, .signup-card textarea {
+    width: 100%; font-family: Arial, sans-serif; font-size: 14px; padding: 10px 12px;
+    border: 1px solid #ddd8cc; border-radius: 6px; background: #fdfcfa; color: var(--ink);
+  }
+  .signup-card input:focus, .signup-card textarea:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+  .signup-card textarea { resize: vertical; min-height: 60px; }
+  .signup-card button {
+    width: 100%; margin-top: 22px; padding: 13px; border: none; border-radius: 6px;
+    background: var(--indigo); color: #fff; font-family: Arial, sans-serif; font-weight: 700;
+    font-size: 14px; letter-spacing: 1px; cursor: pointer;
+  }
+  .signup-card button:hover { background: #2e3a61; }
+  .signup-card .privacy-note { font-family: Arial, sans-serif; font-size: 11px; color: var(--grey); text-align: center; margin-top: 12px; }
+
+  footer { text-align: center; padding: 40px 20px 60px; font-family: Arial, sans-serif; font-size: 12px; color: var(--grey); }
+  footer .contact { margin-top: 6px; }
+
+  @media (max-width: 520px) {
+    .pillar-grid { grid-template-columns: 1fr; gap: 22px; }
+    h1.hero { font-size: 24px; }
+    p.lead { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="backlink">
+  <a href="../index.html">&larr; Back to Third Place Berlin</a>
+</div>
+
+<header>
+  <div class="mark">BBB</div>
+  <div class="name">Belong <span class="accent">Beyond Borders</span></div>
+  <div class="tagline">Culture · Community · Connection</div>
+  <nav class="sitenav">
+    <a href="#about">About</a>
+    <a href="#signup">Sign Up</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h1 class="hero">A community with no borders on who belongs.</h1>
+    <p class="lead">BBB brings together like-minded people from everywhere for regular cultural events, co-working sessions, and shared hobbies — a well-rounded home base, not just another meetup.</p>
+  </section>
+
+  <section class="about" id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>Belong Beyond Borders (BBB) is a comprehensive community for people who want more than one kind of connection. We gather around culture, around work, and around the things we simply enjoy doing together — built for people who've crossed a border or two to get here, and everyone who wants in.</p>
+  </section>
+
+  <section class="pillars">
+    <h2 class="section-title">What We Do</h2>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="dot"></div>
+        <h3>Cultural Events</h3>
+        <p>Gatherings that celebrate and explore the traditions and cultures we all carry with us.</p>
+      </div>
+      <div class="pillar">
+        <div class="dot"></div>
+        <h3>Co-Working</h3>
+        <p>Regular sessions to sit down and work alongside people who get it.</p>
+      </div>
+      <div class="pillar">
+        <div class="dot"></div>
+        <h3>Shared Hobbies</h3>
+        <p>Interest-based meetups — games, sports, crafts, and whatever else brings people together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="who">
+    <h2 class="section-title">Who We're For</h2>
+    <p>Like-minded people looking for a well-rounded community — professionals, culture lovers, and hobbyists, newcomers to Berlin and longtime locals alike.</p>
+  </section>
+
+  <section class="event">
+    <h2 class="section-title">Upcoming Event</h2>
+    <div class="event-card">
+      <div class="title">First Gathering — Details Coming Soon</div>
+      <div class="meta">Sign up below to be the first to hear when and where.</div>
+    </div>
+  </section>
+
+  <section class="signup" id="signup">
+    <h2 class="section-title">Sign Up</h2>
+    <div class="signup-card">
+      <p class="lead-small">Tell us a bit about you and we'll bring you into the fold — event invites, introductions, the works.</p>
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>Name</label>
+        <input type="text" name="Name" required />
+
+        <label>Email</label>
+        <input type="email" name="Email" required />
+
+        <label>Phone <span class="opt">(optional)</span></label>
+        <input type="tel" name="Phone" placeholder="+49 ..." />
+
+        <label>Hobbies / interests <span class="opt">(optional)</span></label>
+        <textarea name="Notes"></textarea>
+
+        <input type="hidden" name="_subject" value="New BBB sign-up" />
+        <button type="submit">Join the community</button>
+      </form>
+      <p class="privacy-note">Your details are shared only with the organizing team, to invite you to future events.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Belong Beyond Borders — part of the Third Place Berlin community.
+  <div class="contact">[email address] &nbsp;·&nbsp; [Instagram handle] &nbsp;·&nbsp; [website]</div>
+</footer>
+
+</body>
+</html>
