@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Third Place Berlin — app mockups v1</title>
+<style>
+  :root { --rust:#C1592A; --teal:#2F5D58; --ink:#232323; --grey:#6b6b6b; --line:#e8e2d6; --cream:#FBF7F0; --gold:#D9A441; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#EDE7DC; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; color:var(--ink); }
+  .intro { max-width:1180px; margin:28px auto 8px; padding:0 20px; }
+  .intro h1 { font-family:Georgia, serif; font-size:26px; margin:0 0 6px; }
+  .intro p { color:var(--grey); margin:0; font-size:14px; }
+  .row { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; padding:24px 16px 48px; }
+  .shot { display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .caption { font-size:13px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--teal); }
+  .sub { font-size:12px; color:var(--grey); max-width:280px; text-align:center; }
+  .phone { width:300px; height:620px; background:var(--cream); border-radius:38px; border:10px solid #1d1d1d;
+           box-shadow:0 18px 40px rgba(0,0,0,.18); overflow:hidden; position:relative; display:flex; flex-direction:column; }
+  .status { height:26px; font-size:11px; display:flex; justify-content:space-between; padding:6px 18px 0; color:#555; }
+  .scr { flex:1; overflow:hidden; padding:6px 14px 0; }
+  .tabbar { height:58px; border-top:1px solid var(--line); display:flex; justify-content:space-around; align-items:center; background:#fff; font-size:10px; color:#999; }
+  .tabbar div { text-align:center; } .tabbar .on { color:var(--rust); font-weight:700; }
+  .tabbar .ic { font-size:18px; display:block; }
+  .hello { font-family:Georgia, serif; font-size:20px; margin:4px 0 2px; }
+  .muted { color:var(--grey); font-size:12px; }
+  .chips { display:flex; gap:6px; overflow:hidden; margin:10px 0; }
+  .chip { flex:none; border:1px solid var(--line); background:#fff; border-radius:999px; padding:5px 10px; font-size:11px; }
+  .chip.on { background:var(--teal); color:#fff; border-color:var(--teal); }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:11px 12px; margin-bottom:9px; }
+  .card .circle { font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; }
+  .card .t { font-weight:700; font-size:14px; margin:3px 0 2px; }
+  .card .m { font-size:11.5px; color:var(--grey); }
+  .faces { display:flex; align-items:center; margin-top:7px; font-size:11px; color:var(--grey); }
+  .face { width:20px; height:20px; border-radius:50%; border:2px solid #fff; margin-right:-6px; }
+  .faces span { margin-left:12px; }
+  .go { float:right; background:var(--rust); color:#fff; border-radius:999px; padding:4px 10px; font-size:11px; font-weight:700; margin-top:-2px; }
+  .go.ghost { background:#fff; color:var(--rust); border:1px solid var(--rust); }
+  .banner { background:var(--teal); color:#fff; border-radius:14px; padding:11px 12px; margin:8px 0 10px; font-size:12px; }
+  .banner b { font-size:13px; }
+  .bar { height:7px; background:rgba(255,255,255,.25); border-radius:9px; margin-top:7px; overflow:hidden; }
+  .bar i { display:block; height:100%; width:62%; background:var(--gold); }
+  .map { height:170px; border-radius:14px; position:relative; overflow:hidden; margin:8px 0;
+         background: radial-gradient(circle at 30% 40%, #cfe3c4 0 18%, transparent 19%), radial-gradient(circle at 70% 70%, #cfe3c4 0 22%, transparent 23%),
+                     linear-gradient(90deg, transparent 47%, #e9e4d8 47% 53%, transparent 53%), linear-gradient(0deg, transparent 58%, #e9e4d8 58% 62%, transparent 62%), #dfeed6; }
+  .pin { position:absolute; left:58%; top:30%; transform:translate(-50%,-100%); font-size:30px; }
+  .sign { position:absolute; left:58%; top:33%; background:#fff; border-radius:10px; padding:5px 8px; font-size:10.5px; box-shadow:0 3px 8px rgba(0,0,0,.15); white-space:nowrap; transform:translateX(-50%); }
+  .hdr { display:flex; align-items:center; gap:8px; margin:4px 0 2px; }
+  .back { font-size:18px; color:var(--rust); }
+  .btnrow { display:flex; gap:7px; margin:8px 0; }
+  .btn { flex:1; text-align:center; border-radius:12px; padding:9px 4px; font-size:12px; font-weight:700; background:var(--rust); color:#fff; }
+  .btn.sec { background:#fff; color:var(--teal); border:1px solid var(--teal); }
+  .chat { background:#fff; border:1px solid var(--line); border-radius:14px; padding:9px 10px; font-size:11.5px; }
+  .msg { margin:4px 0; } .msg b { color:var(--teal); }
+  .note { font-size:10px; color:var(--grey); text-align:center; margin-top:4px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+  .cc { border-radius:14px; padding:10px; color:#fff; min-height:92px; display:flex; flex-direction:column; justify-content:space-between; }
+  .cc .n { font-weight:800; font-size:13px; } .cc .d { font-size:10.5px; opacity:.9; }
+  .cc .j { font-size:10px; background:rgba(255,255,255,.25); border-radius:999px; padding:2px 8px; align-self:flex-start; }
+  .bingo { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:8px; }
+  .sq { background:#fff; border:1px solid var(--line); border-radius:12px; padding:7px 5px; font-size:10px; text-align:center; min-height:66px; display:flex; flex-direction:column; justify-content:center; gap:3px; }
+  .sq .e { font-size:18px; } .sq.done { background:#E9F2EF; border-color:var(--teal); }
+  .sq.done::after { content:"✓ done"; font-size:9px; color:var(--teal); font-weight:700; }
+  .badges { display:flex; gap:8px; margin-top:10px; }
+  .bdg { flex:1; text-align:center; font-size:10px; }
+  .bdg .o { width:42px; height:42px; border-radius:50%; margin:0 auto 3px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .roulette { background:#fff; border:1px dashed var(--rust); border-radius:14px; padding:10px; margin-top:10px; font-size:11.5px; }
+  .question { max-width:1180px; margin:0 auto 40px; padding:16px 20px; background:#fff; border-radius:14px; font-size:14px; }
+</style>
+</head>
+<body>
+<div class="intro">
+  <h1>Third Place Berlin · app mockups (first sketch)</h1>
+  <p>Four key screens, using your website's colours (rust, teal, cream). Illustrative content only. Look at what's on each screen and how it feels, not the exact pixels.</p>
+</div>
+
+<div class="row">
+
+  <!-- 1. HOME -->
+  <div class="shot">
+    <div class="caption">1 · Home: only what's yours</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hello">Hallo, Amara 👋</div>
+        <div class="muted">3 meetups this week in your circles</div>
+        <div class="chips"><div class="chip on">My circles</div><div class="chip">This weekend</div><div class="chip">Near me</div><div class="chip">All</div></div>
+        <div class="banner"><b>October challenge: 40 coffees between strangers</b><br>We're at 25. Your coffee match is waiting ☕<div class="bar"><i></i></div></div>
+        <div class="card"><div class="circle" style="color:var(--teal)">🌿 Outdoor & Picnics</div>
+          <div class="t">Picnic + games at Tempelhof</div><div class="m">Sat 14:00 · Tempelhofer Feld, Oderstraße entrance</div>
+          <div class="faces"><div class="face" style="background:#C1592A"></div><div class="face" style="background:#2F5D58"></div><div class="face" style="background:#D9A441"></div><div class="face" style="background:#3C4A7A"></div><span>12 going</span></div>
+          <div class="go" style="margin-top:-18px">Going ✓</div></div>
+        <div class="card"><div class="circle" style="color:#C8202E">📚 ABC Book Club</div>
+          <div class="t">James Noël — Paons / Pfauen</div><div class="m">Thu 19:30 · daadgalerie, Kreuzberg</div>
+          <div class="faces"><div class="face" style="background:#C8202E"></div><div class="face" style="background:#159957"></div><span>8 going</span></div>
+          <div class="go ghost" style="margin-top:-18px">Join</div></div>
+        <div class="card"><div class="circle" style="color:var(--rust)">💻 Co-working</div>
+          <div class="t">Deep-work morning</div><div class="m">Wed 9:00 · St. Oberholz, Mitte</div></div>
+      </div>
+      <div class="tabbar"><div class="on"><span class="ic">🏠</span>Home</div><div><span class="ic">🧭</span>Circles</div><div><span class="ic">＋</span>Host</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">No big group chat. You only see meetups from circles you joined, plus the monthly community goal.</div>
+  </div>
+
+  <!-- 2. MEETUP -->
+  <div class="shot">
+    <div class="caption">2 · Meetup: “find us here”</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hdr"><span class="back">‹</span><span class="muted">🌿 Outdoor & Picnics</span></div>
+        <div class="hello" style="font-size:18px">Picnic + games at Tempelhof</div>
+        <div class="muted">Saturday 14:00–18:00 · hosted by Saskia</div>
+        <div class="map"><div class="pin">📍</div><div class="sign">🟡 Yellow blanket, next to the big tree</div></div>
+        <div class="btnrow"><div class="btn">I'm going</div><div class="btn sec">Directions</div><div class="btn sec">I'm here 📍</div></div>
+        <div class="muted" style="margin:4px 0 6px">Bring: snacks to share, a game · 12 going · 3 spots left</div>
+        <div class="chat">
+          <div class="msg"><b>Saskia:</b> We moved 20 m left, the pin is updated 🙌</div>
+          <div class="msg"><b>Jonas:</b> Bringing Uno + Wikingerschach</div>
+          <div class="msg"><b>Priya:</b> Running 10 min late!</div>
+        </div>
+        <div class="note">Chat belongs to this meetup only and closes 2 days after it ends.</div>
+      </div>
+      <div class="tabbar"><div class="on"><span class="ic">🏠</span>Home</div><div><span class="ic">🧭</span>Circles</div><div><span class="ic">＋</span>Host</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">The host drops a pin and a short sign. “I'm here” confirms you came and counts towards challenges.</div>
+  </div>
+
+  <!-- 3. CIRCLES -->
+  <div class="shot">
+    <div class="caption">3 · Circles: sub-communities</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hello">Circles</div>
+        <div class="muted">Join the ones you care about. Each has its own meetups and noticeboard.</div>
+        <div class="grid">
+          <div class="cc" style="background:#C8202E"><div><div class="n">📚 ABC</div><div class="d">Afro-Descendent Book Club</div></div><div class="j">24 members · Joined</div></div>
+          <div class="cc" style="background:#B9647D"><div><div class="n">✊ Progressive Women</div><div class="d">Solidarity & growth</div></div><div class="j">18 members</div></div>
+          <div class="cc" style="background:#3C4A7A"><div><div class="n">🌍 BBB</div><div class="d">Belong Beyond Borders</div></div><div class="j">31 members · Joined</div></div>
+          <div class="cc" style="background:var(--teal)"><div><div class="n">🌿 Outdoor</div><div class="d">Picnics, hikes, lakes</div></div><div class="j">40 members · Joined</div></div>
+          <div class="cc" style="background:var(--rust)"><div><div class="n">💻 Co-working</div><div class="d">Work side by side</div></div><div class="j">22 members</div></div>
+          <div class="cc" style="background:#7A6A3C"><div><div class="n">🇩🇪 German practice</div><div class="d">Stammtisch & tandem</div></div><div class="j">15 members</div></div>
+        </div>
+        <div class="card" style="margin-top:9px"><div class="t" style="font-size:12.5px">＋ Start a new circle</div><div class="m">Needs 5 members to go live, so circles don't multiply like WhatsApp groups.</div></div>
+      </div>
+      <div class="tabbar"><div><span class="ic">🏠</span>Home</div><div class="on"><span class="ic">🧭</span>Circles</div><div><span class="ic">＋</span>Host</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">Your existing communities live here as circles. My idea: a new circle needs 5 people before it appears, to keep it tidy.</div>
+  </div>
+
+  <!-- 4. GROW -->
+  <div class="shot">
+    <div class="caption">4 · Grow: challenges & badges</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hello">October growth card</div>
+        <div class="muted">Done in person, confirmed at meetups. 4 of 9 ✓</div>
+        <div class="bingo">
+          <div class="sq done"><span class="e">☕</span>Coffee with someone outside your field</div>
+          <div class="sq"><span class="e">🎓</span>Teach a 20-min skill</div>
+          <div class="sq done"><span class="e">🧭</span>Try a new circle</div>
+          <div class="sq"><span class="e">🎤</span>Host your first meetup</div>
+          <div class="sq done"><span class="e">🤝</span>Bring a newcomer</div>
+          <div class="sq"><span class="e">📄</span>Give a CV / LinkedIn review</div>
+          <div class="sq"><span class="e">🗣️</span>Join a German Stammtisch</div>
+          <div class="sq done"><span class="e">💡</span>Learn a skill from a member</div>
+          <div class="sq"><span class="e">🌱</span>Volunteer with the group</div>
+        </div>
+        <div class="roulette"><b>☕ Coffee roulette:</b> you're matched with <b>Lena</b> (UX design · wants to learn Python, which you teach!). Pick a time this week.</div>
+        <div class="badges">
+          <div class="bdg"><div class="o" style="background:#F6E3D9">🤝</div>Connector</div>
+          <div class="bdg"><div class="o" style="background:#DCE8E6">🎓</div>Teacher</div>
+          <div class="bdg"><div class="o" style="background:#F5EBD3">🎤</div>Host</div>
+          <div class="bdg"><div class="o" style="background:#eee; filter:grayscale(1); opacity:.5">🧭</div>Explorer</div>
+        </div>
+      </div>
+      <div class="tabbar"><div><span class="ic">🏠</span>Home</div><div><span class="ic">🧭</span>Circles</div><div><span class="ic">＋</span>Host</div><div class="on"><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">Challenges about skills and network, matched using “I can teach / I want to learn” on profiles. No individual leaderboard.</div>
+  </div>
+
+</div>
+
+<div class="question"><b>Tell me in the terminal:</b> what feels right, what feels off, and what's missing?</div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Third Place Berlin — combined mockups</title>
+<style>
+:root { --rust:#C1592A; --teal:#2F5D58; --ink:#232323; --grey:#6b6b6b; --line:#e8e2d6; --cream:#FBF7F0; --gold:#D9A441; }
+* { box-sizing:border-box; }
+body { margin:0; background:#EDE7DC; font-family:-apple-system,"Helvetica Neue",Arial,sans-serif; color:var(--ink); }
+.intro { max-width:1220px; margin:28px auto 8px; padding:0 20px; }
+.intro h1 { font-family:Georgia,serif; font-size:26px; margin:0 0 6px; }
+.intro p { color:var(--grey); margin:0; font-size:14px; }
+.v2 .new { display:inline-block; background:var(--rust); color:#fff; font-size:10px; font-weight:800; border-radius:6px; padding:2px 6px; margin-left:6px; vertical-align:middle; letter-spacing:.5px; }
+.v2 .row { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; padding:24px 16px 48px; }
+.v2 .shot { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.v2 .caption { font-size:13px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--teal); }
+.v2 .sub { font-size:12px; color:var(--grey); max-width:280px; text-align:center; }
+.v2 .phone { width:300px; height:620px; background:var(--cream); border-radius:38px; border:10px solid #1d1d1d; box-shadow:0 18px 40px rgba(0,0,0,.18); overflow:hidden; display:flex; flex-direction:column; }
+.v2 .status { height:26px; font-size:11px; display:flex; justify-content:space-between; padding:6px 18px 0; color:#555; }
+.v2 .scr { flex:1; overflow:hidden; padding:6px 14px 0; }
+.v2 .tabbar { height:58px; border-top:1px solid var(--line); display:flex; justify-content:space-around; align-items:center; background:#fff; font-size:10px; color:#999; }
+.v2 .tabbar div { text-align:center; }
+.v2 .tabbar .on { color:var(--rust); font-weight:700; }
+.v2 .tabbar .ic { font-size:18px; display:block; }
+.v2 .hello { font-family:Georgia,serif; font-size:20px; margin:4px 0 2px; }
+.v2 .muted { color:var(--grey); font-size:12px; }
+.v2 .grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; margin-top:8px; }
+.v2 .cc { border-radius:13px; padding:9px; color:#fff; min-height:78px; display:flex; flex-direction:column; justify-content:space-between; }
+.v2 .cc .n { font-weight:800; font-size:12.5px; }
+.v2 .cc .d { font-size:10px; opacity:.9; }
+.v2 .cc .j { font-size:9.5px; background:rgba(255,255,255,.25); border-radius:999px; padding:2px 7px; align-self:flex-start; }
+.v2 .lock { font-size:9.5px; font-weight:700; background:rgba(0,0,0,.25); border-radius:6px; padding:1px 6px; margin-left:4px; }
+.v2 .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:10px 12px; margin-bottom:8px; }
+.v2 .t { font-weight:700; font-size:13.5px; margin:2px 0; }
+.v2 .m { font-size:11.5px; color:var(--grey); }
+.v2 .search { background:#fff; border:1px solid var(--line); border-radius:12px; padding:8px 10px; font-size:12px; color:#aaa; margin:8px 0; }
+.v2 .chips { display:flex; gap:6px; overflow:hidden; margin:0 0 8px; }
+.v2 .chip { flex:none; border:1px solid var(--line); background:#fff; border-radius:999px; padding:4px 9px; font-size:10.5px; }
+.v2 .chip.on { background:var(--teal); color:#fff; border-color:var(--teal); }
+.v2 .person { display:flex; gap:10px; align-items:center; background:#fff; border:1px solid var(--line); border-radius:14px; padding:9px 10px; margin-bottom:7px; }
+.v2 .av { width:40px; height:40px; border-radius:50%; flex:none; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; }
+.v2 .person .nm { font-weight:700; font-size:13px; }
+.v2 .person .ro { font-size:11px; color:var(--grey); }
+.v2 .tags { margin-top:3px; }
+.v2 .tag { display:inline-block; font-size:9.5px; background:#F3EEE4; border-radius:6px; padding:1px 6px; margin:1px 3px 1px 0; }
+.v2 .tag.teach { background:#DCE8E6; color:var(--teal); }
+.v2 .tag.learn { background:#F6E3D9; color:var(--rust); }
+.v2 .bigav { width:74px; height:74px; border-radius:50%; margin:4px auto 6px; background:#3C4A7A; color:#fff; display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; }
+.v2 .center { text-align:center; }
+.v2 .btn { display:block; text-align:center; border-radius:12px; padding:9px 4px; font-size:12px; font-weight:700; background:var(--rust); color:#fff; margin:6px 0; }
+.v2 .btn.sec { background:#fff; color:var(--teal); border:1px solid var(--teal); }
+.v2 .label { font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--teal); margin:8px 0 3px; }
+.v2 .field { background:#fff; border:1px solid var(--line); border-radius:10px; padding:7px 9px; font-size:11.5px; color:#555; margin-bottom:6px; }
+.v2 .toggle { display:flex; border:1px solid var(--teal); border-radius:10px; overflow:hidden; margin-bottom:6px; }
+.v2 .toggle div { flex:1; text-align:center; padding:7px 4px; font-size:11px; }
+.v2 .toggle .on { background:var(--teal); color:#fff; font-weight:700; }
+.v2 .sheet { background:#fff; border-radius:16px 16px 0 0; border:1px solid var(--line); padding:10px 12px; margin-top:8px; box-shadow:0 -6px 18px rgba(0,0,0,.08); }
+.v2 .opt { display:flex; justify-content:space-between; align-items:center; font-size:12px; padding:6px 0; border-bottom:1px solid #f1ece3; }
+.v2 .opt:last-child { border-bottom:none; }
+.v2 .ok { color:var(--teal); font-weight:700; font-size:11px; }
+.v2 .step { display:flex; gap:7px; font-size:11px; margin:4px 0; }
+.v2 .step .d { width:16px; height:16px; border-radius:50%; background:var(--teal); color:#fff; font-size:9px; display:flex; align-items:center; justify-content:center; flex:none; }
+.v2 .step .d.wait { background:#ccc; }
+.question { max-width:1220px; margin:0 auto 40px; padding:16px 20px; background:#fff; border-radius:14px; font-size:14px; }
+:root { --rust:#C1592A; --teal:#2F5D58; --ink:#232323; --grey:#6b6b6b; --line:#e8e2d6; --cream:#FBF7F0; --gold:#D9A441; --purple:#8E3B8A; }
+* { box-sizing:border-box; }
+body { margin:0; background:#EDE7DC; font-family:-apple-system,"Helvetica Neue",Arial,sans-serif; color:var(--ink); }
+.intro { max-width:1220px; margin:28px auto 8px; padding:0 20px; }
+.intro h1 { font-family:Georgia,serif; font-size:26px; margin:0 0 6px; }
+.intro p { color:var(--grey); margin:0; font-size:14px; }
+.v3 .row { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; padding:24px 16px 48px; }
+.v3 .shot { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.v3 .caption { font-size:13px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; color:var(--teal); }
+.v3 .sub { font-size:12px; color:var(--grey); max-width:280px; text-align:center; }
+.v3 .phone { width:300px; height:620px; background:var(--cream); border-radius:38px; border:10px solid #1d1d1d; box-shadow:0 18px 40px rgba(0,0,0,.18); overflow:hidden; display:flex; flex-direction:column; }
+.v3 .status { height:26px; font-size:11px; display:flex; justify-content:space-between; padding:6px 18px 0; color:#555; }
+.v3 .top { padding:4px 12px 6px; border-bottom:1px solid var(--line); background:#fff; }
+.v3 .top .n { font-weight:800; font-size:14px; }
+.v3 .top .m { font-size:10.5px; color:var(--grey); }
+.v3 .tabs { display:flex; gap:12px; font-size:11px; margin-top:6px; color:#999; }
+.v3 .tabs .on { color:var(--rust); font-weight:700; border-bottom:2px solid var(--rust); padding-bottom:2px; }
+.v3 .scr { flex:1; overflow:hidden; padding:8px 10px 0; display:flex; flex-direction:column; gap:7px; }
+.v3 .msg { max-width:82%; background:#fff; border:1px solid var(--line); border-radius:14px 14px 14px 4px; padding:6px 9px; font-size:11.5px; }
+.v3 .msg .who { font-size:10px; font-weight:700; color:var(--teal); }
+.v3 .msg.me { align-self:flex-end; background:#E9F2EF; border-radius:14px 14px 4px 14px; }
+.v3 .react { font-size:10px; color:var(--grey); margin-top:2px; }
+.v3 .prompt { background:linear-gradient(135deg,#C1592A,#D9A441); color:#fff; border-radius:14px; padding:9px 10px; font-size:11.5px; }
+.v3 .prompt .k { font-size:9.5px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; opacity:.9; }
+.v3 .prompt .q { font-family:Georgia,serif; font-size:14px; margin:3px 0 5px; }
+.v3 .prompt .act { display:inline-block; background:rgba(255,255,255,.25); border-radius:999px; padding:2px 8px; font-size:10px; margin-right:4px; }
+.v3 .poll { background:#fff; border:1px solid var(--line); border-radius:14px; padding:8px 10px; font-size:11.5px; }
+.v3 .poll .k { font-size:9.5px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; color:var(--teal); }
+.v3 .opt { position:relative; border:1px solid var(--line); border-radius:9px; padding:5px 8px; margin-top:5px; overflow:hidden; display:flex; justify-content:space-between; }
+.v3 .opt i { position:absolute; left:0; top:0; bottom:0; background:#DCE8E6; z-index:0; }
+.v3 .opt span { position:relative; z-index:1; }
+.v3 .opt.win { border-color:var(--teal); font-weight:700; }
+.v3 .cta { display:inline-block; margin-top:6px; background:var(--rust); color:#fff; border-radius:999px; padding:3px 10px; font-size:10.5px; font-weight:700; }
+.v3 .debate { background:#fff; border:2px solid var(--purple); border-radius:14px; padding:8px 10px; font-size:11.5px; }
+.v3 .debate .k { font-size:9.5px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; color:var(--purple); }
+.v3 .sides { display:flex; gap:6px; margin-top:6px; }
+.v3 .side { flex:1; border-radius:9px; padding:6px; text-align:center; font-size:10.5px; color:#fff; }
+.v3 .meter { height:8px; border-radius:6px; overflow:hidden; display:flex; margin-top:6px; }
+.v3 .meter i { display:block; height:100%; }
+.v3 .game { background:#1d2b3a; color:#fff; border-radius:14px; padding:9px 10px; font-size:11.5px; }
+.v3 .game .k { font-size:9.5px; font-weight:800; letter-spacing:.7px; text-transform:uppercase; color:var(--gold); }
+.v3 .ans { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:6px; }
+.v3 .ans div { background:rgba(255,255,255,.12); border-radius:8px; padding:5px; font-size:10.5px; text-align:center; }
+.v3 .ans .r { background:#2F8F6B; }
+.v3 .composer { height:62px; border-top:1px solid var(--line); background:#fff; display:flex; align-items:center; gap:6px; padding:0 8px; }
+.v3 .composer .in { flex:1; background:#F4F0E8; border-radius:999px; padding:7px 10px; font-size:11px; color:#999; }
+.v3 .tool { width:28px; height:28px; border-radius:50%; background:#F4F0E8; display:flex; align-items:center; justify-content:center; font-size:13px; }
+.v3 .menu { background:#fff; border-radius:16px 16px 0 0; border-top:1px solid var(--line); padding:10px 12px; box-shadow:0 -6px 18px rgba(0,0,0,.1); }
+.v3 .menu .item { display:flex; gap:9px; align-items:center; padding:7px 0; border-bottom:1px solid #f1ece3; font-size:12px; }
+.v3 .menu .item:last-child { border-bottom:none; }
+.v3 .menu .e { font-size:18px; width:24px; text-align:center; }
+.v3 .menu .s { font-size:10px; color:var(--grey); }
+.v3 .settings { background:#fff; border:1px solid var(--line); border-radius:14px; padding:9px 10px; font-size:11.5px; }
+.v3 .settings .row2 { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #f1ece3; }
+.v3 .settings .row2:last-child { border-bottom:none; }
+.v3 .sw { width:30px; height:17px; border-radius:9px; background:var(--teal); position:relative; }
+.v3 .sw::after { content:""; position:absolute; right:2px; top:2px; width:13px; height:13px; border-radius:50%; background:#fff; }
+.v3 .sw.off { background:#ccc; }
+.v3 .sw.off::after { left:2px; right:auto; }
+.v3 .label { font-size:10px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--teal); margin:4px 0 2px; }
+.question { max-width:1220px; margin:0 auto 40px; padding:16px 20px; background:#fff; border-radius:14px; font-size:14px; }
+h2.sec { max-width:1220px; margin:30px auto 2px; padding:0 20px; font-family:Georgia,serif; font-size:22px; color:#2F5D58; }
+p.secsub { max-width:1220px; margin:0 auto; padding:0 20px; color:#6b6b6b; font-size:13.5px; }
+.flow { max-width:1220px; margin:14px auto 0; padding:0 20px; display:flex; flex-wrap:wrap; gap:8px; font-size:12px; }
+.flow span { background:#fff; border:1px solid #e8e2d6; border-radius:999px; padding:5px 11px; }
+</style></head><body>
+<div class="intro"><h1>Third Place Berlin · combined mockups (v2 + v3)</h1>
+<p>The full circle experience in one place: discover and join circles, life inside a circle, and connecting with people. Bottom tabs: Home · Circles · People · Grow · Me.</p></div>
+<div class="flow"><span>🧭 Find a circle</span><span>→ 🔓 join instantly or 🔒 get recommended</span><span>→ 💬 chat, polls, debates, games</span><span>→ 📅 meetup with a “find us here” pin</span><span>→ 👥 connect & recommend people</span></div>
+<h2 class="sec">1 · Circles</h2><p class="secsub">Your 8 circles (BBB open), closed-circle joining, and proposing new circles for admin approval.</p><div class="v2"><div class="row"><div class="shot">
+    <div class="caption">Circles</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hello">Circles</div>
+        <div class="muted">🔓 Open: join instantly · 🔒 Closed: members recommend you, the circle approves</div>
+        <div class="grid">
+          <div class="cc" style="background:#8E3B8A"><div><div class="n">🎤 Karaoke</div><div class="d">Sing badly, together</div></div><div class="j">🔓 Open · 19</div></div>
+          <div class="cc" style="background:#A0522D"><div><div class="n">📚 Book Lovers</div><div class="d">Reading circles & author talks</div></div><div class="j">🔓 Open · 27</div></div>
+          <div class="cc" style="background:var(--rust)"><div><div class="n">💻 Co-working & Networking</div><div class="d">Work side by side, meet pros</div></div><div class="j">🔓 Open · 34</div></div>
+          <div class="cc" style="background:#B9647D"><div><div class="n">✊ Women Events<span class="lock">🔒</span></div><div class="d">Women-only gatherings</div></div><div class="j">🔒 Closed · 22</div></div>
+          <div class="cc" style="background:#2E6E8E"><div><div class="n">🎨 Art Lovers</div><div class="d">Galleries, museums, studios</div></div><div class="j">🔓 Open · 16</div></div>
+          <div class="cc" style="background:#D9A441"><div><div class="n">🐻 Berlin Events</div><div class="d">Festivals, concerts, city life</div></div><div class="j">🔓 Open · 41</div></div>
+          <div class="cc" style="background:var(--teal)"><div><div class="n">⚽ Sports Events</div><div class="d">Run, play, watch</div></div><div class="j">🔓 Open · 25</div></div>
+          <div class="cc" style="background:#3C4A7A"><div><div class="n">🌍 BBB</div><div class="d">Belong Beyond Borders</div></div><div class="j">🔓 Open · 31</div></div>
+        </div>
+        <div class="card" style="margin-top:8px"><div class="t" style="font-size:12px">💡 Propose a new circle</div><div class="m">Send an idea to the admins. They approve it before it appears.</div></div>
+      </div>
+      <div class="tabbar"><div><span class="ic">🏠</span>Home</div><div class="on"><span class="ic">🧭</span>Circles</div><div><span class="ic">👥</span>People</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">Your 7 circles plus BBB as an open circle. “Women Events” is shown as closed only as an example of the lock.</div>
+  </div>
+
+  <!-- CLOSED CIRCLE JOIN -->
+  <div class="shot">
+    <div class="caption">Joining a closed circle</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hello" style="font-size:18px">✊ Women Events 🔒</div>
+        <div class="muted">Closed circle · 22 members · 2 upcoming meetups</div>
+        <div class="card" style="margin-top:10px"><div class="t">Request to join</div>
+          <div class="m">Closed circles need a recommendation from a member, then a circle host approves.</div>
+          <div class="label">Your request</div>
+          <div class="step"><div class="d">✓</div>Request sent · Tue</div>
+          <div class="step"><div class="d">✓</div>Recommended by <b>&nbsp;Saskia</b></div>
+          <div class="step"><div class="d wait">…</div>Waiting for host approval</div>
+        </div>
+        <div class="label">Who's here</div>
+        <div class="person"><div class="av" style="background:#B9647D">S</div><div><div class="nm">Saskia · host</div><div class="ro">Product manager · from Hamburg</div></div></div>
+        <div class="person"><div class="av" style="background:#2E6E8E">M</div><div><div class="nm">Mariana</div><div class="ro">Architect · from São Paulo</div></div></div>
+        <div class="muted" style="text-align:center">Meetups and members list are visible only after you join.</div>
+      </div>
+      <div class="tabbar"><div><span class="ic">🏠</span>Home</div><div class="on"><span class="ic">🧭</span>Circles</div><div><span class="ic">👥</span>People</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">Closed circle: a member recommends you, a host approves. Open circles (like BBB) just have a “Join” button.</div>
+  </div>
+
+  <!-- PEOPLE -->
+  <div class="shot">
+    <div class="caption">Propose a circle</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hello" style="font-size:18px">💡 Propose a new circle</div>
+        <div class="muted">The admins review every proposal so circles stay meaningful.</div>
+        <div class="label">Name</div><div class="field">🍳 Supper Club</div>
+        <div class="label">What it's about</div><div class="field">Monthly dinners where each person cooks a dish from home.</div>
+        <div class="label">Open or closed?</div>
+        <div class="toggle"><div class="on">🔓 Open</div><div>🔒 Closed</div></div>
+        <div class="label">Who wants to co-host?</div><div class="field">You + Kwame, Priya</div>
+        <div class="btn">Send to admins</div>
+        <div class="card" style="margin-top:6px"><div class="label" style="margin-top:0">Admin view (Nella & Saskia)</div>
+          <div class="m">🍳 Supper Club · proposed by Amara · 2 co-hosts</div>
+          <div style="display:flex; gap:6px; margin-top:6px"><div class="btn" style="flex:1; margin:0; padding:6px">Approve</div><div class="btn sec" style="flex:1; margin:0; padding:6px">Ask a question</div></div></div>
+      </div>
+      <div class="tabbar"><div><span class="ic">🏠</span>Home</div><div class="on"><span class="ic">🧭</span>Circles</div><div><span class="ic">👥</span>People</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">Members propose; you and Saskia approve, ask a question, or decline. The proposer chooses open or closed.</div>
+  </div>
+
+</div></div>
+<h2 class="sec">2 · Inside a circle</h2><p class="secsub">An open chat for every member, made interactive with daily questions, polls that become meetups, weekly debates and quick games. Calm notifications by default.</p><div class="v3"><div class="row"><div class="shot">
+    <div class="caption">Circle chat · prompt & poll</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="top"><div class="n">📚 Book Lovers</div><div class="m">27 members · 6 online</div>
+        <div class="tabs"><span class="on">Chat</span><span>Meetups</span><span>Members</span><span>Board</span></div></div>
+      <div class="scr">
+        <div class="prompt"><div class="k">☀️ Question of the day</div><div class="q">Which book made you feel at home in a new country?</div>
+          <span class="act">💬 14 answers</span><span class="act">Answer to see others</span></div>
+        <div class="msg"><div class="who">Kwame</div>“Americanah”. Ifemelu’s first year abroad was mine, line by line.<div class="react">❤️ 6 · 🙌 3</div></div>
+        <div class="msg"><div class="who">Lena</div>“Der Gesang der Flusskrebse”, read it to practise German 😅<div class="react">😂 4</div></div>
+        <div class="poll"><div class="k">📊 Poll · plan the next meetup</div><div style="font-weight:700; margin-top:2px">Which book for November?</div>
+          <div class="opt win"><i style="width:58%"></i><span>Pachinko</span><span>11 ✓</span></div>
+          <div class="opt"><i style="width:30%"></i><span>Paons / Pfauen</span><span>6</span></div>
+          <div class="opt"><i style="width:12%"></i><span>Klara and the Sun</span><span>2</span></div>
+          <span class="cta">Turn winner into a meetup →</span></div>
+      </div>
+      <div class="composer"><div class="tool">＋</div><div class="in">Message Book Lovers…</div><div class="tool">🎲</div></div>
+    </div>
+    <div class="sub">A daily question tailored to the circle starts the conversation. Answer first to see everyone else's answers. Polls turn straight into meetups.</div>
+  </div>
+
+  <!-- DEBATE -->
+  <div class="shot">
+    <div class="caption">Weekly debate</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="top"><div class="n">💻 Co-working & Networking</div><div class="m">34 members · 9 online</div>
+        <div class="tabs"><span class="on">Chat</span><span>Meetups</span><span>Members</span><span>Board</span></div></div>
+      <div class="scr">
+        <div class="debate"><div class="k">⚖️ Debate of the week · closes Sunday</div>
+          <div style="font-family:Georgia,serif; font-size:14px; margin:3px 0">“Should you speak German at work in Berlin, even if the team works in English?”</div>
+          <div class="sides"><div class="side" style="background:var(--teal)">Yes, it's how you belong<br><b>58%</b></div><div class="side" style="background:var(--rust)">No, skills matter more<br><b>42%</b></div></div>
+          <div class="meter"><i style="width:58%; background:var(--teal)"></i><i style="width:42%; background:var(--rust)"></i></div>
+          <div style="font-size:10px; color:var(--grey); margin-top:4px">23 votes · pick a side to unlock the arguments</div></div>
+        <div class="msg"><div class="who">Jonas · Yes</div>Even bad German opened more doors for me than my CV did.<div class="react">👍 8 · 🤔 2</div></div>
+        <div class="msg"><div class="who">Priya · No</div>My whole company is English-first. I'd rather spend the energy on my craft.<div class="react">👍 6</div></div>
+        <div class="msg me"><div class="who" style="color:var(--rust)">You · changed your mind 🔄</div>Started on “No”, Jonas convinced me 😄<div class="react">🔥 5</div></div>
+      </div>
+      <div class="composer"><div class="tool">＋</div><div class="in">Add your argument…</div><div class="tool">🎲</div></div>
+    </div>
+    <div class="sub">One friendly debate per week per circle. Vote a side, argue respectfully, and you can switch sides. “Changed your mind” earns a badge.</div>
+  </div>
+
+  <!-- GAME -->
+  <div class="shot">
+    <div class="caption">Quick games in the chat</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="top"><div class="n">🎤 Karaoke</div><div class="m">19 members · 4 online</div>
+        <div class="tabs"><span class="on">Chat</span><span>Meetups</span><span>Members</span><span>Board</span></div></div>
+      <div class="scr">
+        <div class="game"><div class="k">🎲 Guess the member · started by Priya</div>
+          <div style="margin:3px 0 2px">“I once sang ABBA on a ferry in front of 300 strangers.” Who is it?</div>
+          <div class="ans"><div>Kwame</div><div class="r">Mariana ✓</div><div>Saskia</div><div>Jonas</div></div>
+          <div style="font-size:10px; opacity:.8; margin-top:5px">9 guessed · 4 right · Mariana revealed 🎉</div></div>
+        <div class="msg"><div class="who">Mariana</div>Guilty 🙋‍♀️ “Dancing Queen”, of course<div class="react">😂 9 · 🎤 5</div></div>
+        <div class="game" style="background:#3C4A7A"><div class="k">🎵 Finish the lyric · 30 sec</div>
+          <div style="margin:3px 0">“Is this the real life, is this just…”</div>
+          <div class="ans"><div class="r">fantasy ✓</div><div>a dream</div></div></div>
+        <div class="msg me"><div class="who" style="color:var(--rust)">You</div>Rematch at Friday's karaoke night? 🎤</div>
+      </div>
+      <div class="composer"><div class="tool">＋</div><div class="in">Message Karaoke…</div><div class="tool">🎲</div></div>
+    </div>
+    <div class="sub">Anyone can start a 1-minute game from the 🎲 button. Games are about members, so you learn names and stories.</div>
+  </div>
+
+  <!-- + MENU & CALM SETTINGS -->
+  <div class="shot">
+    <div class="caption">The ＋ menu & calm notifications</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="top"><div class="n">🌍 BBB · Belong Beyond Borders</div><div class="m">31 members · open circle</div></div>
+      <div class="scr">
+        <div class="label">Notifications for this circle</div>
+        <div class="settings">
+          <div class="row2"><span>New meetups & polls</span><div class="sw"></div></div>
+          <div class="row2"><span>Mentions & replies to me</span><div class="sw"></div></div>
+          <div class="row2"><span>Daily digest of the chat (18:00)</span><div class="sw"></div></div>
+          <div class="row2"><span>Every message</span><div class="sw off"></div></div>
+        </div>
+        <div class="muted" style="font-size:10.5px; color:var(--grey)">Default: you're never pinged for every message. That's what drowned the WhatsApp group.</div>
+        <div style="flex:1"></div>
+        <div class="menu">
+          <div class="item"><span class="e">📅</span><div>Propose a meetup<div class="s">date, place, “find us here” pin</div></div></div>
+          <div class="item"><span class="e">📊</span><div>Poll / vote<div class="s">dates, places, books, anything</div></div></div>
+          <div class="item"><span class="e">⚖️</span><div>Start a debate<div class="s">two sides, vote, argue kindly</div></div></div>
+          <div class="item"><span class="e">🎲</span><div>Quick game<div class="s">guess the member, trivia, two truths & a lie</div></div></div>
+          <div class="item"><span class="e">📌</span><div>Pin to the board<div class="s">tips, links, useful info</div></div></div>
+        </div>
+      </div>
+      <div class="composer"><div class="tool" style="background:var(--rust); color:#fff">×</div><div class="in">Message BBB…</div><div class="tool">🎲</div></div>
+    </div>
+    <div class="sub">Everything interactive is one tap away. The Board tab keeps useful info (tips, links) from getting lost in the chat.</div>
+  </div>
+
+</div></div>
+<h2 class="sec">3 · People</h2><p class="secsub">Everyone registered, with bios and skills: invite for coffee or recommend them to a circle.</p><div class="v2"><div class="row"><div class="shot">
+    <div class="caption">People</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="hello">People</div>
+        <div class="search">🔍 Search by name, skill, field or language</div>
+        <div class="chips"><div class="chip on">All 87</div><div class="chip">New this month</div><div class="chip">Can teach me</div><div class="chip">Same field</div></div>
+        <div class="person"><div class="av" style="background:#3C4A7A">L</div><div><div class="nm">Lena · new 🌱</div><div class="ro">UX designer · from Vienna · EN/DE</div><div class="tags"><span class="tag teach">teaches Figma</span><span class="tag learn">learning Python</span></div></div></div>
+        <div class="person"><div class="av" style="background:#C1592A">K</div><div><div class="nm">Kwame</div><div class="ro">Data engineer · from Accra · EN/FR</div><div class="tags"><span class="tag teach">teaches Python</span><span class="tag learn">learning German</span></div></div></div>
+        <div class="person"><div class="av" style="background:#2F5D58">J</div><div><div class="nm">Jonas</div><div class="ro">Startup lawyer · from Berlin · DE/EN</div><div class="tags"><span class="tag teach">teaches German bureaucracy</span></div></div></div>
+        <div class="person"><div class="av" style="background:#D9A441">P</div><div><div class="nm">Priya</div><div class="ro">Marketing lead · from Pune · EN/HI</div><div class="tags"><span class="tag teach">teaches LinkedIn</span><span class="tag learn">learning karaoke 🎤</span></div></div></div>
+      </div>
+      <div class="tabbar"><div><span class="ic">🏠</span>Home</div><div><span class="ic">🧭</span>Circles</div><div class="on"><span class="ic">👥</span>People</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">Everyone registered, with short bios and “teaches / learning” tags. Filters help newcomers find people.</div>
+  </div>
+
+  <!-- PROFILE + RECOMMEND -->
+  <div class="shot">
+    <div class="caption">Profile · recommend to a circle</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+      <div class="scr">
+        <div class="bigav">L</div>
+        <div class="center"><div class="t" style="font-size:16px">Lena</div><div class="m">UX designer at a fintech · from Vienna · in Berlin since Sept</div></div>
+        <div class="card" style="margin-top:8px"><div class="m" style="color:#333">“New to Berlin, love museums and bad karaoke. Happy to review your portfolio!”</div>
+          <div class="tags" style="margin-top:6px"><span class="tag teach">teaches Figma</span><span class="tag teach">portfolio reviews</span><span class="tag learn">learning Python</span><span class="tag">🎨 Art Lovers</span></div></div>
+        <div class="btn">☕ Invite for a coffee</div>
+        <div class="btn sec">⭐ Recommend Lena to a circle</div>
+        <div class="sheet">
+          <div class="label" style="margin-top:0">Recommend Lena to…</div>
+          <div class="opt">🎤 Karaoke <span class="ok">Recommend</span></div>
+          <div class="opt">✊ Women Events 🔒 <span class="ok">Recommend</span></div>
+          <div class="opt">💻 Co-working & Networking <span class="ok">✓ Sent</span></div>
+        </div>
+      </div>
+      <div class="tabbar"><div><span class="ic">🏠</span>Home</div><div><span class="ic">🧭</span>Circles</div><div class="on"><span class="ic">👥</span>People</div><div><span class="ic">🎯</span>Grow</div><div><span class="ic">👤</span>Me</div></div>
+    </div>
+    <div class="sub">See a bio, invite for coffee, or recommend them to a circle. For closed circles, your recommendation counts towards their approval.</div>
+  </div>
+
+  <!-- PROPOSE CIRCLE -->
+  </div></div>
+<div class="question"><b>Tell me in the terminal</b> what you think of the combined version.</div>
+</body></html>
