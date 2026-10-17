@@ -287,5 +287,19 @@
     "used": "benutzt ✓",
     "open": "offen · läuft ab am {{date}}",
     "expired": "abgelaufen"
+  },
+  "notif": {
+    "inbox": "Benachrichtigungen",
+    "empty": "Nichts Neues. Genieß die Ruhe ✨",
+    "markRead": "Alle als gelesen markieren",
+    "turnOn": "🔔 Benachrichtigungen auf diesem Handy aktivieren",
+    "on": "Benachrichtigungen sind auf diesem Handy aktiv.",
+    "denied": "Benachrichtigungen sind blockiert. Erlaube sie in den Einstellungen deines Handys.",
+    "unsupported": "Dieser Browser kann keine Benachrichtigungen anzeigen.",
+    "needsInstall": "Auf dem iPhone füge die App zuerst zum Home-Bildschirm hinzu (Teilen → Zum Home-Bildschirm) und öffne sie von dort.",
+    "calm": "Standardmäßig wirst du nie bei jeder Nachricht angepingt. Genau das hat die WhatsApp-Gruppe überflutet.",
+    "meetupsPolls": "Neue Treffen & Umfragen",
+    "mentions": "Erwähnungen & Antworten an mich",
+    "everyMessage": "Jede Nachricht"
   }
 }

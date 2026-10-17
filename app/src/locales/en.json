@@ -287,5 +287,19 @@
     "used": "used ✓",
     "open": "open · expires {{date}}",
     "expired": "expired"
+  },
+  "notif": {
+    "inbox": "Notifications",
+    "empty": "Nothing new. Enjoy the quiet ✨",
+    "markRead": "Mark all as read",
+    "turnOn": "🔔 Turn on notifications on this phone",
+    "on": "Notifications are on for this phone.",
+    "denied": "Notifications are blocked. Allow them in your phone's settings.",
+    "unsupported": "This browser can't show notifications.",
+    "needsInstall": "On iPhone, first add the app to your Home Screen (Share → Add to Home Screen), then open it from there.",
+    "calm": "By default you're never pinged for every message. That's what drowned the WhatsApp group.",
+    "meetupsPolls": "New meetups & polls",
+    "mentions": "Mentions & replies to me",
+    "everyMessage": "Every message"
   }
 }

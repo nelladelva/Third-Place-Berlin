@@ -12,13 +12,18 @@ import { CircleMeetups } from './features/meetups/CircleMeetups';
 import { CircleBoard, CircleChat, MeetupChat } from './features/chat/CircleChat';
 import { PeopleScreen } from './features/people/PeopleScreen';
 import { ProfileScreen } from './features/people/ProfileScreen';
-import { MeScreen } from './features/me/MeScreen';
+import { MeScreen, meSections } from './features/me/MeScreen';
+import { Inbox } from './features/me/Inbox';
+import { NotificationSettings } from './features/me/NotificationSettings';
+import { useUnreadCount } from './data/notifications';
 import './lib/i18n';
 
 circleTabContent.meetups = (circle) => <CircleMeetups circle={circle} />;
 circleTabContent.chat = (circle) => <CircleChat circle={circle} />;
 circleTabContent.board = (circle) => <CircleBoard circle={circle} />;
 meetupChatSlot.render = (m) => <MeetupChat meetup={m} />;
+meSections.inbox = () => <Inbox />;
+meSections.notifications = () => <NotificationSettings />;
 
 function activeTab(path: string): Tab {
   if (path.startsWith('/circles')) return 'circles';
@@ -49,6 +54,11 @@ function EditProfileRoute() {
   return <WelcomeFlow profile={profile} requireConsent={false} onDone={() => void refresh().then(() => navigate('/me'))} />;
 }
 
+function Tabs({ path }: { path: string }) {
+  const unread = useUnreadCount();
+  return <TabBar active={activeTab(path)} badges={{ me: unread }} />;
+}
+
 function Shell() {
   const location = useLocation();
   return (
@@ -67,7 +77,7 @@ function Shell() {
           <Route path="/me/edit" element={<EditProfileRoute />} />
           <Route path="*" element={<HomeRoute />} />
         </Routes>
-        <TabBar active={activeTab(location.pathname)} />
+        <Tabs path={location.pathname} />
       </AuthGate>
     </div>
   );
