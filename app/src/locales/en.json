@@ -338,5 +338,12 @@
     "settings": "Settings",
     "vouchesRequired": "Vouches needed for new people",
     "saved": "Saved"
+  },
+  "install": {
+    "title": "📲 Install the app",
+    "ios": "On iPhone: tap Share (the square with an arrow) → “Add to Home Screen”, then open Third Place from your home screen.",
+    "android": "On Android: tap the ⋮ menu → “Install app” (or “Add to Home screen”).",
+    "why": "Installed, it opens full-screen and can send you notifications.",
+    "dismiss": "Got it"
   }
 }

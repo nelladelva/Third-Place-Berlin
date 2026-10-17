@@ -338,5 +338,12 @@
     "settings": "Einstellungen",
     "vouchesRequired": "Benötigte Bürgschaften für neue Leute",
     "saved": "Gespeichert"
+  },
+  "install": {
+    "title": "📲 App installieren",
+    "ios": "Auf dem iPhone: Tippe auf Teilen (das Quadrat mit Pfeil) → „Zum Home-Bildschirm“, dann öffne Third Place vom Home-Bildschirm.",
+    "android": "Auf Android: Tippe auf das ⋮-Menü → „App installieren“ (oder „Zum Startbildschirm hinzufügen“).",
+    "why": "Installiert öffnet sie sich im Vollbild und kann dir Benachrichtigungen schicken.",
+    "dismiss": "Verstanden"
   }
 }

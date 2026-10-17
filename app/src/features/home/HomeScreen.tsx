@@ -6,6 +6,7 @@ import { listUpcoming, type MeetupCard } from '../../data/meetups';
 import { isThisWeekend } from '../../lib/time';
 import { currentPosition, distanceMeters, NEAR_ME_M, type LatLng } from '../../lib/geo';
 import { MeetupCardView } from '../meetups/MeetupList';
+import { InstallHelp } from '../me/InstallHelp';
 
 type Filter = 'all' | 'weekend' | 'near';
 
@@ -42,6 +43,7 @@ export function HomeScreen({ now = new Date(), name }: { now?: Date; name?: stri
   return (
     <Screen>
       <h1 className="title">{name ? t('home.hello', { name }) : t('common.appName')}</h1>
+      <InstallHelp />
       {meetups && <p className="subtitle">{t('home.count', { count: meetups.length })}</p>}
       <div className="chips">
         {(['all', 'weekend', 'near'] as Filter[]).map((f) => (
