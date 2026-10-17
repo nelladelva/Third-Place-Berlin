@@ -15,6 +15,8 @@ import { SessionContext } from './features/auth/AuthGate';
 
 import { CircleBoard, CircleChat, MeetupChat } from './features/chat/CircleChat';
 import { meetupChatSlot } from './features/meetups/MeetupScreen';
+import { PeopleScreen } from './features/people/PeopleScreen';
+import { ProfileScreen } from './features/people/ProfileScreen';
 
 circleTabContent.meetups = (circle) => <CircleMeetups circle={circle} />;
 circleTabContent.chat = (circle) => <CircleChat circle={circle} />;
@@ -46,7 +48,8 @@ function Shell() {
         <Route path="/circles" element={<CirclesScreen />} />
         <Route path="/circles/propose" element={<ProposeCircle />} />
         <Route path="/circles/:id" element={<CircleScreen />} />
-        <Route path="/people/*" element={<Placeholder tab="people" />} />
+        <Route path="/people" element={SessionContext.current ? <PeopleScreen me={SessionContext.current.profile} /> : null} />
+        <Route path="/people/:id" element={<ProfileScreen meId={SessionContext.current?.profile.id} />} />
         <Route path="/me/*" element={<Placeholder tab="me" />} />
       </Routes>
       <TabBar active={activeTab(location.pathname)} />

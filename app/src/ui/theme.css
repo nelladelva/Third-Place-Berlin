@@ -99,3 +99,4 @@ button { font: inherit; }
 .poll-opt i { position: absolute; left: 0; top: 0; bottom: 0; background: #DCE8E6; z-index: 0; }
 .poll-opt span { position: relative; z-index: 1; }
 .poll-opt.win { border-color: var(--teal); font-weight: 700; }
+.person-card { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
