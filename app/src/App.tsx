@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { HashRouter, Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { TabBar, type Tab } from './ui/TabBar';
 import { AuthGate, useProfile } from './features/auth/AuthGate';
 import { WelcomeFlow } from './features/auth/WelcomeFlow';
@@ -16,6 +16,8 @@ import { MeScreen, meSections } from './features/me/MeScreen';
 import { Inbox } from './features/me/Inbox';
 import { NotificationSettings } from './features/me/NotificationSettings';
 import { useUnreadCount } from './data/notifications';
+import { AdminScreen } from './features/admin/AdminScreen';
+import { useTranslation } from 'react-i18next';
 import './lib/i18n';
 
 circleTabContent.meetups = (circle) => <CircleMeetups circle={circle} />;
@@ -24,6 +26,17 @@ circleTabContent.board = (circle) => <CircleBoard circle={circle} />;
 meetupChatSlot.render = (m) => <MeetupChat meetup={m} />;
 meSections.inbox = () => <Inbox />;
 meSections.notifications = () => <NotificationSettings />;
+meSections.admin = () => <AdminEntry />;
+
+function AdminEntry() {
+  const { profile } = useProfile();
+  const { t } = useTranslation();
+  return profile.role === 'admin' ? <Link className="btn block" to="/me/admin" style={{ marginBottom: 10 }}>{t('admin.entry')}</Link> : null;
+}
+function AdminRoute() {
+  const { profile } = useProfile();
+  return <AdminScreen profile={profile} />;
+}
 
 function activeTab(path: string): Tab {
   if (path.startsWith('/circles')) return 'circles';
@@ -75,6 +88,7 @@ function Shell() {
           <Route path="/people/:id" element={<ProfileRoute />} />
           <Route path="/me" element={<MeRoute />} />
           <Route path="/me/edit" element={<EditProfileRoute />} />
+          <Route path="/me/admin" element={<AdminRoute />} />
           <Route path="*" element={<HomeRoute />} />
         </Routes>
         <Tabs path={location.pathname} />
