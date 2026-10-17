@@ -256,5 +256,36 @@
     "reported": "Thanks, the admins will take a look.",
     "editMine": "Edit my profile",
     "notFound": "This profile isn't available."
+  },
+  "me": {
+    "title": "Me",
+    "editProfile": "Edit profile",
+    "viewProfile": "View my profile",
+    "photo": "Change photo",
+    "photoError": "That photo couldn't be uploaded.",
+    "language": "Language",
+    "myCircles": "My circles",
+    "notifications": "Notifications",
+    "blocked": "Blocked people",
+    "noBlocked": "You haven't blocked anyone.",
+    "privacy": "Privacy & data",
+    "privacyText": "Your profile is visible only to logged-in members. Your email is never shown. Data is stored in the EU (Frankfurt).",
+    "export": "Download my data",
+    "delete": "Delete my account",
+    "deleteConfirm1": "Delete your account and everything you posted? This can't be undone.",
+    "deleteConfirm2": "Type DELETE to confirm.",
+    "deleted": "Your account was deleted. Goodbye!",
+    "admin": "Admin"
+  },
+  "invites": {
+    "title": "Invite someone",
+    "intro": "Third Place Berlin is invite-only. Your invite counts as your vouch, and one more member needs to vouch too.",
+    "create": "Create invite link",
+    "shareText": "Join me at Third Place Berlin, our community app for people building a life in Berlin. Open this link on your phone:",
+    "copied": "Link copied. Paste it into WhatsApp.",
+    "mine": "My invites",
+    "used": "used ✓",
+    "open": "open · expires {{date}}",
+    "expired": "expired"
   }
 }

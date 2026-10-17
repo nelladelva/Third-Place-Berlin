@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSession, type Profile } from '../../data/session';
@@ -8,7 +8,15 @@ import { JoinScreen, NeedInviteScreen, RemovedScreen, WaitingScreen } from './Au
 import { WelcomeFlow } from './WelcomeFlow';
 import { Screen } from '../../ui/Screen';
 
-export const SessionContext = { current: null as null | { profile: Profile; refresh: () => Promise<void> } };
+type ProfileCtx = { profile: Profile; refresh: () => Promise<void> };
+const ProfileContext = createContext<ProfileCtx | null>(null);
+
+/** The logged-in member's profile; only usable inside AuthGate's children. */
+export function useProfile(): ProfileCtx {
+  const ctx = useContext(ProfileContext);
+  if (!ctx) throw new Error('useProfile outside AuthGate');
+  return ctx;
+}
 
 export function AuthGate({ children, circlesStep }: { children: ReactNode; circlesStep?: ReactNode }) {
   const { t } = useTranslation();
@@ -38,6 +46,5 @@ export function AuthGate({ children, circlesStep }: { children: ReactNode; circl
     );
   }
   if (!profile.consentAt) return <WelcomeFlow profile={profile} circlesStep={circlesStep} onDone={() => void refresh()} />;
-  SessionContext.current = { profile, refresh };
-  return <>{children}</>;
+  return <ProfileContext.Provider value={{ profile, refresh }}>{children}</ProfileContext.Provider>;
 }

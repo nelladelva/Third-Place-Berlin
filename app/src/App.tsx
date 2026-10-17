@@ -1,28 +1,24 @@
-import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { HashRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { TabBar, type Tab } from './ui/TabBar';
-import { Screen } from './ui/Screen';
-import { AuthGate } from './features/auth/AuthGate';
-import { CirclesScreen, CircleGrid } from './features/circles/CirclesScreen';
-import { CircleScreen } from './features/circles/CircleScreen';
+import { AuthGate, useProfile } from './features/auth/AuthGate';
+import { WelcomeFlow } from './features/auth/WelcomeFlow';
+import { CircleGrid, CirclesScreen } from './features/circles/CirclesScreen';
+import { CircleScreen, circleTabContent } from './features/circles/CircleScreen';
 import { ProposeCircle } from './features/circles/ProposeCircle';
-import { circleTabContent } from './features/circles/CircleScreen';
 import { HomeScreen } from './features/home/HomeScreen';
-import { MeetupScreen } from './features/meetups/MeetupScreen';
+import { MeetupScreen, meetupChatSlot } from './features/meetups/MeetupScreen';
 import { MeetupForm } from './features/meetups/MeetupForm';
 import { CircleMeetups } from './features/meetups/CircleMeetups';
-import { SessionContext } from './features/auth/AuthGate';
-
 import { CircleBoard, CircleChat, MeetupChat } from './features/chat/CircleChat';
-import { meetupChatSlot } from './features/meetups/MeetupScreen';
 import { PeopleScreen } from './features/people/PeopleScreen';
 import { ProfileScreen } from './features/people/ProfileScreen';
+import { MeScreen } from './features/me/MeScreen';
+import './lib/i18n';
 
 circleTabContent.meetups = (circle) => <CircleMeetups circle={circle} />;
 circleTabContent.chat = (circle) => <CircleChat circle={circle} />;
 circleTabContent.board = (circle) => <CircleBoard circle={circle} />;
 meetupChatSlot.render = (m) => <MeetupChat meetup={m} />;
-import './lib/i18n';
 
 function activeTab(path: string): Tab {
   if (path.startsWith('/circles')) return 'circles';
@@ -31,9 +27,26 @@ function activeTab(path: string): Tab {
   return 'home';
 }
 
-function Placeholder({ tab }: { tab: Tab }) {
-  const { t } = useTranslation();
-  return <Screen title={t(`tabs.${tab}`)} subtitle={t('common.comingSoon')} />;
+function HomeRoute() {
+  const { profile } = useProfile();
+  return <HomeScreen name={profile.displayName} />;
+}
+function PeopleRoute() {
+  const { profile } = useProfile();
+  return <PeopleScreen me={profile} />;
+}
+function ProfileRoute() {
+  const { profile } = useProfile();
+  return <ProfileScreen meId={profile.id} />;
+}
+function MeRoute() {
+  const { profile, refresh } = useProfile();
+  return <MeScreen profile={profile} onChanged={() => void refresh()} />;
+}
+function EditProfileRoute() {
+  const { profile, refresh } = useProfile();
+  const navigate = useNavigate();
+  return <WelcomeFlow profile={profile} requireConsent={false} onDone={() => void refresh().then(() => navigate('/me'))} />;
 }
 
 function Shell() {
@@ -41,18 +54,20 @@ function Shell() {
   return (
     <div className="app">
       <AuthGate circlesStep={<CircleGrid link={false} />}>
-      <Routes>
-        <Route path="/" element={<HomeScreen name={SessionContext.current?.profile.displayName} />} />
-        <Route path="/meetups/:id" element={<MeetupScreen />} />
-        <Route path="/circles/:id/meetups/new" element={<MeetupForm />} />
-        <Route path="/circles" element={<CirclesScreen />} />
-        <Route path="/circles/propose" element={<ProposeCircle />} />
-        <Route path="/circles/:id" element={<CircleScreen />} />
-        <Route path="/people" element={SessionContext.current ? <PeopleScreen me={SessionContext.current.profile} /> : null} />
-        <Route path="/people/:id" element={<ProfileScreen meId={SessionContext.current?.profile.id} />} />
-        <Route path="/me/*" element={<Placeholder tab="me" />} />
-      </Routes>
-      <TabBar active={activeTab(location.pathname)} />
+        <Routes>
+          <Route path="/" element={<HomeRoute />} />
+          <Route path="/circles" element={<CirclesScreen />} />
+          <Route path="/circles/propose" element={<ProposeCircle />} />
+          <Route path="/circles/:id" element={<CircleScreen />} />
+          <Route path="/circles/:id/meetups/new" element={<MeetupForm />} />
+          <Route path="/meetups/:id" element={<MeetupScreen />} />
+          <Route path="/people" element={<PeopleRoute />} />
+          <Route path="/people/:id" element={<ProfileRoute />} />
+          <Route path="/me" element={<MeRoute />} />
+          <Route path="/me/edit" element={<EditProfileRoute />} />
+          <Route path="*" element={<HomeRoute />} />
+        </Routes>
+        <TabBar active={activeTab(location.pathname)} />
       </AuthGate>
     </div>
   );

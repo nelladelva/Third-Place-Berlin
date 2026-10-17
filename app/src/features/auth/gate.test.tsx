@@ -71,3 +71,13 @@ test('member with consent sees the app', () => {
   show('u1', base);
   expect(screen.getByText('APP CONTENT')).toBeInTheDocument();
 });
+
+test('children get the profile on the first render', async () => {
+  const { useProfile } = await import('./AuthGate');
+  function Hello() {
+    return <p>Hi {useProfile().profile.displayName}</p>;
+  }
+  session.value = { userId: 'u1', profile: base, loading: false };
+  render(<MemoryRouter><AuthGate><Hello /></AuthGate></MemoryRouter>);
+  expect(screen.getByText('Hi Amara')).toBeInTheDocument();
+});

@@ -100,3 +100,4 @@ button { font: inherit; }
 .poll-opt span { position: relative; z-index: 1; }
 .poll-opt.win { border-color: var(--teal); font-weight: 700; }
 .person-card { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
+.avatar-btn { border: 0; background: none; padding: 0; cursor: pointer; }

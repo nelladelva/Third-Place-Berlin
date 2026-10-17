@@ -256,5 +256,36 @@
     "reported": "Danke, die Admins schauen sich das an.",
     "editMine": "Mein Profil bearbeiten",
     "notFound": "Dieses Profil ist nicht verfügbar."
+  },
+  "me": {
+    "title": "Ich",
+    "editProfile": "Profil bearbeiten",
+    "viewProfile": "Mein Profil ansehen",
+    "photo": "Foto ändern",
+    "photoError": "Das Foto konnte nicht hochgeladen werden.",
+    "language": "Sprache",
+    "myCircles": "Meine Kreise",
+    "notifications": "Benachrichtigungen",
+    "blocked": "Blockierte Personen",
+    "noBlocked": "Du hast niemanden blockiert.",
+    "privacy": "Datenschutz & Daten",
+    "privacyText": "Dein Profil ist nur für angemeldete Mitglieder sichtbar. Deine E-Mail wird nie angezeigt. Die Daten liegen in der EU (Frankfurt).",
+    "export": "Meine Daten herunterladen",
+    "delete": "Mein Konto löschen",
+    "deleteConfirm1": "Dein Konto und alles, was du gepostet hast, löschen? Das kann nicht rückgängig gemacht werden.",
+    "deleteConfirm2": "Tippe LÖSCHEN zur Bestätigung.",
+    "deleted": "Dein Konto wurde gelöscht. Tschüss!",
+    "admin": "Admin"
+  },
+  "invites": {
+    "title": "Jemanden einladen",
+    "intro": "Third Place Berlin ist nur mit Einladung. Deine Einladung zählt als deine Bürgschaft, und ein weiteres Mitglied muss ebenfalls bürgen.",
+    "create": "Einladungslink erstellen",
+    "shareText": "Komm zu Third Place Berlin, unserer Community-App für Leute, die sich ein Leben in Berlin aufbauen. Öffne diesen Link auf deinem Handy:",
+    "copied": "Link kopiert. Füge ihn in WhatsApp ein.",
+    "mine": "Meine Einladungen",
+    "used": "benutzt ✓",
+    "open": "offen · läuft ab am {{date}}",
+    "expired": "abgelaufen"
   }
 }
