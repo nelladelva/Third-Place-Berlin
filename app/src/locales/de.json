@@ -1,5 +1,10 @@
 {
-  "tabs": { "home": "Start", "circles": "Kreise", "people": "Leute", "me": "Ich" },
+  "tabs": {
+    "home": "Start",
+    "circles": "Kreise",
+    "people": "Leute",
+    "me": "Ich"
+  },
   "common": {
     "appName": "Third Place Berlin",
     "tagline": "Nicht zu Hause. Nicht bei der Arbeit. Irgendwo dazwischen.",
@@ -9,6 +14,69 @@
     "back": "Zurück",
     "next": "Weiter",
     "error": "Etwas ist schiefgelaufen. Bitte versuche es noch einmal.",
-    "comingSoon": "Bald verfügbar"
+    "comingSoon": "Bald verfügbar",
+    "logout": "Abmelden",
+    "privacyNotice": "Datenschutzhinweis"
+  },
+  "login": {
+    "title": "Willkommen",
+    "intro": "Melde dich mit deiner E-Mail an. Wir schicken dir einen 6-stelligen Code, den du hier eingibst. Kein Passwort nötig.",
+    "email": "E-Mail",
+    "sendCode": "Code schicken",
+    "code": "6-stelliger Code",
+    "codeSent": "Wir haben einen Code an {{email}} geschickt. Das kann eine Minute dauern, schau auch im Spam-Ordner nach.",
+    "verify": "Anmelden",
+    "badCode": "Der Code hat nicht funktioniert. Prüfe ihn oder fordere einen neuen an.",
+    "rateLimited": "Gerade werden zu viele Anmelde-E-Mails verschickt. Bitte warte ein paar Minuten und versuche es erneut.",
+    "invalidEmail": "Bitte gib eine gültige E-Mail-Adresse ein.",
+    "changeEmail": "Andere E-Mail verwenden"
+  },
+  "needInvite": {
+    "title": "Third Place Berlin ist nur mit Einladung",
+    "body": "Bitte ein Mitglied um einen Einladungslink. Wenn du einen Link oder Code hast, füge ihn hier ein.",
+    "code": "Einladungslink oder Code",
+    "continue": "Weiter"
+  },
+  "join": {
+    "title": "Du bist eingeladen!",
+    "body": "Sag uns deinen Namen und du bist dabei.",
+    "name": "Dein Name",
+    "submit": "Third Place Berlin beitreten",
+    "invalid": "Diese Einladung ist abgelaufen oder wurde schon benutzt. Bitte frag nach einer neuen."
+  },
+  "waiting": {
+    "title": "Fast geschafft!",
+    "body": "Mitglieder bürgen für jede neue Person. Du hast {{vouches}} von {{required}} Bürgschaften.",
+    "invitedBy": "Eingeladen von {{name}}",
+    "tip": "Vervollständige in der Zwischenzeit dein Profil, damit die Mitglieder dich kennenlernen.",
+    "editProfile": "Profil vervollständigen",
+    "refresh": "Erneut prüfen"
+  },
+  "removed": {
+    "title": "Dein Zugang wurde beendet",
+    "body": "Ein Admin hat dein Konto bei Third Place Berlin entfernt. Wenn du denkst, dass das ein Fehler ist, wende dich an das Orga-Team."
+  },
+  "welcome": {
+    "title": "Willkommen bei Third Place Berlin",
+    "step": "Schritt {{n}} von {{total}}",
+    "about": "Über dich",
+    "name": "Name",
+    "field": "Beruf / Fachgebiet",
+    "origin": "Woher du kommst",
+    "languages": "Sprachen (mit Komma getrennt)",
+    "berlinSince": "In Berlin seit",
+    "bioTitle": "Sag Hallo",
+    "bio": "Kurze Vorstellung",
+    "funFact": "Ein lustiger Fakt über dich",
+    "skillsTitle": "Gemeinsam wachsen",
+    "teach": "Das kann ich beibringen (mit Komma getrennt)",
+    "learn": "Das möchte ich lernen (mit Komma getrennt)",
+    "skillsHint": "Je bis zu 10, z. B. Excel, Gehaltsverhandlung, deutsche Bürokratie",
+    "circlesTitle": "Wähle deine Kreise",
+    "circlesHint": "Du kannst später weiteren Kreisen beitreten.",
+    "consentTitle": "Letzter Schritt",
+    "adult": "Ich bin 18 Jahre oder älter",
+    "privacy": "Ich stimme dem Datenschutzhinweis zu: Mein Profil ist nur für angemeldete Mitglieder sichtbar, meine E-Mail wird nie angezeigt, und ich kann meine Daten jederzeit herunterladen oder löschen.",
+    "finish": "Los geht's"
   }
 }

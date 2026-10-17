@@ -1,5 +1,10 @@
 {
-  "tabs": { "home": "Home", "circles": "Circles", "people": "People", "me": "Me" },
+  "tabs": {
+    "home": "Home",
+    "circles": "Circles",
+    "people": "People",
+    "me": "Me"
+  },
   "common": {
     "appName": "Third Place Berlin",
     "tagline": "Not home. Not work. Somewhere in between.",
@@ -9,6 +14,69 @@
     "back": "Back",
     "next": "Next",
     "error": "Something went wrong. Please try again.",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "logout": "Log out",
+    "privacyNotice": "Privacy notice"
+  },
+  "login": {
+    "title": "Welcome",
+    "intro": "Log in with your email. We'll send you a 6-digit code to type in here. No password needed.",
+    "email": "Email",
+    "sendCode": "Send me a code",
+    "code": "6-digit code",
+    "codeSent": "We sent a code to {{email}}. It can take a minute, so check your spam folder too.",
+    "verify": "Log in",
+    "badCode": "That code didn't work. Check it, or ask for a new one.",
+    "rateLimited": "Too many login emails right now. Please wait a few minutes and try again.",
+    "invalidEmail": "Please enter a valid email address.",
+    "changeEmail": "Use a different email"
+  },
+  "needInvite": {
+    "title": "Third Place Berlin is invite-only",
+    "body": "Ask a member to send you an invite link. If you have a link or code, paste it here.",
+    "code": "Invite link or code",
+    "continue": "Continue"
+  },
+  "join": {
+    "title": "You're invited!",
+    "body": "Tell us your name and you're in.",
+    "name": "Your name",
+    "submit": "Join Third Place Berlin",
+    "invalid": "This invite has expired or was already used. Ask your friend for a new one."
+  },
+  "waiting": {
+    "title": "Almost there!",
+    "body": "Members vouch for each new person. You have {{vouches}} of {{required}} vouches.",
+    "invitedBy": "Invited by {{name}}",
+    "tip": "Meanwhile, complete your profile so members can get to know you.",
+    "editProfile": "Complete my profile",
+    "refresh": "Check again"
+  },
+  "removed": {
+    "title": "Your access has ended",
+    "body": "An admin removed your account from Third Place Berlin. If you think this is a mistake, contact the organisers."
+  },
+  "welcome": {
+    "title": "Welcome to Third Place Berlin",
+    "step": "Step {{n}} of {{total}}",
+    "about": "About you",
+    "name": "Name",
+    "field": "Field / profession",
+    "origin": "Where you're from",
+    "languages": "Languages (comma-separated)",
+    "berlinSince": "In Berlin since",
+    "bioTitle": "Say hello",
+    "bio": "Short bio",
+    "funFact": "A fun fact about you",
+    "skillsTitle": "Grow together",
+    "teach": "I can teach (comma-separated)",
+    "learn": "I want to learn (comma-separated)",
+    "skillsHint": "Up to 10 each, e.g. Excel, salary negotiation, German bureaucracy",
+    "circlesTitle": "Pick your circles",
+    "circlesHint": "You can join more circles later.",
+    "consentTitle": "Last step",
+    "adult": "I am 18 or older",
+    "privacy": "I agree to the privacy notice: my profile is visible only to logged-in members, my email is never shown, and I can download or delete my data at any time.",
+    "finish": "Let's go"
   }
 }

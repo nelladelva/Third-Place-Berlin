@@ -2,6 +2,7 @@ import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TabBar, type Tab } from './ui/TabBar';
 import { Screen } from './ui/Screen';
+import { AuthGate } from './features/auth/AuthGate';
 import './lib/i18n';
 
 function activeTab(path: string): Tab {
@@ -20,6 +21,7 @@ function Shell() {
   const location = useLocation();
   return (
     <div className="app">
+      <AuthGate>
       <Routes>
         <Route path="/" element={<Placeholder tab="home" />} />
         <Route path="/circles/*" element={<Placeholder tab="circles" />} />
@@ -27,6 +29,7 @@ function Shell() {
         <Route path="/me/*" element={<Placeholder tab="me" />} />
       </Routes>
       <TabBar active={activeTab(location.pathname)} />
+      </AuthGate>
     </div>
   );
 }
