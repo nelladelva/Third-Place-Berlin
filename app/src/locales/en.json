@@ -183,5 +183,42 @@
       "too_far": "You seem to be more than 300 m from the pin.",
       "no_location": "We need your location to check you in."
     }
+  },
+  "chat": {
+    "placeholder": "Write a message…",
+    "send": "Send",
+    "closed": "This meetup chat is closed. It's read-only now.",
+    "empty": "No messages yet. Say hello! 👋",
+    "older": "Load earlier messages",
+    "reply": "Reply",
+    "replyingTo": "Replying to {{name}}",
+    "delete": "Delete",
+    "deleted": "Message deleted",
+    "report": "Report",
+    "reported": "Thanks, the admins will take a look.",
+    "reportReason": "What's wrong with this message?",
+    "menu": "More",
+    "poll": "📊 Poll",
+    "pin": "📌 Pin to board",
+    "meetup": "📅 Propose a meetup",
+    "title": "Chat"
+  },
+  "poll": {
+    "question": "Question",
+    "option": "Option {{n}}",
+    "addOption": "＋ Add option",
+    "create": "Post poll",
+    "votes": "{{count}} votes",
+    "closed": "Poll closed"
+  },
+  "board": {
+    "title": "Board",
+    "empty": "Nothing pinned yet. Pin useful tips and links here.",
+    "add": "📌 Pin something",
+    "pinTitle": "Title",
+    "pinBody": "Text",
+    "pinUrl": "Link (optional)",
+    "save": "Pin it",
+    "remove": "Remove"
   }
 }

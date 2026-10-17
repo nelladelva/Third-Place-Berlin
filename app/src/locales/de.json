@@ -183,5 +183,42 @@
       "too_far": "Du scheinst mehr als 300 m vom Pin entfernt zu sein.",
       "no_location": "Wir brauchen deinen Standort für den Check-in."
     }
+  },
+  "chat": {
+    "placeholder": "Nachricht schreiben…",
+    "send": "Senden",
+    "closed": "Dieser Treffen-Chat ist geschlossen und nur noch lesbar.",
+    "empty": "Noch keine Nachrichten. Sag Hallo! 👋",
+    "older": "Frühere Nachrichten laden",
+    "reply": "Antworten",
+    "replyingTo": "Antwort an {{name}}",
+    "delete": "Löschen",
+    "deleted": "Nachricht gelöscht",
+    "report": "Melden",
+    "reported": "Danke, die Admins schauen sich das an.",
+    "reportReason": "Was stimmt mit dieser Nachricht nicht?",
+    "menu": "Mehr",
+    "poll": "📊 Umfrage",
+    "pin": "📌 An die Pinnwand",
+    "meetup": "📅 Treffen vorschlagen",
+    "title": "Chat"
+  },
+  "poll": {
+    "question": "Frage",
+    "option": "Option {{n}}",
+    "addOption": "＋ Option hinzufügen",
+    "create": "Umfrage posten",
+    "votes": "{{count}} Stimmen",
+    "closed": "Umfrage beendet"
+  },
+  "board": {
+    "title": "Pinnwand",
+    "empty": "Noch nichts angepinnt. Pinne hier nützliche Tipps und Links an.",
+    "add": "📌 Etwas anpinnen",
+    "pinTitle": "Titel",
+    "pinBody": "Text",
+    "pinUrl": "Link (optional)",
+    "save": "Anpinnen",
+    "remove": "Entfernen"
   }
 }

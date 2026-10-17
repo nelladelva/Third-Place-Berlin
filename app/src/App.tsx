@@ -13,7 +13,13 @@ import { MeetupForm } from './features/meetups/MeetupForm';
 import { CircleMeetups } from './features/meetups/CircleMeetups';
 import { SessionContext } from './features/auth/AuthGate';
 
+import { CircleBoard, CircleChat, MeetupChat } from './features/chat/CircleChat';
+import { meetupChatSlot } from './features/meetups/MeetupScreen';
+
 circleTabContent.meetups = (circle) => <CircleMeetups circle={circle} />;
+circleTabContent.chat = (circle) => <CircleChat circle={circle} />;
+circleTabContent.board = (circle) => <CircleBoard circle={circle} />;
+meetupChatSlot.render = (m) => <MeetupChat meetup={m} />;
 import './lib/i18n';
 
 function activeTab(path: string): Tab {
