@@ -16,6 +16,7 @@ vi.mock('../../data/circles', () => ({ recommend: data.recommend }));
 
 beforeEach(async () => {
   Object.values(data).forEach((f) => f.mockReset());
+  data.recommend.mockResolvedValue(undefined);
   await act(async () => setLanguage('en'));
   data.getProfile.mockResolvedValue({
     id: 'lena', displayName: 'Lena', field: 'UX designer', origin: 'Vienna', languages: ['EN', 'DE'], berlinSince: '2026-09-01',
