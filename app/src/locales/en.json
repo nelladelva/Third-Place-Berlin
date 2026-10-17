@@ -300,7 +300,8 @@
     "calm": "By default you're never pinged for every message. That's what drowned the WhatsApp group.",
     "meetupsPolls": "New meetups & polls",
     "mentions": "Mentions & replies to me",
-    "everyMessage": "Every message"
+    "everyMessage": "Every message",
+    "failed": "Couldn't turn on notifications for this phone. Please try again."
   },
   "admin": {
     "title": "Admin",

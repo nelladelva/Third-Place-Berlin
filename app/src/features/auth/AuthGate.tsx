@@ -45,6 +45,6 @@ export function AuthGate({ children, circlesStep }: { children: ReactNode; circl
       <WaitingScreen onRefresh={() => void refresh()} onEditProfile={() => setEditing(true)} />
     );
   }
-  if (!profile.consentAt) return <WelcomeFlow profile={profile} circlesStep={circlesStep} onDone={() => void refresh()} />;
+  if (!profile.welcomedAt) return <WelcomeFlow profile={profile} circlesStep={circlesStep} onDone={() => void refresh()} />;
   return <ProfileContext.Provider value={{ profile, refresh }}>{children}</ProfileContext.Provider>;
 }

@@ -31,6 +31,8 @@ export function NeedInviteScreen({ onCode }: { onCode: () => void }) {
 export function JoinScreen({ code, onJoined }: { code: string; onJoined: () => void }) {
   const { t } = useTranslation();
   const [name, setName] = useState('');
+  const [adult, setAdult] = useState(false);
+  const [privacy, setPrivacy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   async function submit(e: FormEvent) {
@@ -53,8 +55,10 @@ export function JoinScreen({ code, onJoined }: { code: string; onJoined: () => v
       <form onSubmit={submit}>
         <label className="label" htmlFor="join-name">{t('join.name')}</label>
         <input id="join-name" className="input" maxLength={60} required value={name} onChange={(e) => setName(e.target.value)} />
+        <label className="check"><input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} /> {t('welcome.adult')}</label>
+        <label className="check"><input type="checkbox" checked={privacy} onChange={(e) => setPrivacy(e.target.checked)} /> {t('welcome.privacy')}</label>
         {error && <p className="error" role="alert">{error}</p>}
-        <button className="btn block" type="submit" disabled={busy || !name.trim()}>{t('join.submit')}</button>
+        <button className="btn block" type="submit" disabled={busy || !name.trim() || !adult || !privacy}>{t('join.submit')}</button>
       </form>
     </Screen>
   );

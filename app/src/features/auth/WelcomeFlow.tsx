@@ -11,7 +11,8 @@ export const splitList = (s: string, max = 10): string[] =>
 export function WelcomeFlow({ profile, onDone, circlesStep, requireConsent = true }:
   { profile: Profile; onDone: () => void; circlesStep?: ReactNode; requireConsent?: boolean }) {
   const { t } = useTranslation();
-  const total = requireConsent ? 5 : 3;
+  const needsConsent = requireConsent && !profile.consentAt;
+  const total = requireConsent ? (needsConsent ? 5 : 4) : 3;
   const [step, setStep] = useState(1);
   const [f, setF] = useState({
     displayName: profile.displayName, field: profile.field ?? '', origin: profile.origin ?? '',
@@ -29,7 +30,10 @@ export function WelcomeFlow({ profile, onDone, circlesStep, requireConsent = tru
       languages: splitList(f.languages), berlin_since: f.berlinSince || null, bio: f.bio.trim() || null,
       fun_fact: f.funFact.trim() || null, teach: splitList(f.teach), learn: splitList(f.learn),
     };
-    if (final && requireConsent) update.consent_at = new Date().toISOString();
+    if (final && requireConsent) {
+      update.welcomed_at = new Date().toISOString();
+      if (needsConsent) update.consent_at = update.welcomed_at;
+    }
     const { error: err } = await supabase.from('profiles').update(update).eq('id', profile.id);
     if (err) {
       setError(t('common.error'));
@@ -91,7 +95,7 @@ export function WelcomeFlow({ profile, onDone, circlesStep, requireConsent = tru
           {circlesStep}
         </section>
       )}
-      {step === 5 && requireConsent && (
+      {step === 5 && needsConsent && (
         <section>
           <h2 className="label">{t('welcome.consentTitle')}</h2>
           <label className="check"><input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} /> {t('welcome.adult')}</label>
@@ -103,7 +107,7 @@ export function WelcomeFlow({ profile, onDone, circlesStep, requireConsent = tru
         {step > 1 && <button className="btn secondary" onClick={() => setStep(step - 1)}>{t('common.back')}</button>}
         <span className="spacer" />
         <button className="btn" onClick={() => void next()}
-                disabled={step === total && requireConsent && !(adult && privacy)}>
+                disabled={step === total && needsConsent && !(adult && privacy)}>
           {step === total ? (requireConsent ? t('welcome.finish') : t('common.save')) : t('common.next')}
         </button>
       </div>

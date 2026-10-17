@@ -5,7 +5,7 @@ export type Profile = {
   id: string; displayName: string; field: string | null; origin: string | null; languages: string[];
   berlinSince: string | null; bio: string | null; funFact: string | null; teach: string[]; learn: string[];
   avatarUrl: string | null; locale: 'en' | 'de'; status: 'pending' | 'member' | 'removed'; role: 'member' | 'admin';
-  invitedBy: string | null; consentAt: string | null; createdAt: string; approvedAt: string | null;
+  invitedBy: string | null; consentAt: string | null; welcomedAt: string | null; createdAt: string; approvedAt: string | null;
 };
 
 export type ProfileRow = Record<string, unknown>;
@@ -17,7 +17,7 @@ export function toProfile(r: ProfileRow): Profile {
     bio: (r.bio as string) ?? null, funFact: (r.fun_fact as string) ?? null, teach: (r.teach as string[]) ?? [],
     learn: (r.learn as string[]) ?? [], avatarUrl: (r.avatar_url as string) ?? null, locale: (r.locale as 'en' | 'de') ?? 'en',
     status: r.status as Profile['status'], role: r.role as Profile['role'], invitedBy: (r.invited_by as string) ?? null,
-    consentAt: (r.consent_at as string) ?? null, createdAt: r.created_at as string, approvedAt: (r.approved_at as string) ?? null,
+    consentAt: (r.consent_at as string) ?? null, welcomedAt: (r.welcomed_at as string) ?? null, createdAt: r.created_at as string, approvedAt: (r.approved_at as string) ?? null,
   };
 }
 
@@ -41,7 +41,18 @@ export async function verifyCode(email: string, code: string): Promise<boolean> 
   return !error && !!data?.session;
 }
 
+/** Log out. This device's push subscription is removed first, so the next person on this phone gets no one else's notifications. */
 export async function signOut(): Promise<void> {
+  try {
+    const reg = await navigator.serviceWorker?.getRegistration();
+    const sub = await reg?.pushManager.getSubscription();
+    if (sub) {
+      await supabase.from('push_subscriptions').delete().eq('endpoint', sub.endpoint);
+      await sub.unsubscribe();
+    }
+  } catch {
+    /* no service worker / push: nothing to clean up */
+  }
   await supabase.auth.signOut();
 }
 

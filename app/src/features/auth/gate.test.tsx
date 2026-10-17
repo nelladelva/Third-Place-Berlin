@@ -20,7 +20,7 @@ vi.mock('../../lib/supabase', () => ({ supabase: { auth: { signOut: vi.fn() } } 
 const base: Profile = {
   id: 'u1', displayName: 'Amara', field: null, origin: null, languages: [], berlinSince: null, bio: null, funFact: null,
   teach: [], learn: [], avatarUrl: null, locale: 'en', status: 'member', role: 'member', invitedBy: null,
-  consentAt: '2026-10-01T00:00:00Z', createdAt: '2026-10-01T00:00:00Z', approvedAt: '2026-10-01T00:00:00Z',
+  consentAt: '2026-10-01T00:00:00Z', welcomedAt: '2026-10-01T00:00:00Z', createdAt: '2026-10-01T00:00:00Z', approvedAt: '2026-10-01T00:00:00Z',
 };
 
 function show(userId: string | null, profile: Profile | null) {
@@ -53,7 +53,7 @@ test('no profile with a remembered invite code asks for a name to join', () => {
 });
 
 test('pending profile shows WaitingScreen', () => {
-  show('u1', { ...base, status: 'pending', consentAt: null, approvedAt: null });
+  show('u1', { ...base, status: 'pending', welcomedAt: null, approvedAt: null });
   expect(screen.getByText(i18n.t('waiting.title'))).toBeInTheDocument();
 });
 
@@ -62,8 +62,8 @@ test('removed profile shows goodbye screen', () => {
   expect(screen.getByText(i18n.t('removed.title'))).toBeInTheDocument();
 });
 
-test('member without consent shows WelcomeFlow', () => {
-  show('u1', { ...base, consentAt: null });
+test('member not yet welcomed shows WelcomeFlow', () => {
+  show('u1', { ...base, welcomedAt: null });
   expect(screen.getByText(i18n.t('welcome.title'))).toBeInTheDocument();
 });
 

@@ -19,7 +19,7 @@ export function parseInvite(input: string): string | null {
 }
 
 export async function redeemInvite(code: string, displayName: string): Promise<'member' | 'pending' | 'removed'> {
-  const { data, error } = await supabase.rpc('redeem_invite', { p_code: code, p_display_name: displayName });
+  const { data, error } = await supabase.rpc('redeem_invite', { p_code: code, p_display_name: displayName, p_consent: true });
   if (error) throw new Error(error.message.includes('invite_invalid') ? 'invite_invalid' : error.message);
   return data as 'member' | 'pending' | 'removed';
 }

@@ -8,7 +8,7 @@ begin
   perform tests.logout();
   perform tests.login(n);
   perform tests.assert_eq(my_join_status(), null::jsonb, 'no profile: join status is null');
-  perform redeem_invite(c, 'Nina');
+  perform redeem_invite(c, 'Nina', true);
   s := my_join_status();
   perform tests.assert_eq(s->>'status', 'pending', 'join status shows pending');
   perform tests.assert_eq((s->>'vouches')::int, 1, 'join status counts inviter vouch');

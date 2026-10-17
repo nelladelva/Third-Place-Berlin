@@ -21,7 +21,8 @@ The app code lives in this folder (`app/`). The database rules live in `app/supa
    7. `0005b_people.sql`
    8. `0005c_me.sql`
    9. `0006_notifications.sql`
-   10. finally `app/supabase/seed.sql` (the 8 launch circles)
+   10. `0007_hardening.sql`
+   11. finally `app/supabase/seed.sql` (the 8 launch circles)
 3. *Project Settings → API*: copy the **Project URL** and the **anon public** key. (The anon key is meant to be public. **Never** share the `service_role` key.)
 
 ## 2. Login emails with a 6-digit code (Brevo, free: 300 emails/day)
@@ -37,6 +38,7 @@ Supabase's built-in email only sends a handful of emails per hour. That's not en
    - Sender name: `Third Place Berlin`
    - Sender email: an address you verified in Brevo
 3. *Authentication → Rate Limits*: set "emails per hour" to **100**.
+   Also check *Authentication → Providers → Email*: **Email OTP Length = 6** (the app's code box takes 6 digits).
 4. *Authentication → Emails → Templates*: replace **both** templates. "Confirm signup" is used for new people, and "Magic Link" for returning people.
 
    **Subject:** `Your Third Place Berlin code / Dein Code: {{ .Token }}`
@@ -86,6 +88,7 @@ Supabase's built-in email only sends a handful of emails per hour. That's not en
 1. Open the app on your phone and log in with your email and the code. You'll see "invite-only"; that's expected.
 2. In Supabase *SQL Editor*, run: `select bootstrap_admin('<your email>');`
 3. Reload the app. You're in as admin. Complete the welcome steps.
+4. Quick check on the real project: change your profile photo **twice** (the second time replaces the first).
 
 ## 6. Before the launch link
 

@@ -24,7 +24,8 @@ export async function uploadAvatar(file: File): Promise<string> {
   const { error } = await supabase.storage.from('avatars').upload(`${id}.jpg`, blob, { upsert: true, contentType: 'image/jpeg' });
   if (error) throw new Error(error.message);
   const url = `${supabase.storage.from('avatars').getPublicUrl(`${id}.jpg`).data.publicUrl}?v=${Date.now()}`;
-  await supabase.from('profiles').update({ avatar_url: url }).eq('id', id);
+  const { error: saveError } = await supabase.from('profiles').update({ avatar_url: url }).eq('id', id);
+  if (saveError) throw new Error(saveError.message);
   return url;
 }
 

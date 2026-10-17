@@ -300,7 +300,8 @@
     "calm": "Standardmäßig wirst du nie bei jeder Nachricht angepingt. Genau das hat die WhatsApp-Gruppe überflutet.",
     "meetupsPolls": "Neue Treffen & Umfragen",
     "mentions": "Erwähnungen & Antworten an mich",
-    "everyMessage": "Jede Nachricht"
+    "everyMessage": "Jede Nachricht",
+    "failed": "Benachrichtigungen konnten auf diesem Handy nicht aktiviert werden. Bitte versuche es erneut."
   },
   "admin": {
     "title": "Admin",

@@ -8,7 +8,7 @@ begin
   c := create_invite();
   perform tests.logout();
   perform tests.login(n);
-  perform redeem_invite(c, 'Nina');
+  perform redeem_invite(c, 'Nina', true);
   perform tests.assert_raises('select * from pending_candidates()', 'not_member', 'pending user cannot list candidates');
   perform tests.logout();
 

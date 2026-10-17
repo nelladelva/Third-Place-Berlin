@@ -21,7 +21,7 @@ export function NotificationSettings() {
   }
 
   const pushText: Record<PushResult, string> = {
-    subscribed: t('notif.on'), denied: t('notif.denied'), unsupported: t('notif.unsupported'), needs_install: t('notif.needsInstall'),
+    subscribed: t('notif.on'), denied: t('notif.denied'), unsupported: t('notif.unsupported'), needs_install: t('notif.needsInstall'), failed: t('notif.failed'),
   };
   return (
     <div>

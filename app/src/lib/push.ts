@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-export type PushResult = 'subscribed' | 'denied' | 'unsupported' | 'needs_install';
+export type PushResult = 'subscribed' | 'denied' | 'unsupported' | 'needs_install' | 'failed';
 
 const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent);
 const isStandalone = () =>
@@ -23,8 +23,8 @@ export async function subscribeToPush(): Promise<PushResult> {
     (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(key) }));
   const json = sub.toJSON() as { endpoint: string; keys: { p256dh: string; auth: string } };
   const { data } = await supabase.auth.getSession();
-  await supabase.from('push_subscriptions').upsert(
+  const { error } = await supabase.from('push_subscriptions').upsert(
     { user_id: data.session?.user.id, endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth },
     { onConflict: 'endpoint' });
-  return 'subscribed';
+  return error ? 'failed' : 'subscribed';
 }

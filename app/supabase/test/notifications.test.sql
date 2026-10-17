@@ -88,7 +88,7 @@ begin
   code := create_invite();
   perform tests.logout();
   perform tests.login(n);
-  perform redeem_invite(code, 'Nina');
+  perform redeem_invite(code, 'Nina', true);
   perform tests.logout();
   perform tests.login(adm);
   perform approve_member(n);

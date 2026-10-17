@@ -19,14 +19,14 @@ begin
   perform tests.assert_true(length(launch) = 10, 'open_launch returns a 10-char v_code');
   perform tests.logout();
   perform tests.login(n1);
-  perform tests.assert_eq(redeem_invite(launch, 'Newbie One'), 'member', 'launch v_code admits directly while open');
+  perform tests.assert_eq(redeem_invite(launch, 'Newbie One', true), 'member', 'launch v_code admits directly while open');
   perform tests.assert_eq((select display_name from profiles where id = n1), 'Newbie One', 'redeem stores display name');
   perform tests.logout();
   perform tests.login(adm);
   perform close_launch();
   perform tests.logout();
   perform tests.login(n2);
-  perform tests.assert_raises(format('select redeem_invite(%L, %L)', launch, 'Late'), 'invite_invalid', 'launch v_code rejected after close_launch');
+  perform tests.assert_raises(format('select redeem_invite(%L, %L, true)', launch, 'Late'), 'invite_invalid', 'launch v_code rejected after close_launch');
   perform tests.logout();
 
   -- personal invite → pending with the inviter's vouch
@@ -34,13 +34,13 @@ begin
   v_code := create_invite();
   perform tests.logout();
   perform tests.login(n2);
-  perform tests.assert_eq(redeem_invite(v_code, 'Two'), 'pending', 'personal invite makes pending');
+  perform tests.assert_eq(redeem_invite(v_code, 'Two', true), 'pending', 'personal invite makes pending');
   perform tests.assert_eq((select count(*) from vouches where candidate_id = n2)::int, 1, 'inviter vouch recorded');
   perform tests.assert_eq((select invited_by from profiles where id = n2), a, 'invited_by set');
   perform tests.assert_raises(format('select vouch(%L)', n2), 'not_member', 'pending user cannot vouch');
   perform tests.logout();
   perform tests.login(n3);
-  perform tests.assert_raises(format('select redeem_invite(%L, %L)', v_code, 'Three'), 'invite_invalid', 'invite cannot be reused');
+  perform tests.assert_raises(format('select redeem_invite(%L, %L, true)', v_code, 'Three'), 'invite_invalid', 'invite cannot be reused');
   perform tests.logout();
   perform tests.login(a);
   perform tests.assert_eq(vouch(n2), 'pending', 'duplicate vouch by inviter is a no-op');
@@ -57,7 +57,7 @@ begin
   v_code2 := create_invite();
   perform tests.logout();
   perform tests.login(n3);
-  perform redeem_invite(v_code2, 'Three');
+  perform redeem_invite(v_code2, 'Three', true);
   perform tests.logout();
   perform tests.login(b);
   perform tests.assert_eq(vouch(n3), 'pending', 'required = 3: two vouches still pending');
@@ -72,8 +72,8 @@ begin
   perform tests.logout();
   update invites set expires_at = now() - interval '1 day' where invites.code = v_code;
   perform tests.login(n4);
-  perform tests.assert_raises(format('select redeem_invite(%L, %L)', v_code, 'Four'), 'invite_invalid', 'expired invite rejected');
-  perform tests.assert_raises(format('select redeem_invite(%L, %L)', 'nonsense00', 'Four'), 'invite_invalid', 'unknown v_code rejected');
+  perform tests.assert_raises(format('select redeem_invite(%L, %L, true)', v_code, 'Four'), 'invite_invalid', 'expired invite rejected');
+  perform tests.assert_raises(format('select redeem_invite(%L, %L, true)', 'nonsense00', 'Four'), 'invite_invalid', 'unknown v_code rejected');
   perform tests.logout();
 
   -- admin approval and permissions
@@ -81,7 +81,7 @@ begin
   v_code := create_invite();
   perform tests.logout();
   perform tests.login(n4);
-  perform redeem_invite(v_code, 'Four');
+  perform redeem_invite(v_code, 'Four', true);
   perform tests.logout();
   perform tests.login(b);
   perform tests.assert_raises(format('select approve_member(%L)', n4), 'not_admin', 'non-admin cannot approve_member');
@@ -100,7 +100,7 @@ begin
   v_code := create_invite();
   perform tests.logout();
   perform tests.login(n4);
-  perform tests.assert_eq(redeem_invite(v_code, 'Four again'), 'removed', 'removed user cannot redeem to get back in');
+  perform tests.assert_eq(redeem_invite(v_code, 'Four again', true), 'removed', 'removed user cannot redeem to get back in');
   perform tests.logout();
 
   -- pending users cannot create invites; no-profile users cannot either
