@@ -1,0 +1,14 @@
+{
+  "tabs": { "home": "Home", "circles": "Circles", "people": "People", "me": "Me" },
+  "common": {
+    "appName": "Third Place Berlin",
+    "tagline": "Not home. Not work. Somewhere in between.",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "error": "Something went wrong. Please try again.",
+    "comingSoon": "Coming soon"
+  }
+}

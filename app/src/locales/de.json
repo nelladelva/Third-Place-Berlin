@@ -1,0 +1,14 @@
+{
+  "tabs": { "home": "Start", "circles": "Kreise", "people": "Leute", "me": "Ich" },
+  "common": {
+    "appName": "Third Place Berlin",
+    "tagline": "Nicht zu Hause. Nicht bei der Arbeit. Irgendwo dazwischen.",
+    "loading": "Lädt…",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "error": "Etwas ist schiefgelaufen. Bitte versuche es noch einmal.",
+    "comingSoon": "Bald verfügbar"
+  }
+}
