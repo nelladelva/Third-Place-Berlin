@@ -78,5 +78,58 @@
     "adult": "I am 18 or older",
     "privacy": "I agree to the privacy notice: my profile is visible only to logged-in members, my email is never shown, and I can download or delete my data at any time.",
     "finish": "Let's go"
+  },
+  "circles": {
+    "title": "Circles",
+    "intro": "Join the ones you care about. Each has its own meetups, chat and board.",
+    "legend": "🔓 Open: join instantly · 🔒 Closed: a member recommends you, then a host approves",
+    "open": "🔓 Open",
+    "closed": "🔒 Closed",
+    "members": "{{count}} members",
+    "join": "Join",
+    "joined": "Joined ✓",
+    "leave": "Leave circle",
+    "requestJoin": "Request to join",
+    "waitingApproval": "Waiting for approval",
+    "declined": "Request declined",
+    "proposeTitle": "💡 Propose a new circle",
+    "proposeBody": "Send an idea to the admins. They approve it before it appears.",
+    "tabs": {
+      "chat": "Chat",
+      "meetups": "Meetups",
+      "members": "Members",
+      "board": "Board"
+    },
+    "closedInfo": "This circle is closed. A member recommends you, then a host approves your request.",
+    "steps": {
+      "sent": "Request sent",
+      "recommended": "Recommended by a member",
+      "approved": "Approved by a host"
+    },
+    "membersOnly": "Meetups, chat and members are visible after you join.",
+    "host": "host",
+    "requests": "Join requests",
+    "recommendations": "{{count}} recommendations",
+    "approve": "Approve",
+    "decline": "Decline",
+    "needsRecommendation": "A member needs to recommend this person first.",
+    "notFound": "This circle doesn't exist or isn't available."
+  },
+  "propose": {
+    "title": "Propose a new circle",
+    "intro": "The admins review every proposal so circles stay meaningful.",
+    "name": "Name",
+    "description": "What it's about",
+    "emoji": "Emoji",
+    "visibility": "Open or closed?",
+    "send": "Send to admins",
+    "sent": "Thanks! The admins will review your proposal.",
+    "mine": "My proposals",
+    "status": {
+      "pending": "Waiting for review",
+      "approved": "Approved",
+      "declined": "Declined",
+      "question": "The admins have a question"
+    }
   }
 }

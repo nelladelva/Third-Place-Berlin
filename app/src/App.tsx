@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { TabBar, type Tab } from './ui/TabBar';
 import { Screen } from './ui/Screen';
 import { AuthGate } from './features/auth/AuthGate';
+import { CirclesScreen, CircleGrid } from './features/circles/CirclesScreen';
+import { CircleScreen } from './features/circles/CircleScreen';
+import { ProposeCircle } from './features/circles/ProposeCircle';
 import './lib/i18n';
 
 function activeTab(path: string): Tab {
@@ -21,10 +24,12 @@ function Shell() {
   const location = useLocation();
   return (
     <div className="app">
-      <AuthGate>
+      <AuthGate circlesStep={<CircleGrid link={false} />}>
       <Routes>
         <Route path="/" element={<Placeholder tab="home" />} />
-        <Route path="/circles/*" element={<Placeholder tab="circles" />} />
+        <Route path="/circles" element={<CirclesScreen />} />
+        <Route path="/circles/propose" element={<ProposeCircle />} />
+        <Route path="/circles/:id" element={<CircleScreen />} />
         <Route path="/people/*" element={<Placeholder tab="people" />} />
         <Route path="/me/*" element={<Placeholder tab="me" />} />
       </Routes>

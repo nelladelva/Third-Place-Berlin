@@ -78,5 +78,58 @@
     "adult": "Ich bin 18 Jahre oder älter",
     "privacy": "Ich stimme dem Datenschutzhinweis zu: Mein Profil ist nur für angemeldete Mitglieder sichtbar, meine E-Mail wird nie angezeigt, und ich kann meine Daten jederzeit herunterladen oder löschen.",
     "finish": "Los geht's"
+  },
+  "circles": {
+    "title": "Kreise",
+    "intro": "Tritt den Kreisen bei, die dich interessieren. Jeder hat eigene Treffen, Chat und Pinnwand.",
+    "legend": "🔓 Offen: sofort beitreten · 🔒 Geschlossen: ein Mitglied empfiehlt dich, dann bestätigt ein Host",
+    "open": "🔓 Offen",
+    "closed": "🔒 Geschlossen",
+    "members": "{{count}} Mitglieder",
+    "join": "Beitreten",
+    "joined": "Dabei ✓",
+    "leave": "Kreis verlassen",
+    "requestJoin": "Beitritt anfragen",
+    "waitingApproval": "Wartet auf Bestätigung",
+    "declined": "Anfrage abgelehnt",
+    "proposeTitle": "💡 Neuen Kreis vorschlagen",
+    "proposeBody": "Schick den Admins eine Idee. Sie bestätigen sie, bevor sie erscheint.",
+    "tabs": {
+      "chat": "Chat",
+      "meetups": "Treffen",
+      "members": "Mitglieder",
+      "board": "Pinnwand"
+    },
+    "closedInfo": "Dieser Kreis ist geschlossen. Ein Mitglied empfiehlt dich, dann bestätigt ein Host deine Anfrage.",
+    "steps": {
+      "sent": "Anfrage gesendet",
+      "recommended": "Von einem Mitglied empfohlen",
+      "approved": "Von einem Host bestätigt"
+    },
+    "membersOnly": "Treffen, Chat und Mitglieder siehst du nach dem Beitritt.",
+    "host": "Host",
+    "requests": "Beitrittsanfragen",
+    "recommendations": "{{count}} Empfehlungen",
+    "approve": "Bestätigen",
+    "decline": "Ablehnen",
+    "needsRecommendation": "Zuerst muss ein Mitglied diese Person empfehlen.",
+    "notFound": "Diesen Kreis gibt es nicht oder er ist nicht verfügbar."
+  },
+  "propose": {
+    "title": "Neuen Kreis vorschlagen",
+    "intro": "Die Admins prüfen jeden Vorschlag, damit die Kreise sinnvoll bleiben.",
+    "name": "Name",
+    "description": "Worum es geht",
+    "emoji": "Emoji",
+    "visibility": "Offen oder geschlossen?",
+    "send": "An die Admins senden",
+    "sent": "Danke! Die Admins prüfen deinen Vorschlag.",
+    "mine": "Meine Vorschläge",
+    "status": {
+      "pending": "Wird geprüft",
+      "approved": "Bestätigt",
+      "declined": "Abgelehnt",
+      "question": "Die Admins haben eine Frage"
+    }
   }
 }
