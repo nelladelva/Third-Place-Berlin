@@ -1,6 +1,6 @@
 # Third Place Berlin — Community App: Design
 
-*Date: 2026-10-17 · Owners: Nella Delva & Saskia (founders/admins) · Status: draft for approval*
+*Date: 2026-10-17 · Owners: Nella Delva & Saskia (founders/admins) · Status: approved by Nella 2026-10-17*
 
 Mockups (open in a browser): [`mockups/01-home-meetup-grow.html`](mockups/01-home-meetup-grow.html) (Home, Meetup, Grow) and [`mockups/02-circles-chat-people.html`](mockups/02-circles-chat-people.html) (Circles, inside a circle, People). Where this document and the mockups differ, this document wins.
 
@@ -164,7 +164,7 @@ Bottom tabs: **Home · Circles · People · Grow · Me.**
 15. **Who can post meetups:** any member of a circle can post a meetup in it; circle hosts and admins can edit or remove it.
 16. **Vouching in practice:** pending newcomers appear in a "Waiting to join" list under People, visible to members. Any member can vouch; vouches are visible to admins.
 17. **Circle content visibility:** an open circle's description, upcoming meetups and member count are visible to all members. Its chat and Board become visible after joining (one tap). Closed circles show only description and count until approved.
-18. **Accounts:** Nella owns the Supabase project and the hosting/GitHub repo; Saskia is added as a second owner. Free platform subdomain at launch; a custom domain can come later.
+18. **Accounts:** **Nella fully owns** the Supabase project and the hosting/GitHub repo (Nella's decision). **Saskia is an admin inside the app**, not an owner of the accounts. Free platform subdomain at launch; a custom domain can come later.
 
 ## 7. Constraints
 
