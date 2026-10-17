@@ -63,3 +63,11 @@ button { font: inherit; }
 .subtabs button.on { color: var(--rust); font-weight: 700; border-bottom: 2px solid var(--rust); }
 .person { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--soft); }
 .steps li { margin: 4px 0; }
+.meetup-card { display: block; text-decoration: none; color: inherit; }
+.mc-circle { font-size: 11px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; }
+.mc-title { font-weight: 700; font-size: 16px; margin: 3px 0 2px; }
+.map { height: 240px; border-radius: var(--radius); overflow: hidden; margin: 10px 0; border: 1px solid var(--line); z-index: 0; position: relative; }
+.pin-icon { font-size: 34px; line-height: 34px; transform: translate(-3px, -30px); }
+.leaflet-tooltip.sign-tip { font-size: 13px; border-radius: 10px; }
+.btnrow { display: flex; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+.btnrow .btn { flex: 1; }

@@ -131,5 +131,57 @@
       "declined": "Abgelehnt",
       "question": "Die Admins haben eine Frage"
     }
+  },
+  "home": {
+    "hello": "Hallo, {{name}} 👋",
+    "count": "{{count}} kommende Treffen in deinen Kreisen",
+    "all": "Alle",
+    "weekend": "Dieses Wochenende",
+    "nearMe": "In meiner Nähe",
+    "empty": "Noch keine Treffen. Tritt einem Kreis bei oder organisiere das erste!",
+    "goToCircles": "Kreise entdecken",
+    "locationDenied": "Standort ist aus, daher können wir nicht nach Entfernung filtern."
+  },
+  "meetup": {
+    "new": "＋ Treffen",
+    "newTitle": "Neues Treffen",
+    "title": "Titel",
+    "date": "Datum",
+    "start": "Beginn",
+    "end": "Ende",
+    "locationName": "Ort",
+    "pinHint": "Tippe auf die Karte, um den „Hier findet ihr uns“-Pin zu setzen.",
+    "useLocation": "📍 Meinen Standort nutzen",
+    "sign": "Woran man uns erkennt",
+    "signPlaceholder": "z. B. gelbe Decke neben dem großen Baum",
+    "bring": "Mitbringen",
+    "capacity": "Max. Personen (optional)",
+    "description": "Details",
+    "create": "Treffen posten",
+    "needPin": "Setze zuerst einen Pin auf der Karte.",
+    "badTimes": "Das Ende muss nach dem Beginn liegen.",
+    "hostedBy": "organisiert von {{name}}",
+    "going": "Ich komme",
+    "cancelGoing": "Ich kann doch nicht",
+    "full": "Voll",
+    "directions": "Route",
+    "here": "Ich bin da 📍",
+    "movePin": "Pin verschieben",
+    "savePin": "Neuen Pin speichern",
+    "goingCount": "{{count}} kommen",
+    "spotsLeft": "noch {{count}} Plätze",
+    "cancelled": "Dieses Treffen wurde abgesagt.",
+    "cancel": "Treffen absagen",
+    "upcoming": "Demnächst",
+    "past": "Vergangen",
+    "none": "Noch keine Treffen geplant.",
+    "checkIn": {
+      "checked_in": "Du bist eingecheckt. Viel Spaß! 🎉",
+      "not_going": "Tippe zuerst auf „Ich komme“.",
+      "too_early": "Der Check-in öffnet 30 Minuten vor Beginn.",
+      "too_late": "Der Check-in für dieses Treffen ist geschlossen.",
+      "too_far": "Du scheinst mehr als 300 m vom Pin entfernt zu sein.",
+      "no_location": "Wir brauchen deinen Standort für den Check-in."
+    }
   }
 }

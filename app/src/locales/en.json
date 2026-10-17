@@ -131,5 +131,57 @@
       "declined": "Declined",
       "question": "The admins have a question"
     }
+  },
+  "home": {
+    "hello": "Hallo, {{name}} 👋",
+    "count": "{{count}} upcoming meetups in your circles",
+    "all": "All",
+    "weekend": "This weekend",
+    "nearMe": "Near me",
+    "empty": "No meetups yet. Join a circle or host the first one!",
+    "goToCircles": "Explore circles",
+    "locationDenied": "Location is off, so we can't filter by distance."
+  },
+  "meetup": {
+    "new": "＋ Meetup",
+    "newTitle": "New meetup",
+    "title": "Title",
+    "date": "Date",
+    "start": "Starts",
+    "end": "Ends",
+    "locationName": "Place name",
+    "pinHint": "Tap the map to drop the “find us here” pin.",
+    "useLocation": "📍 Use my location",
+    "sign": "How to recognise us",
+    "signPlaceholder": "e.g. yellow blanket next to the big tree",
+    "bring": "Bring",
+    "capacity": "Max. people (optional)",
+    "description": "Details",
+    "create": "Post meetup",
+    "needPin": "Drop a pin on the map first.",
+    "badTimes": "The end must be after the start.",
+    "hostedBy": "hosted by {{name}}",
+    "going": "I'm going",
+    "cancelGoing": "Can't make it",
+    "full": "Full",
+    "directions": "Directions",
+    "here": "I'm here 📍",
+    "movePin": "Move pin",
+    "savePin": "Save new pin",
+    "goingCount": "{{count}} going",
+    "spotsLeft": "{{count}} spots left",
+    "cancelled": "This meetup was cancelled.",
+    "cancel": "Cancel meetup",
+    "upcoming": "Upcoming",
+    "past": "Past",
+    "none": "No meetups planned yet.",
+    "checkIn": {
+      "checked_in": "You're checked in. Have fun! 🎉",
+      "not_going": "Tap “I'm going” first.",
+      "too_early": "Check-in opens 30 minutes before the start.",
+      "too_late": "Check-in has closed for this meetup.",
+      "too_far": "You seem to be more than 300 m from the pin.",
+      "no_location": "We need your location to check you in."
+    }
   }
 }

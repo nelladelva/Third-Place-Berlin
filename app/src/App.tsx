@@ -6,6 +6,14 @@ import { AuthGate } from './features/auth/AuthGate';
 import { CirclesScreen, CircleGrid } from './features/circles/CirclesScreen';
 import { CircleScreen } from './features/circles/CircleScreen';
 import { ProposeCircle } from './features/circles/ProposeCircle';
+import { circleTabContent } from './features/circles/CircleScreen';
+import { HomeScreen } from './features/home/HomeScreen';
+import { MeetupScreen } from './features/meetups/MeetupScreen';
+import { MeetupForm } from './features/meetups/MeetupForm';
+import { CircleMeetups } from './features/meetups/CircleMeetups';
+import { SessionContext } from './features/auth/AuthGate';
+
+circleTabContent.meetups = (circle) => <CircleMeetups circle={circle} />;
 import './lib/i18n';
 
 function activeTab(path: string): Tab {
@@ -26,7 +34,9 @@ function Shell() {
     <div className="app">
       <AuthGate circlesStep={<CircleGrid link={false} />}>
       <Routes>
-        <Route path="/" element={<Placeholder tab="home" />} />
+        <Route path="/" element={<HomeScreen name={SessionContext.current?.profile.displayName} />} />
+        <Route path="/meetups/:id" element={<MeetupScreen />} />
+        <Route path="/circles/:id/meetups/new" element={<MeetupForm />} />
         <Route path="/circles" element={<CirclesScreen />} />
         <Route path="/circles/propose" element={<ProposeCircle />} />
         <Route path="/circles/:id" element={<CircleScreen />} />
