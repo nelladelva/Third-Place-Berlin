@@ -11,3 +11,19 @@ export function demoAliases(root: string, dataDir = join(root, 'src', 'data')): 
   map[`${root}/src/demo/slot.tsx`] = `${root}/src/demo/slot.demo.tsx`;
   return map;
 }
+
+/** Vite plugin for the demo build: after an import is resolved to a real file, swap it for its demo twin.
+ * (resolve.alias only matches import strings like '../data/session', not the files they point to.) */
+export function demoSwap(root: string) {
+  const map = demoAliases(root);
+  return {
+    name: 'tpb-demo-swap',
+    enforce: 'pre' as const,
+    async resolveId(this: { resolve: (s: string, i?: string, o?: Record<string, unknown>) => Promise<{ id: string } | null> },
+      source: string, importer: string | undefined, options: Record<string, unknown>) {
+      if (!importer || !(source.startsWith('.') || source.startsWith('/'))) return null; // only the app's own imports
+      const r = await this.resolve(source, importer, { ...options, skipSelf: true });
+      return r && map[r.id] && importer !== map[r.id] ? map[r.id] : null;
+    },
+  };
+}

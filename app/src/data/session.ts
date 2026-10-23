@@ -41,12 +41,12 @@ export async function verifyCode(email: string, code: string): Promise<boolean> 
   return !error && !!data?.session;
 }
 
-/** Log out. This device's push subscription is removed first, so the next person on this phone gets no one else's notifications. */
 export async function currentUserId(): Promise<string | null> {
   const { data } = await supabase.auth.getSession();
   return data.session?.user.id ?? null;
 }
 
+/** Log out. This device's push subscription is removed first, so the next person on this phone gets no one else's notifications. */
 export async function signOut(): Promise<void> {
   try {
     const reg = await navigator.serviceWorker?.getRegistration();

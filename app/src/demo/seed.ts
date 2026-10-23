@@ -209,7 +209,7 @@ export function seed(startedAt: string): DemoState {
     pins,
     notifications,
     notificationPrefs: [],
-    invites: [{ code: 'DEMO-INVITE', createdBy: ME, createdAt: t(-5, '12:00'), expiresAt: t(9, '12:00'), used: false, sample: true }],
+    invites: [{ code: 'demoinvite', createdBy: ME, createdAt: t(-5, '12:00'), expiresAt: t(9, '12:00'), used: false, sample: true }],
     blocks: [],
     reports: [{ id: 'rep-1', reporterId: 'p-elena', targetType: 'message', targetId: 'msg-10', reason: 'Testing the report button 🙂',
       createdAt: t(-1, '22:00'), resolved: false, sample: true }],

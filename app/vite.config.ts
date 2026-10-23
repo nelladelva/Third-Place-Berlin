@@ -2,12 +2,12 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { baseFor, manifestFor } from './src/pwa-manifest';
-import { demoAliases } from './src/demo/aliases';
+import { demoSwap } from './src/demo/aliases';
 
 export default defineConfig(({ mode }) => ({
   base: baseFor(mode),
-  resolve: { alias: mode === 'demo' ? demoAliases(__dirname) : {} },
   plugins: [
+    ...(mode === 'demo' ? [demoSwap(__dirname)] : []),
     react(),
     VitePWA({
       registerType: 'autoUpdate',
