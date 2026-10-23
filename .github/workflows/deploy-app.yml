@@ -52,6 +52,8 @@ jobs:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
           VITE_VAPID_PUBLIC_KEY: ${{ vars.VITE_VAPID_PUBLIC_KEY }}
+      - name: Check bundles (no demo in the app, no Supabase in the demo)
+        run: npm run check:bundles
       - name: Assemble site (website at root, demo under /demo/, app under /app/ once configured)
         working-directory: .
         run: |
