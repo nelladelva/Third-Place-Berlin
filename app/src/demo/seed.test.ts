@@ -38,3 +38,21 @@ test('all seed rows are marked as sample', () => {
     expect(s[key].every((r) => r.sample)).toBe(true);
   }
 });
+
+test('I host the closed circle with the waiting join request, so approving can be tried', () => {
+  const jr = s.joinRequests.find((j) => j.status === 'pending')!;
+  expect(s.circleMembers.some((m) => m.circleId === jr.circleId && m.userId === 'demo-you' && m.role === 'host')).toBe(true);
+});
+
+test('meetups and chats name no weekdays (sample dates move with today)', () => {
+  const words = /\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i;
+  expect(s.meetups.filter((m) => words.test(`${m.title} ${m.description ?? ''}`)).map((m) => m.title)).toEqual([]);
+  expect(s.messages.filter((m) => words.test(m.body)).map((m) => m.body)).toEqual([]);
+});
+
+test('the demo profile holds no personal details', () => {
+  const me = s.profiles.find((p) => p.id === 'demo-you')!;
+  expect(me.origin).toBeNull();
+  expect(me.berlinSince).toBeNull();
+  expect(JSON.stringify(me)).not.toMatch(/Haiti|founder/i);
+});

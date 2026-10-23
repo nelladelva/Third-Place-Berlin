@@ -35,6 +35,15 @@ function notify(): void {
   for (const cb of [...listeners]) cb();
 }
 
+// Another tab (or the installed app) saved: take its state instead of overwriting it with ours on the next change.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key !== STORE_KEY) return;
+    cache = load();
+    notify();
+  });
+}
+
 export function getState(): DemoState {
   if (!cache) {
     cache = load();

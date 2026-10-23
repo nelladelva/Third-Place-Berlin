@@ -19,4 +19,10 @@ if (existsSync('dist-demo')) {
   if (bad.length) { console.error('Supabase client in the demo:', bad); failed = true; }
   else console.log('dist-demo: no Supabase client ✓');
 }
+if (existsSync('dist-demo/index.html')) {
+  const html = readFileSync('dist-demo/index.html', 'utf8');
+  if (html.includes('/app/') || !html.includes('content="TPB Demo"')) {
+    console.error('dist-demo/index.html points at the real app or installs under its name (iPhone home screen)'); failed = true;
+  } else console.log('dist-demo/index.html: own name and icon ✓');
+}
 process.exit(failed ? 1 : 0);

@@ -25,5 +25,9 @@ export function demoSwap(root: string) {
       const r = await this.resolve(source, importer, { ...options, skipSelf: true });
       return r && map[r.id] && importer !== map[r.id] ? map[r.id] : null;
     },
+    /** iPhones name a home-screen app from the page head, not the manifest: give the demo its own name. */
+    transformIndexHtml(html: string) {
+      return html.replace('content="Third Place"', 'content="TPB Demo"').replace('<title>Third Place Berlin</title>', '<title>Third Place Berlin Demo</title>');
+    },
   };
 }

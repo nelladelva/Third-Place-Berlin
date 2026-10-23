@@ -18,8 +18,8 @@ Replace these placeholders in `index.html`:
   don't mix)
 
 ## Deploy
-Hosted via GitHub Pages. After pushing, enable it in
-Settings → Pages → Deploy from branch → main → / (root).
+Hosted via GitHub Pages, published by the GitHub Actions workflow (`.github/workflows/deploy-app.yml`) on every push to `main`.
+Once, set *Settings → Pages → Build and deployment → Source* to **GitHub Actions** (see `app/SETUP.md`, step 0).
 
 ## App demo
 A clickable demo of the Third Place Berlin app (sample data, no login):

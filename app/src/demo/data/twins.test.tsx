@@ -18,7 +18,8 @@ test('8 circles, and I can see my membership', async () => {
   const list = await circles.listCircles();
   expect(list).toHaveLength(8);
   expect(list.find((c) => c.name === 'BBB · Belong Beyond Borders')).toMatchObject({ isMember: true, isHost: true });
-  expect(list.find((c) => c.name === 'Women Events')).toMatchObject({ isMember: false, visibility: 'closed' });
+  expect(list.find((c) => c.name === 'Women Events')).toMatchObject({ isMember: true, isHost: true, visibility: 'closed' });
+  expect(list.find((c) => c.name === 'Art Lovers')).toMatchObject({ isMember: false, visibility: 'open' });
 });
 
 test('Tempelhof picnic stays upcoming 30 days later', async () => {
@@ -52,6 +53,7 @@ function Unread() {
 test('unread count rises when my join request is approved', async () => {
   render(<Unread />);
   await waitFor(() => expect(screen.getByTestId('unread').textContent).toBe('3'));
+  await act(async () => { await circles.leaveCircle('c-women'); });
   await act(async () => { await circles.requestJoin('c-women'); }); // no note to myself for my own request
   expect(screen.getByTestId('unread').textContent).toBe('3');
   const mine = (await circles.listJoinRequests('c-women')).find((j) => j.userId === 'demo-you')!;

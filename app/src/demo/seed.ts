@@ -80,9 +80,9 @@ function profile(p: P, startedAt: string): DemoProfile {
 
 export function seed(startedAt: string): DemoState {
   const t = (days: number, hhmm: string) => at(startedAt, days, hhmm);
-  const me: DemoProfile = { id: ME, displayName: 'You (demo)', field: 'Community founder', origin: 'Haiti', languages: ['English', 'French'],
-    berlinSince: '2024', bio: 'Trying out the Third Place Berlin demo.', funFact: 'This profile is pretend.', teach: ['Community building'],
-    learn: ['German'], avatarUrl: null, locale: 'en', status: 'member', role: 'admin', invitedBy: null, consentAt: t(-30, '10:00'),
+  const me: DemoProfile = { id: ME, displayName: 'You (demo)', field: 'Demo profile', origin: null, languages: ['English'],
+    berlinSince: null, bio: 'A pretend profile for trying the Third Place Berlin demo.', funFact: null, teach: [],
+    learn: [], avatarUrl: null, locale: 'en', status: 'member', role: 'admin', invitedBy: null, consentAt: t(-30, '10:00'),
     welcomedAt: t(-30, '10:00'), createdAt: t(-30, '10:00'), approvedAt: t(-30, '10:00'), sample: true };
 
   const circles: DemoState['circles'] = [
@@ -97,12 +97,13 @@ export function seed(startedAt: string): DemoState {
   ].map(([id, name, emoji, color, visibility, description]) => ({ id, name, emoji, color, visibility: visibility as 'open' | 'closed',
     description, status: 'active' as const, sample: true }));
 
-  // Who is in which circle. I'm in 6 of 8: Art Lovers (open) and Women Events (closed) are there to try joining.
+  // Who is in which circle. I co-host Women Events (closed) so its join request can be approved; Art Lovers (open) is
+  // there to try joining. Leaving Women Events and asking again shows the request side.
   const roster: Record<string, [string, 'member' | 'host'][]> = {
     'c-karaoke': [['p-tomas', 'host'], [ME, 'member'], ['p-mei', 'member'], ['p-kwame', 'member'], ['p-hana', 'member'], ['p-aylin', 'member']],
     'c-books': [['p-elena', 'host'], [ME, 'member'], ['p-chloe', 'member'], ['p-sofia', 'member'], ['p-lukas', 'member']],
     'c-cowork': [['p-omar', 'host'], [ME, 'member'], ['p-diego', 'member'], ['p-amara', 'member'], ['p-kwame', 'member'], ['p-priya', 'member']],
-    'c-women': [['p-amara', 'host'], ['p-priya', 'member'], ['p-sofia', 'member'], ['p-elena', 'member'], ['p-aylin', 'member']],
+    'c-women': [['p-amara', 'host'], [ME, 'host'], ['p-priya', 'member'], ['p-sofia', 'member'], ['p-elena', 'member'], ['p-aylin', 'member']],
     'c-art': [['p-hana', 'host'], ['p-jonas', 'member'], ['p-sofia', 'member'], ['p-chloe', 'member']],
     'c-berlin': [[ME, 'host'], ['p-lukas', 'host'], ['p-mateo', 'member'], ['p-diego', 'member'], ['p-aylin', 'member'], ['p-jonas', 'member']],
     'c-sports': [['p-diego', 'host'], [ME, 'member'], ['p-priya', 'member'], ['p-mateo', 'member'], ['p-omar', 'member']],
@@ -123,7 +124,7 @@ export function seed(startedAt: string): DemoState {
       52.4733, 13.4019, { description: 'Bring a snack to share. Kites welcome!', sign: 'yellow blanket by the big tree', bring: 'Snacks, a blanket, sunscreen' }),
     meetup('m-cowork', 'c-cowork', 'p-omar', 'Co-working morning', 1, '09:30', '13:00', 'St. Oberholz, Rosenthaler Platz', 52.5297, 13.4016,
       { description: 'Laptops out, coffee in. Lunch together at 12:30.', sign: 'big table upstairs, TPB card on it', bring: 'Laptop, charger' }),
-    meetup('m-run', 'c-sports', 'p-diego', 'Sunday run in Tiergarten', 3, '10:00', '11:30', 'Tiergarten, Siegessäule', 52.5145, 13.3501,
+    meetup('m-run', 'c-sports', 'p-diego', 'Morning run in Tiergarten', 3, '10:00', '11:30', 'Tiergarten, Siegessäule', 52.5145, 13.3501,
       { description: '5 or 10 km, everyone at their own pace.', sign: 'orange cap at the north side' }),
     meetup('m-karaoke', 'c-karaoke', 'p-tomas', 'Karaoke night', 5, '20:00', '23:30', 'Karaoke bar near Warschauer Straße', 52.5076, 13.4513,
       { description: 'Private room booked. First song is on Tomás.', sign: 'room 3', capacity: 10 }),
@@ -150,10 +151,10 @@ export function seed(startedAt: string): DemoState {
     msg('msg-4', { circleId: 'c-bbb' }, 'p-lukas', 'Anyone need help with Anmeldung appointments? I found a trick for getting a slot.', -2, '08:15'),
     msg('msg-5', { circleId: 'c-bbb' }, 'p-priya', 'Yes please! @You (demo) did you manage yours?', -2, '08:31', { replyTo: 'msg-4', mentions: [ME] }),
     msg('msg-6', { circleId: 'c-bbb' }, 'p-kwame', 'Co-working this week, who is in?', -1, '17:05'),
-    msg('msg-7', { circleId: 'c-berlin' }, 'p-lukas', 'Weather looks good for Saturday. Picnic at Tempelhof?', -2, '12:00'),
+    msg('msg-7', { circleId: 'c-berlin' }, 'p-lukas', 'Weather looks good this week. Picnic at Tempelhof?', -2, '12:00'),
     msg('msg-8', { circleId: 'c-berlin' }, 'p-mateo', "I'll bring pão de queijo.", -2, '12:20'),
     msg('msg-9', { circleId: 'c-berlin' }, 'p-diego', 'Which time works best?', -1, '09:00', { kind: 'poll', pollId: 'poll-1' }),
-    msg('msg-10', { circleId: 'c-karaoke' }, 'p-tomas', 'Song requests for Friday? I am preparing the queue 🎶', -1, '21:10'),
+    msg('msg-10', { circleId: 'c-karaoke' }, 'p-tomas', 'Song requests for karaoke night? I am preparing the queue 🎶', -1, '21:10'),
     msg('msg-11', { circleId: 'c-karaoke' }, 'p-mei', 'Total Eclipse of the Heart. Duet, anyone?', -1, '21:30'),
     msg('msg-12', { meetupId: 'm-tempelhof' }, 'p-aylin', 'I can bring a speaker, small one, promise.', -1, '15:00'),
     msg('msg-13', { meetupId: 'm-tempelhof' }, 'p-jonas', "I'll take some photos if everyone is okay with it.", -1, '15:20'),

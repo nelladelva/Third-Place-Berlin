@@ -42,3 +42,15 @@ test('reset restores the seed', () => {
   resetDemo();
   expect(getState().circles).toHaveLength(8);
 });
+
+test('a change saved in another tab is picked up here (no silent overwrite)', () => {
+  const cb = vi.fn();
+  const off = subscribe(cb);
+  const other = JSON.parse(JSON.stringify(getState()));
+  other.me.viewAs = 'member';
+  localStorage.setItem(STORE_KEY, JSON.stringify(other));
+  window.dispatchEvent(new StorageEvent('storage', { key: STORE_KEY, newValue: JSON.stringify(other) }));
+  expect(getState().me.viewAs).toBe('member');
+  expect(cb).toHaveBeenCalled();
+  off();
+});

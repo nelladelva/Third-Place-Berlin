@@ -10,6 +10,7 @@ const members = (circleId: string) => s.circleMembers.filter((m) => m.circleId =
 test('open circles join instantly; closed ones need a request that notifies the hosts', () => {
   r.joinCircle(s, 'c-art');
   expect(members('c-art')).toContain('demo-you');
+  r.leaveCircle(s, 'c-women'); // I co-host it in the seed; leave to try the request side
   expect(() => r.joinCircle(s, 'c-women')).toThrow('closed');
   r.requestJoin(s, 'c-women');
   expect(s.joinRequests.some((j) => j.userId === 'demo-you' && j.circleId === 'c-women' && j.status === 'pending')).toBe(true);
