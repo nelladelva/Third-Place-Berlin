@@ -57,7 +57,10 @@ export function ChatView({ scope, me, members, closesAt, now = new Date(), canMo
   const byId = useMemo(() => new Map(messages.map((m) => [m.id, m])), [messages]);
   const closed = !!closesAt && now > new Date(closesAt);
 
-  useEffect(() => end.current?.scrollIntoView?.({ block: 'end' }), [messages.length]);
+  // Braces matter: Chrome 155+ returns a Promise from scrollIntoView, and an effect must return a cleanup or nothing.
+  useEffect(() => {
+    end.current?.scrollIntoView?.({ block: 'end' });
+  }, [messages.length]);
 
   const query = text.match(/@([\p{L}\p{N}_-]*)$/u)?.[1];
   const suggestions = query === undefined ? [] : members

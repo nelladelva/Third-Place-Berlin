@@ -39,3 +39,14 @@ test('@mention autocomplete inserts name and records mention id', async () => {
   await userEvent.click(screen.getByRole('button', { name: i18n.t('chat.send') }));
   expect(send).toHaveBeenCalledWith('See you @Saskia tomorrow', { replyTo: undefined, mentions: ['u-s'] });
 });
+
+test('leaving the chat does not crash when scrollIntoView returns a Promise (Chrome 155+)', () => {
+  const original = Element.prototype.scrollIntoView;
+  Element.prototype.scrollIntoView = (() => Promise.resolve()) as unknown as typeof original;
+  try {
+    const { unmount } = render(<MemoryRouter><ChatView scope={{ circleId: 'c1' }} me="u1" members={[]} /></MemoryRouter>);
+    expect(() => unmount()).not.toThrow();
+  } finally {
+    Element.prototype.scrollIntoView = original;
+  }
+});
