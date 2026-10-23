@@ -346,5 +346,14 @@
     "android": "Auf Android: Tippe auf das ⋮-Menü → „App installieren“ (oder „Zum Startbildschirm hinzufügen“).",
     "why": "Installiert öffnet sie sich im Vollbild und kann dir Benachrichtigungen schicken.",
     "dismiss": "Verstanden"
+  },
+  "demo": {
+    "ribbon": "Demo · Beispieldaten",
+    "viewAs": "Demo: App ansehen als",
+    "admin": "Admin",
+    "member": "Mitglied",
+    "reset": "Demo zurücksetzen",
+    "resetConfirm": "Demo neu starten? Alles, was du in diesem Browser gemacht hast, wird rückgängig gemacht.",
+    "resetYes": "Ja, zurücksetzen"
   }
 }

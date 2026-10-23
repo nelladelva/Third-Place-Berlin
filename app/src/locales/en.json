@@ -346,5 +346,14 @@
     "android": "On Android: tap the ⋮ menu → “Install app” (or “Add to Home screen”).",
     "why": "Installed, it opens full-screen and can send you notifications.",
     "dismiss": "Got it"
+  },
+  "demo": {
+    "ribbon": "Demo · sample data",
+    "viewAs": "Demo: view the app as",
+    "admin": "Admin",
+    "member": "Member",
+    "reset": "Reset demo",
+    "resetConfirm": "Start the demo fresh? Everything you did in this browser will be undone.",
+    "resetYes": "Yes, reset"
   }
 }

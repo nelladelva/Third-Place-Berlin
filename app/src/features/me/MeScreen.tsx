@@ -8,6 +8,7 @@ import { signOut, type Profile } from '../../data/session';
 import { deleteAccount, exportMyData, saveLocale, uploadAvatar } from '../../data/me';
 import { listBlocked, myCircles, unblock, type MyCircle } from '../../data/profiles';
 import { Invites } from './Invites';
+import { DemoControls } from '../../demo/slot';
 
 /** Extra sections (notifications, admin) are plugged in by later features. */
 export const meSections: { notifications?: () => ReactNode; admin?: () => ReactNode; inbox?: () => ReactNode } = {};
@@ -62,6 +63,7 @@ export function MeScreen({ profile, onChanged }: { profile: Profile; onChanged: 
 
   return (
     <Screen title={t('me.title')}>
+      <DemoControls onChanged={onChanged} />
       <div className="row card">
         <button className="avatar-btn" onClick={() => fileRef.current?.click()} aria-label={t('me.photo')}>
           <Avatar id={profile.id} name={profile.displayName} url={profile.avatarUrl} size={64} />

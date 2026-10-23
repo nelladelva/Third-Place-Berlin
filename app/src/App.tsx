@@ -19,6 +19,7 @@ import { useUnreadCount } from './data/notifications';
 import { AdminScreen } from './features/admin/AdminScreen';
 import { useTranslation } from 'react-i18next';
 import './lib/i18n';
+import { DemoRibbon } from './demo/slot';
 
 circleTabContent.meetups = (circle) => <CircleMeetups circle={circle} />;
 circleTabContent.chat = (circle) => <CircleChat circle={circle} />;
@@ -76,6 +77,7 @@ function Shell() {
   const location = useLocation();
   return (
     <div className="app">
+      <DemoRibbon />
       <AuthGate circlesStep={<CircleGrid link={false} />}>
         <Routes>
           <Route path="/" element={<HomeRoute />} />
