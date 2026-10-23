@@ -75,6 +75,32 @@ Date: 2026-10-23 · Owner: Nella · Repo: `nelladelva/Third-Place-Berlin` (publi
   - The workflow builds and publishes `/app/` only when `VITE_SUPABASE_URL` is set. Otherwise it publishes the website + demo only.
   - The reason: today the real app would be published without a backend and fail on every screen.
 
+### How closely the demo follows the server's rules (Nella's decision after the builder check, 2026-10-23)
+**Main flows behave for real.** The browser-side demo reproduces these rules from `app/supabase/migrations/`, including the inbox notifications they create:
+- joining an open circle; requesting to join a closed one; a host or admin approving or declining (`decide_join`)
+- recommending someone to a circle
+- RSVP "Going" / "Not going", including **"full" at capacity**; "I'm here" check-in
+- vouching and approval of waiting people (`approve_member`, the vouch threshold from Settings); opening and closing the launch link
+- circle proposals and the admin's approve / decline / question (`decide_proposal`)
+- posting, editing and deleting messages, reactions, @mentions, polls and votes, Board pins
+- reports reaching the admin console; removing a member
+
+**Simplified** (they behave plausibly but need not match the backend exactly):
+- blocks hiding people across every screen
+- the exact vouch counting edge cases
+- meetup-chat closing 2 days after the event
+- rate limits
+- any rule no screen shows
+
+### Dates and remembered data (Claude's call after the builder check)
+- Sample content is stored **relative to a start date**: the first visit's date.
+- On every load, **sample** meetups, messages and notifications are shifted forward by the days since then, so the demo always shows upcoming meetups and recent chats.
+- **Everything the user creates or changes** keeps its real date and is never shifted.
+
+### Language of the sample content (Claude's call after the builder check)
+- The interface switches between English and German, as in the real app.
+- The **sample content** (circle descriptions, bios, meetups, chats, poll, Board) is in **English only**, like the real circle descriptions in `seed.sql`.
+
 ## Left to the builder
 - How the build switches to demo data: for example a `VITE_DEMO` flag and replacing the `src/data/` modules at build time, or a fake client behind the same functions.
 - **Requirement:** the real build contains no demo code or sample data.
