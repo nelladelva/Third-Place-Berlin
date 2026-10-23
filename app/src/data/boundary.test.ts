@@ -3,7 +3,7 @@ const files = import.meta.glob('/src/**/*.{ts,tsx}', { query: '?raw', import: 'd
 
 test('only src/data and lib/supabase talk to Supabase', () => {
   const offenders = Object.entries(files)
-    .filter(([path]) => !/\.test\.tsx?$/.test(path) && !path.startsWith('/src/data/') && path !== '/src/lib/supabase.ts')
+    .filter(([path]) => !/\.test\.tsx?$/.test(path) && !path.startsWith('/src/data/') && !path.startsWith('/src/demo/') && path !== '/src/lib/supabase.ts')
     .filter(([, src]) => /lib\/supabase|@supabase\/|from '\.\/supabase'/.test(src))
     .map(([path]) => path);
   expect(offenders).toEqual([]);

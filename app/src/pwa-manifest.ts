@@ -16,3 +16,15 @@ export const manifest = {
     { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
   ],
 };
+
+const DEMO_BASE = '/Third-Place-Berlin/demo/';
+
+export function baseFor(mode: string): string {
+  return mode === 'demo' ? DEMO_BASE : BASE;
+}
+
+/** The demo is its own installable app (own name, id and scope), so it never collides with the real one on a phone. */
+export function manifestFor(mode: string) {
+  if (mode !== 'demo') return manifest;
+  return { ...manifest, name: 'Third Place Berlin Demo', short_name: 'TPB Demo', id: DEMO_BASE, start_url: DEMO_BASE, scope: DEMO_BASE };
+}

@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:db": "node scripts/test-db.mjs"
+    "test:db": "node scripts/test-db.mjs",
+    "build:demo": "tsc --noEmit && vite build --mode demo --outDir dist-demo",
+    "dev:demo": "vite --mode demo"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.47.10",
