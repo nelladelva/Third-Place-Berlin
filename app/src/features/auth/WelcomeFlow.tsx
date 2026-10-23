@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Screen } from '../../ui/Screen';
-import { supabase } from '../../lib/supabase';
+import { saveProfile } from '../../data/me';
 import type { Profile } from '../../data/session';
 
 export const splitList = (s: string, max = 10): string[] =>
@@ -34,8 +34,9 @@ export function WelcomeFlow({ profile, onDone, circlesStep, requireConsent = tru
       update.welcomed_at = new Date().toISOString();
       if (needsConsent) update.consent_at = update.welcomed_at;
     }
-    const { error: err } = await supabase.from('profiles').update(update).eq('id', profile.id);
-    if (err) {
+    try {
+      await saveProfile(profile.id, update);
+    } catch {
       setError(t('common.error'));
       return false;
     }

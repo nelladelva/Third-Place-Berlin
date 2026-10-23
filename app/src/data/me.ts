@@ -40,3 +40,18 @@ export async function deleteAccount(): Promise<void> {
   if (error) throw new Error(error.message);
   await supabase.auth.signOut();
 }
+
+/** Update my profile row (welcome flow and profile edit). Throws on error. */
+export async function saveProfile(id: string, update: Record<string, unknown>): Promise<void> {
+  const { error } = await supabase.from('profiles').update(update).eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
+/** Store this device's push subscription. Returns false on error. */
+export async function savePushSubscription(s: { endpoint: string; p256dh: string; auth: string }): Promise<boolean> {
+  const { data } = await supabase.auth.getSession();
+  const { error } = await supabase.from('push_subscriptions').upsert(
+    { user_id: data.session?.user.id, endpoint: s.endpoint, p256dh: s.p256dh, auth: s.auth },
+    { onConflict: 'endpoint' });
+  return !error;
+}

@@ -1,4 +1,4 @@
-import { supabase } from './supabase';
+import { savePushSubscription } from '../data/me';
 
 export type PushResult = 'subscribed' | 'denied' | 'unsupported' | 'needs_install' | 'failed';
 
@@ -22,9 +22,6 @@ export async function subscribeToPush(): Promise<PushResult> {
   const sub = (await reg.pushManager.getSubscription()) ??
     (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlBase64ToUint8Array(key) }));
   const json = sub.toJSON() as { endpoint: string; keys: { p256dh: string; auth: string } };
-  const { data } = await supabase.auth.getSession();
-  const { error } = await supabase.from('push_subscriptions').upsert(
-    { user_id: data.session?.user.id, endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth },
-    { onConflict: 'endpoint' });
-  return error ? 'failed' : 'subscribed';
+  const ok = await savePushSubscription({ endpoint: json.endpoint, p256dh: json.keys.p256dh, auth: json.keys.auth });
+  return ok ? 'subscribed' : 'failed';
 }

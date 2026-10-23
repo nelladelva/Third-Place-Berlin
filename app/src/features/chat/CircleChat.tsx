@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '../../lib/supabase';
+import { currentUserId } from '../../data/session';
 import { listMembers, type CircleCard } from '../../data/circles';
 import { createPoll } from '../../data/chat';
 import type { Meetup } from '../../data/meetups';
@@ -11,7 +11,7 @@ import { Board, PinForm } from './Board';
 
 function useMe(): string | null {
   const [me, setMe] = useState<string | null>(null);
-  useEffect(() => void supabase.auth.getSession().then(({ data }) => setMe(data.session?.user.id ?? null)), []);
+  useEffect(() => void currentUserId().then(setMe), []);
   return me;
 }
 

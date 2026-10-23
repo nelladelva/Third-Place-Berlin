@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Screen } from '../../ui/Screen';
 import { Avatar } from '../../ui/Avatar';
 import { cancelMeetup, cancelRsvp, checkIn, getMeetup, rsvp, updatePin, watchMeetup, type Meetup } from '../../data/meetups';
+import { currentUserId } from '../../data/session';
 import { formatMeetupTime } from '../../lib/time';
 import { currentLanguage } from '../../lib/i18n';
 import { currentPosition, directionsUrl, type LatLng } from '../../lib/geo';
-import { supabase } from '../../lib/supabase';
 import { PinMap } from './PinPicker';
 
 /** The meetup chat is plugged in by the chat feature. */
@@ -25,7 +25,7 @@ export function MeetupScreen() {
 
   useEffect(() => {
     load();
-    void supabase.auth.getSession().then(({ data }) => setMe(data.session?.user.id ?? null));
+    void currentUserId().then(setMe);
     return watchMeetup(id, load);
   }, [id, load]);
 
