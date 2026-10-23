@@ -43,17 +43,22 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           PGPASSWORD: postgres
-      - run: npm run build
+      - name: Build the demo (sample data, no backend)
+        run: npm run build:demo
+      - name: Build the real app (only once Supabase is configured)
+        if: ${{ vars.VITE_SUPABASE_URL != '' }}
+        run: npm run build
         env:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
           VITE_VAPID_PUBLIC_KEY: ${{ vars.VITE_VAPID_PUBLIC_KEY }}
-      - name: Assemble site (website at root, app under /app/)
+      - name: Assemble site (website at root, demo under /demo/, app under /app/ once configured)
         working-directory: .
         run: |
           mkdir _site
           rsync -a --exclude '.git' --exclude '.github' --exclude '.superpowers' --exclude 'app' --exclude 'docs' --exclude '_site' ./ _site/
-          cp -r app/dist _site/app
+          cp -r app/dist-demo _site/demo
+          if [ -d app/dist ]; then cp -r app/dist _site/app; fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

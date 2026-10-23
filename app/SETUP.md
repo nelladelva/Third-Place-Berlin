@@ -5,6 +5,15 @@ The app code lives in this folder (`app/`). The database rules live in `app/supa
 
 ---
 
+## 0. The demo (works today, no setup)
+
+A demo of the app runs on built-in sample data in the browser, with no Supabase and no login:
+**https://nelladelva.github.io/Third-Place-Berlin/demo/**
+
+- It's published by the same GitHub workflow. Once, set *Settings → Pages → Source* to **GitHub Actions**.
+- Locally: `npm run dev:demo`, or build it with `npm run build:demo` (output in `dist-demo/`).
+- **Until the Supabase values exist** as GitHub variables (step 4), only the website and the demo are published, not `/app/`.
+
 ## 1. Supabase project (database, login, chat)
 
 1. Go to **supabase.com** → *New project*.

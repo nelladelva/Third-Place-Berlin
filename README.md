@@ -20,3 +20,10 @@ Replace these placeholders in `index.html`:
 ## Deploy
 Hosted via GitHub Pages. After pushing, enable it in
 Settings → Pages → Deploy from branch → main → / (root).
+
+## App demo
+A clickable demo of the Third Place Berlin app (sample data, no login):
+https://nelladelva.github.io/Third-Place-Berlin/demo/
+
+The real app lives in `app/`; see `app/SETUP.md`.
+
