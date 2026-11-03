@@ -13,9 +13,15 @@ test('English mention payload links to the circle', () => {
   expect(p.url).toBe('#/circles/c1');
 });
 
-test('every kind has a payload in both languages', () => {
+test('every kind has a payload in every language', () => {
   for (const k of ['meetup_new', 'poll_new', 'mention', 'reply', 'message_new', 'member_approved', 'join_request',
     'join_decided', 'proposal_new', 'proposal_decided', 'recommended'] as const) {
-    for (const lang of ['en', 'de'] as const) expect(buildPushPayload(k, {}, lang).title.length).toBeGreaterThan(0);
+    for (const lang of ['en', 'de', 'fr'] as const) expect(buildPushPayload(k, {}, lang).title.length).toBeGreaterThan(0);
   }
+});
+
+test('French reply payload', () => {
+  const p = buildPushPayload('reply', { author: 'Amara', circle_id: 'c1', body: 'à samedi' }, 'fr');
+  expect(p.title).toBe("Amara t'a répondu");
+  expect(p.url).toBe('#/circles/c1');
 });

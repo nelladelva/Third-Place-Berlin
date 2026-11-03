@@ -1,7 +1,7 @@
 export const TZ = 'Europe/Berlin';
 
-type Lang = 'en' | 'de';
-const locale = (lang: Lang) => (lang === 'de' ? 'de-DE' : 'en-GB');
+type Lang = 'en' | 'de' | 'fr';
+const locale = (lang: Lang) => ({ en: 'en-GB', de: 'de-DE', fr: 'fr-FR' })[lang];
 
 /** Wall-clock parts of an instant in Berlin. */
 export function utcToBerlinParts(iso: string): { date: string; time: string } {

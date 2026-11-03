@@ -83,6 +83,7 @@ export function MeScreen({ profile, onChanged }: { profile: Profile; onChanged: 
       <div className="toggle">
         <button className={lang === 'en' ? 'on' : ''} onClick={() => void changeLang('en')}>English</button>
         <button className={lang === 'de' ? 'on' : ''} onClick={() => void changeLang('de')}>Deutsch</button>
+        <button className={lang === 'fr' ? 'on' : ''} onClick={() => void changeLang('fr')}>Français</button>
       </div>
       <div className="label">{t('me.myCircles')}</div>
       {circles.map((c) => <Link key={c.id} to={`/circles/${c.id}`} className="tag">{c.emoji} {c.name}</Link>)}

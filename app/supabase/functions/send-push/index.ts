@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
   const admin = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
   const { data: profile } = await admin.from('profiles').select('locale').eq('id', record.user_id).single();
   const { data: subs } = await admin.from('push_subscriptions').select('id, endpoint, p256dh, auth').eq('user_id', record.user_id);
-  const payload = buildPushPayload(record.kind as NotificationKind, record.data ?? {}, profile?.locale === 'de' ? 'de' : 'en');
+  const payload = buildPushPayload(record.kind as NotificationKind, record.data ?? {}, (['en', 'de', 'fr'] as const).find((l) => l === profile?.locale) ?? 'en');
   await Promise.all((subs ?? []).map(async (s) => {
     try {
       await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, JSON.stringify(payload), { TTL: 86400 });

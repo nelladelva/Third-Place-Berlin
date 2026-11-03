@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import type { Lang } from '../lib/i18n';
 
 export type Profile = {
   id: string; displayName: string; field: string | null; origin: string | null; languages: string[];
   berlinSince: string | null; bio: string | null; funFact: string | null; teach: string[]; learn: string[];
-  avatarUrl: string | null; locale: 'en' | 'de'; status: 'pending' | 'member' | 'removed'; role: 'member' | 'admin';
+  avatarUrl: string | null; locale: Lang; status: 'pending' | 'member' | 'removed'; role: 'member' | 'admin';
   invitedBy: string | null; consentAt: string | null; welcomedAt: string | null; createdAt: string; approvedAt: string | null;
 };
 
@@ -15,7 +16,7 @@ export function toProfile(r: ProfileRow): Profile {
     id: r.id as string, displayName: r.display_name as string, field: (r.field as string) ?? null,
     origin: (r.origin as string) ?? null, languages: (r.languages as string[]) ?? [], berlinSince: (r.berlin_since as string) ?? null,
     bio: (r.bio as string) ?? null, funFact: (r.fun_fact as string) ?? null, teach: (r.teach as string[]) ?? [],
-    learn: (r.learn as string[]) ?? [], avatarUrl: (r.avatar_url as string) ?? null, locale: (r.locale as 'en' | 'de') ?? 'en',
+    learn: (r.learn as string[]) ?? [], avatarUrl: (r.avatar_url as string) ?? null, locale: (r.locale as Lang) ?? 'en',
     status: r.status as Profile['status'], role: r.role as Profile['role'], invitedBy: (r.invited_by as string) ?? null,
     consentAt: (r.consent_at as string) ?? null, welcomedAt: (r.welcomed_at as string) ?? null, createdAt: r.created_at as string, approvedAt: (r.approved_at as string) ?? null,
   };

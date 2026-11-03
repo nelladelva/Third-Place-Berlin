@@ -2,22 +2,30 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from '../locales/en.json';
 import de from '../locales/de.json';
+import fr from '../locales/fr.json';
 
-export type Lang = 'en' | 'de';
+export const LANGS = ['en', 'de', 'fr'] as const;
+export type Lang = (typeof LANGS)[number];
 const STORAGE_KEY = 'tpb.lang';
+
+/** Any language tag ('de-AT', 'fr', …) → a supported Lang, else undefined. */
+export function toLang(tag: string | null | undefined): Lang | undefined {
+  const base = tag?.toLowerCase().split('-')[0];
+  return LANGS.find((l) => l === base);
+}
 
 function initialLanguage(): Lang {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'en' || saved === 'de') return saved;
+    const saved = toLang(localStorage.getItem(STORAGE_KEY));
+    if (saved) return saved;
   } catch {
     /* storage unavailable */
   }
-  return typeof navigator !== 'undefined' && navigator.language?.toLowerCase().startsWith('de') ? 'de' : 'en';
+  return (typeof navigator !== 'undefined' && toLang(navigator.language)) || 'en';
 }
 
 void i18n.use(initReactI18next).init({
-  resources: { en: { translation: en }, de: { translation: de } },
+  resources: { en: { translation: en }, de: { translation: de }, fr: { translation: fr } },
   lng: initialLanguage(),
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
@@ -33,7 +41,7 @@ export function setLanguage(lang: Lang): void {
 }
 
 export function currentLanguage(): Lang {
-  return i18n.language?.startsWith('de') ? 'de' : 'en';
+  return toLang(i18n.language) ?? 'en';
 }
 
 export default i18n;
