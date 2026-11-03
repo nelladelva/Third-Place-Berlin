@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { joinCircle, requestJoin, type CircleCard } from '../../data/circles';
+import { useIsAdmin } from '../auth/AuthGate';
 
 /** A coloured circle card with its membership action. Used in the Circles tab and in the welcome flow. */
 export function CircleTile({ circle, onChange, link = true }: { circle: CircleCard; onChange: () => void; link?: boolean }) {
   const { t } = useTranslation();
   const [busy, setBusy] = useState(false);
+  const isAdmin = useIsAdmin(); // admins join any circle directly, closed ones included
   const act = async (fn: (id: string) => Promise<void>) => {
     setBusy(true);
     try {
@@ -33,7 +35,7 @@ export function CircleTile({ circle, onChange, link = true }: { circle: CircleCa
           <span className="cc-badge">{t('circles.joined')}</span>
         ) : circle.myRequestStatus === 'pending' ? (
           <span className="cc-badge">{t('circles.waitingApproval')}</span>
-        ) : circle.visibility === 'open' ? (
+        ) : circle.visibility === 'open' || isAdmin ? (
           <button className="cc-btn" disabled={busy} onClick={() => void act(joinCircle)}>{t('circles.join')}</button>
         ) : (
           <button className="cc-btn" disabled={busy} onClick={() => void act(requestJoin)}>{t('circles.requestJoin')}</button>

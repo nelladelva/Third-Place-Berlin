@@ -40,7 +40,7 @@ function notify(s: DemoState, userIds: string[], kind: NotificationKind, data: R
 // ── Circles ──────────────────────────────────────────────────────────────
 export function joinCircle(s: DemoState, circleId: string): void {
   const c = circleOf(s, circleId);
-  if (c.visibility === 'closed') throw new Error('closed');
+  if (c.visibility === 'closed' && !isAdmin(s)) throw new Error('closed');
   if (!isMember(s, circleId, me(s))) s.circleMembers.push({ circleId, userId: me(s), role: 'member', sample: false });
 }
 
@@ -51,6 +51,7 @@ export function leaveCircle(s: DemoState, circleId: string): void {
 export function requestJoin(s: DemoState, circleId: string): void {
   const c = circleOf(s, circleId);
   if (isMember(s, circleId, me(s))) return;
+  if (c.visibility === 'open' || isAdmin(s)) return joinCircle(s, circleId); // same as the database
   if (s.joinRequests.some((j) => j.circleId === circleId && j.userId === me(s) && j.status === 'pending')) return;
   s.joinRequests.push({ id: newId('jr'), circleId, userId: me(s), status: 'pending', createdAt: nowIso(), sample: false });
   notify(s, [...hostsOf(s, circleId), ...admins(s)], 'join_request', { circle: c.name, circle_id: circleId, author: nameOf(s, me(s)) });

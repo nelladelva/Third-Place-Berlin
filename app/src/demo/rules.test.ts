@@ -8,6 +8,7 @@ const notesFor = (userId: string, kind: string) => s.notifications.filter((n) =>
 const members = (circleId: string) => s.circleMembers.filter((m) => m.circleId === circleId).map((m) => m.userId);
 
 test('open circles join instantly; closed ones need a request that notifies the hosts', () => {
+  s.me.viewAs = 'member'; // admins skip the request (see next test)
   r.leaveCircle(s, 'c-bbb'); // BBB is the only open circle; I'm in it in the seed
   r.joinCircle(s, 'c-bbb');
   expect(members('c-bbb')).toContain('demo-you');
@@ -17,6 +18,17 @@ test('open circles join instantly; closed ones need a request that notifies the 
   r.requestJoin(s, 'c-women');
   expect(s.joinRequests.some((j) => j.userId === 'demo-you' && j.circleId === 'c-women' && j.status === 'pending')).toBe(true);
   expect(notesFor('p-amara', 'join_request')).toHaveLength(1); // Amara hosts Women Events
+});
+
+test('admins join any circle directly, closed ones included (same as the database)', () => {
+  expect(s.me.viewAs).toBe('admin');
+  r.joinCircle(s, 'c-art');
+  expect(members('c-art')).toContain('demo-you');
+  r.leaveCircle(s, 'c-sports'); // I'm in it in the seed
+  expect(members('c-sports')).not.toContain('demo-you');
+  r.requestJoin(s, 'c-sports');
+  expect(members('c-sports')).toContain('demo-you');
+  expect(s.joinRequests.some((j) => j.userId === 'demo-you' && j.circleId === 'c-sports')).toBe(false);
 });
 
 test('approving a join request adds the member and tells them', () => {

@@ -8,6 +8,7 @@ import {
   type CircleCard, type JoinRequestRow, type MemberRow,
 } from '../../data/circles';
 import { CircleTile } from './CircleTile';
+import { useIsAdmin } from '../auth/AuthGate';
 
 export type CircleTab = 'chat' | 'meetups' | 'members' | 'board';
 
@@ -69,6 +70,7 @@ function Members({ circle }: { circle: CircleCard }) {
 
 export function CircleScreen() {
   const { t } = useTranslation();
+  const isAdmin = useIsAdmin();
   const { id = '' } = useParams();
   const [circle, setCircle] = useState<CircleCard | null | undefined>(undefined);
   const [tab, setTab] = useState<CircleTab>('chat');
@@ -83,7 +85,7 @@ export function CircleScreen() {
       <Screen>
         <Link to="/circles" className="muted">‹ {t('circles.title')}</Link>
         <div style={{ marginTop: 10 }}><CircleTile circle={circle} onChange={load} link={false} /></div>
-        {circle.visibility === 'closed' && (
+        {circle.visibility === 'closed' && !isAdmin && (
           <div className="card" style={{ marginTop: 12 }}>
             <p>{t('circles.closedInfo')}</p>
             <ol className="steps">

@@ -11,6 +11,11 @@ import { Screen } from '../../ui/Screen';
 type ProfileCtx = { profile: Profile; refresh: () => Promise<void> };
 const ProfileContext = createContext<ProfileCtx | null>(null);
 
+/** True when the logged-in member is an admin. Safe anywhere (false outside AuthGate's children, e.g. the welcome flow). */
+export function useIsAdmin(): boolean {
+  return useContext(ProfileContext)?.profile.role === 'admin';
+}
+
 /** The logged-in member's profile; only usable inside AuthGate's children. */
 export function useProfile(): ProfileCtx {
   const ctx = useContext(ProfileContext);

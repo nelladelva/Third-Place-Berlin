@@ -1,5 +1,5 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
-import { reloadForTest } from '../store';
+import { reloadForTest, update } from '../store';
 import * as circles from './circles';
 import * as meetups from './meetups';
 import * as chat from './chat';
@@ -54,8 +54,10 @@ test('unread count rises when my join request is approved', async () => {
   render(<Unread />);
   await waitFor(() => expect(screen.getByTestId('unread').textContent).toBe('3'));
   await act(async () => { await circles.leaveCircle('c-women'); });
+  update((s) => { s.me.viewAs = 'member'; }); // as a member: admins would join directly
   await act(async () => { await circles.requestJoin('c-women'); }); // no note to myself for my own request
   expect(screen.getByTestId('unread').textContent).toBe('3');
+  update((s) => { s.me.viewAs = 'admin'; }); // back to admin to approve
   const mine = (await circles.listJoinRequests('c-women')).find((j) => j.userId === 'demo-you')!;
   await act(async () => { await circles.decideJoin(mine.id, true); });
   await waitFor(() => expect(screen.getByTestId('unread').textContent).toBe('4'));
