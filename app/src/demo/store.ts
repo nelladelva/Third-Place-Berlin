@@ -1,11 +1,11 @@
 // The demo's state lives in this browser (localStorage). Old, corrupt or unreadable state falls back to the seed,
 // and a storage that throws (private mode, quota) still works in memory for the visit.
-import { seed } from './seed';
+import { seed, SEED_VERSION } from './seed';
 import { todayDate } from './time';
 import type { DemoState } from './types';
 
 export const STORE_KEY = 'tpb-demo:state';
-export const STORE_VERSION = 1;
+export const STORE_VERSION = SEED_VERSION;
 
 let cache: DemoState | null = null;
 const listeners = new Set<() => void>();

@@ -78,6 +78,9 @@ function profile(p: P, startedAt: string): DemoProfile {
     approvedAt: p.status === 'pending' ? null : created, sample: true };
 }
 
+/** Bump when the sample data changes, so browsers holding an older demo start fresh. */
+export const SEED_VERSION = 2;
+
 export function seed(startedAt: string): DemoState {
   const t = (days: number, hhmm: string) => at(startedAt, days, hhmm);
   const me: DemoProfile = { id: ME, displayName: 'You (demo)', field: 'Demo profile', origin: null, languages: ['English'],
@@ -86,13 +89,13 @@ export function seed(startedAt: string): DemoState {
     welcomedAt: t(-30, '10:00'), createdAt: t(-30, '10:00'), approvedAt: t(-30, '10:00'), sample: true };
 
   const circles: DemoState['circles'] = [
-    ['c-karaoke', 'Karaoke', '🎤', '#8E3B8A', 'open', 'Sing badly, together'],
-    ['c-books', 'Book Lovers', '📚', '#A0522D', 'open', 'Reading circles & author talks'],
-    ['c-cowork', 'Co-working & Networking', '💻', '#C1592A', 'open', 'Work side by side, meet professionals'],
+    ['c-karaoke', 'Karaoke', '🎤', '#8E3B8A', 'closed', 'Sing badly, together'],
+    ['c-books', 'Book Lovers', '📚', '#A0522D', 'closed', 'Reading circles & author talks'],
+    ['c-cowork', 'Co-working & Networking', '💻', '#C1592A', 'closed', 'Work side by side, meet professionals'],
     ['c-women', 'Women Events', '✊', '#B9647D', 'closed', 'Gatherings for women'],
-    ['c-art', 'Art Lovers', '🎨', '#2E6E8E', 'open', 'Galleries, museums, studios'],
-    ['c-berlin', 'Berlin Events', '🐻', '#D9A441', 'open', 'Festivals, concerts, city life'],
-    ['c-sports', 'Sports Events', '⚽', '#2F5D58', 'open', 'Run, play, watch'],
+    ['c-art', 'Art Lovers', '🎨', '#2E6E8E', 'closed', 'Galleries, museums, studios'],
+    ['c-berlin', 'Berlin Events', '🐻', '#D9A441', 'closed', 'Festivals, concerts, city life'],
+    ['c-sports', 'Sports Events', '⚽', '#2F5D58', 'closed', 'Run, play, watch'],
     ['c-bbb', 'BBB · Belong Beyond Borders', '🌍', '#3C4A7A', 'open', 'Culture, co-working and shared hobbies'],
   ].map(([id, name, emoji, color, visibility, description]) => ({ id, name, emoji, color, visibility: visibility as 'open' | 'closed',
     description, status: 'active' as const, sample: true }));
@@ -189,7 +192,7 @@ export function seed(startedAt: string): DemoState {
   ];
 
   return {
-    version: 1,
+    version: SEED_VERSION,
     startedAt,
     me: { id: ME, viewAs: 'admin' },
     settings: { launchOpen: false, launchCode: null, vouchesRequired: 2 },

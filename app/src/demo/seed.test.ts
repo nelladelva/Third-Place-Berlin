@@ -5,8 +5,8 @@ const s = seed('2026-10-23');
 test('the 8 circles match seed.sql', () => {
   expect(s.circles.map((c) => c.name)).toEqual(['Karaoke', 'Book Lovers', 'Co-working & Networking', 'Women Events',
     'Art Lovers', 'Berlin Events', 'Sports Events', 'BBB · Belong Beyond Borders']);
-  expect(s.circles.find((c) => c.name === 'Women Events')!.visibility).toBe('closed');
-  expect(s.circles.filter((c) => c.visibility === 'closed')).toHaveLength(1);
+  // Only BBB is open; every other circle is closed.
+  expect(s.circles.filter((c) => c.visibility === 'open').map((c) => c.name)).toEqual(['BBB · Belong Beyond Borders']);
 });
 
 test('fictional members, no emails, no photos', () => {

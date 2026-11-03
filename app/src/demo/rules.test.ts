@@ -8,8 +8,10 @@ const notesFor = (userId: string, kind: string) => s.notifications.filter((n) =>
 const members = (circleId: string) => s.circleMembers.filter((m) => m.circleId === circleId).map((m) => m.userId);
 
 test('open circles join instantly; closed ones need a request that notifies the hosts', () => {
-  r.joinCircle(s, 'c-art');
-  expect(members('c-art')).toContain('demo-you');
+  r.leaveCircle(s, 'c-bbb'); // BBB is the only open circle; I'm in it in the seed
+  r.joinCircle(s, 'c-bbb');
+  expect(members('c-bbb')).toContain('demo-you');
+  expect(() => r.joinCircle(s, 'c-art')).toThrow('closed');
   r.leaveCircle(s, 'c-women'); // I co-host it in the seed; leave to try the request side
   expect(() => r.joinCircle(s, 'c-women')).toThrow('closed');
   r.requestJoin(s, 'c-women');
@@ -24,7 +26,7 @@ test('approving a join request adds the member and tells them', () => {
 });
 
 test('RSVP is "full" at capacity, otherwise "going"', () => {
-  r.joinCircle(s, 'c-books');
+  expect(members('c-books')).toContain('demo-you'); // already a member in the seed
   expect(r.rsvp(s, 'm-books')).toBe('full'); // capacity 4, 4 going
   expect(r.rsvp(s, 'm-cowork')).toBe('going');
   expect(s.rsvps.some((x) => x.meetupId === 'm-cowork' && x.userId === 'demo-you')).toBe(true);

@@ -19,7 +19,7 @@ test('8 circles, and I can see my membership', async () => {
   expect(list).toHaveLength(8);
   expect(list.find((c) => c.name === 'BBB · Belong Beyond Borders')).toMatchObject({ isMember: true, isHost: true });
   expect(list.find((c) => c.name === 'Women Events')).toMatchObject({ isMember: true, isHost: true, visibility: 'closed' });
-  expect(list.find((c) => c.name === 'Art Lovers')).toMatchObject({ isMember: false, visibility: 'open' });
+  expect(list.find((c) => c.name === 'Art Lovers')).toMatchObject({ isMember: false, visibility: 'closed' });
 });
 
 test('Tempelhof picnic stays upcoming 30 days later', async () => {
