@@ -22,7 +22,7 @@ function readMessages(scope: ChatScope): ChatMessage[] {
     const mine = s.reactions.filter((x) => x.messageId === m.id);
     const reactions: Reaction[] = REACTIONS.map((e) => ({ emoji: e, count: mine.filter((x) => x.emoji === e).length,
       mine: mine.some((x) => x.emoji === e && x.userId === ME) })).filter((x) => x.count > 0);
-    return { id: m.id, authorId: m.authorId, authorName: p?.displayName ?? '…', authorAvatar: p?.avatarUrl ?? null, body: m.body,
+    return { id: m.id, authorId: m.authorId, authorName: m.kind === 'question' ? 'Third Place' : p?.displayName ?? '…', authorAvatar: p?.avatarUrl ?? null, body: m.body,
       kind: m.kind, pollId: m.pollId, replyTo: m.replyTo, mentions: m.mentions, createdAt: at, deleted: !!m.deletedAt, reactions };
   });
 }

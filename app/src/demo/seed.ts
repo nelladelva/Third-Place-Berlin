@@ -79,7 +79,7 @@ function profile(p: P, startedAt: string): DemoProfile {
 }
 
 /** Bump when the sample data changes, so browsers holding an older demo start fresh. */
-export const SEED_VERSION = 3;
+export const SEED_VERSION = 4;
 
 export function seed(startedAt: string): DemoState {
   const t = (days: number, hhmm: string) => at(startedAt, days, hhmm);
@@ -143,7 +143,7 @@ export function seed(startedAt: string): DemoState {
   ].map((r) => ({ ...r, checkedInAt: null, sample: true }));
 
   const msg = (id: string, scope: { circleId?: string; meetupId?: string }, authorId: string, body: string, day: number, hhmm: string,
-    extra: { replyTo?: string; mentions?: string[]; kind?: 'text' | 'poll'; pollId?: string } = {}) => ({
+    extra: { replyTo?: string; mentions?: string[]; kind?: 'text' | 'poll' | 'question'; pollId?: string } = {}) => ({
     id, circleId: scope.circleId ?? null, meetupId: scope.meetupId ?? null, authorId, body, kind: extra.kind ?? 'text',
     pollId: extra.pollId ?? null, replyTo: extra.replyTo ?? null, mentions: extra.mentions ?? [], createdAt: t(day, hhmm), deletedAt: null,
     sample: true });
@@ -151,6 +151,11 @@ export function seed(startedAt: string): DemoState {
     msg('msg-1', { circleId: 'c-bbb' }, 'p-amara', 'Welcome to everyone who just joined! 👋 Say hi and tell us what brought you to Berlin.', -4, '09:12'),
     msg('msg-2', { circleId: 'c-bbb' }, 'p-mateo', 'Olá! Chef from São Paulo, here since spring. Happy to cook for the next potluck 🍲', -4, '10:03'),
     msg('msg-3', { circleId: 'c-bbb' }, 'p-chloe', 'Bonjour! PhD student, studying how people find their place in a new city. So… this group is research 😄', -3, '19:40'),
+    // Question of the week: a card from "Third Place" (no author), as posted every Monday 9:00 in the real app
+    msg('msg-q1', { circleId: 'c-bbb' }, '', 'Is there a version of you that stayed home? What is that person doing today?', -3, '09:00',
+      { kind: 'question' }),
+    msg('msg-q2', { circleId: 'c-bbb' }, 'p-amara', "Probably running my mum's shop in Enugu, and honestly, happy. 😄", -3, '09:40', { replyTo: 'msg-q1' }),
+    msg('msg-q3', { circleId: 'c-bbb' }, 'p-diego', 'Mine would still be in Córdoba, arguing about football every weekend.', -3, '10:15', { replyTo: 'msg-q1' }),
     msg('msg-4', { circleId: 'c-bbb' }, 'p-lukas', 'Anyone need help with Anmeldung appointments? I found a trick for getting a slot.', -2, '08:15'),
     msg('msg-5', { circleId: 'c-bbb' }, 'p-priya', 'Yes please! @You (demo) did you manage yours?', -2, '08:31', { replyTo: 'msg-4', mentions: [ME] }),
     msg('msg-6', { circleId: 'c-bbb' }, 'p-kwame', 'Co-working this week, who is in?', -1, '17:05'),

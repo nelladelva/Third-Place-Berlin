@@ -200,7 +200,11 @@
     "poll": "📊 Poll",
     "pin": "📌 Pin to board",
     "meetup": "📅 Propose a meetup",
-    "title": "Chat"
+    "title": "Chat",
+    "question": {
+      "tag": "🌱 Question of the week",
+      "answer": "Answer ↩"
+    }
   },
   "poll": {
     "question": "Question",

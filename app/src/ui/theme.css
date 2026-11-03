@@ -105,3 +105,12 @@ button { font: inherit; }
 .inbox-item.unread strong::before { content: '● '; color: var(--rust); }
 .switch-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--soft); font-size: 14px; }
 .switch-row input { width: 40px; height: 22px; accent-color: var(--teal); }
+
+/* Question of the week (BBB): a card from "Third Place", not a person */
+.qcard { background: linear-gradient(135deg, #3C4A7A, #5a6aa0); color: #fff; border-radius: 16px; padding: 12px 14px; margin: 10px 0; cursor: pointer; }
+.qcard-tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
+.qcard-q { font-size: 17px; font-weight: 700; line-height: 1.3; margin: 6px 0 10px; }
+.qcard-foot { display: flex; justify-content: space-between; align-items: center; font-size: 12px; opacity: .95; }
+.qcard-btn { background: #fff; color: #3C4A7A; border: 0; border-radius: 999px; padding: 4px 12px; font-weight: 700; cursor: pointer; }
+.qcard .msg-meta { margin-top: 8px; }
+.qcard .msg-actions button { color: inherit; }

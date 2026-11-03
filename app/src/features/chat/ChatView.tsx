@@ -8,6 +8,33 @@ import { PollCard } from './PollCard';
 export type Mentionable = { userId: string; displayName: string };
 const HM = new Intl.DateTimeFormat('de-DE', { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit' });
 
+/** The question of the week: a card from "Third Place" (no person behind it). "Answer" replies to it. */
+function QuestionCard({ m, canModerate, onReply }: { m: ChatMessage; canModerate: boolean; onReply: () => void }) {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="qcard" onClick={() => setOpen(!open)}>
+      <div className="qcard-tag">{t('chat.question.tag')}</div>
+      <div className="qcard-q">{m.body}</div>
+      <div className="qcard-foot">
+        <span>Third Place · {HM.format(new Date(m.createdAt))}</span>
+        <button type="button" className="qcard-btn" onClick={(e) => { e.stopPropagation(); onReply(); }}>{t('chat.question.answer')}</button>
+      </div>
+      {m.reactions.length > 0 && (
+        <div className="msg-meta">{m.reactions.map((r) => <span key={r.emoji} className={r.mine ? 'rx mine' : 'rx'}>{r.emoji} {r.count}</span>)}</div>
+      )}
+      {open && (
+        <div className="msg-actions" onClick={(e) => e.stopPropagation()}>
+          {REACTIONS.map((e) => (
+            <button key={e} onClick={() => void react(m.id, e, !!m.reactions.find((r) => r.emoji === e && r.mine))}>{e}</button>
+          ))}
+          {canModerate && <button onClick={() => void deleteMessage(m.id)}>{t('chat.delete')}</button>}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Bubble({ m, me, canModerate, onReply, byId }: { m: ChatMessage; me: string; canModerate: boolean; onReply: () => void; byId: Map<string, ChatMessage> }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -15,12 +42,13 @@ function Bubble({ m, me, canModerate, onReply, byId }: { m: ChatMessage; me: str
   const mine = m.authorId === me;
   const parent = m.replyTo ? byId.get(m.replyTo) : undefined;
   if (m.kind === 'poll' && m.pollId && !m.deleted) return <PollCard pollId={m.pollId} />;
+  if (m.kind === 'question' && !m.deleted) return <QuestionCard m={m} canModerate={canModerate} onReply={onReply} />;
   return (
     <div className={`msg-row${mine ? ' me' : ''}`}>
       {!mine && <Link to={`/people/${m.authorId}`}><Avatar id={m.authorId} name={m.authorName} url={m.authorAvatar} size={28} /></Link>}
       <div className="msg" onClick={() => setOpen(!open)}>
         {!mine && <div className="msg-who">{m.authorName}</div>}
-        {parent && <div className="msg-quote">↪ {parent.authorName}: {parent.body.slice(0, 60)}</div>}
+        {parent && <div className="msg-quote">↪ {parent.kind === 'question' ? '🌱' : `${parent.authorName}:`} {parent.body.slice(0, 60)}</div>}
         <div className="msg-body">{m.deleted ? <em className="muted">{t('chat.deleted')}</em> : m.body}</div>
         <div className="msg-meta">
           {m.reactions.map((r) => <span key={r.emoji} className={r.mine ? 'rx mine' : 'rx'}>{r.emoji} {r.count}</span>)}

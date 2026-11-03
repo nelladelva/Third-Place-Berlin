@@ -7,13 +7,19 @@ import { ChatView } from './ChatView';
 import i18n, { setLanguage } from '../../lib/i18n';
 
 const send = vi.fn();
+const chat = vi.hoisted(() => ({ messages: [] as unknown[] }));
 vi.mock('../../data/chat', () => ({
-  useMessages: () => ({ messages: [], loading: false, send, loadOlder: vi.fn(), hasMore: false, reload: vi.fn() }),
-  react: vi.fn(), deleteMessage: vi.fn(), report: vi.fn(),
+  useMessages: () => ({ messages: chat.messages, loading: false, send, loadOlder: vi.fn(), hasMore: false, reload: vi.fn() }),
+  react: vi.fn(), deleteMessage: vi.fn(), report: vi.fn(), REACTIONS: ['❤️', '😂', '🙌', '👍', '🤔', '🔥'],
 }));
+
+const question = { id: 'q1', authorId: '', authorName: 'Third Place', authorAvatar: null, kind: 'question',
+  body: 'Why Berlin, and not somewhere else?', pollId: null, replyTo: null, mentions: [], createdAt: '2026-11-09T08:00:00Z',
+  deleted: false, reactions: [] };
 
 beforeEach(async () => {
   send.mockReset();
+  chat.messages = [];
   await act(async () => setLanguage('en'));
 });
 
@@ -49,4 +55,28 @@ test('leaving the chat does not crash when scrollIntoView returns a Promise (Chr
   } finally {
     Element.prototype.scrollIntoView = original;
   }
+});
+
+test('the question of the week shows as a special card from Third Place, not a person', () => {
+  chat.messages = [question];
+  render(<MemoryRouter><ChatView scope={{ circleId: 'c-bbb' }} me="u1" members={[]} /></MemoryRouter>);
+  expect(screen.getByText(i18n.t('chat.question.tag'))).toBeInTheDocument();
+  expect(screen.getByText('Why Berlin, and not somewhere else?')).toBeInTheDocument();
+  expect(screen.queryByRole('link')).toBeNull(); // no profile link: Third Place is not a person
+  expect(screen.queryByRole('button', { name: i18n.t('chat.report') })).toBeNull();
+});
+
+test('"Answer" on the card sends a reply to it', async () => {
+  chat.messages = [question];
+  render(<MemoryRouter><ChatView scope={{ circleId: 'c-bbb' }} me="u1" members={[]} /></MemoryRouter>);
+  await userEvent.click(screen.getByRole('button', { name: i18n.t('chat.question.answer') }));
+  await userEvent.type(screen.getByPlaceholderText(i18n.t('chat.placeholder')), 'Because of the parks');
+  await userEvent.click(screen.getByRole('button', { name: i18n.t('chat.send') }));
+  expect(send).toHaveBeenCalledWith('Because of the parks', { replyTo: 'q1', mentions: [] });
+});
+
+test('an answer quotes the question with the 🌱', () => {
+  chat.messages = [question, { ...question, id: 'a1', authorId: 'u2', authorName: 'Amara', kind: 'text', body: 'Parks!', replyTo: 'q1' }];
+  render(<MemoryRouter><ChatView scope={{ circleId: 'c-bbb' }} me="u1" members={[]} /></MemoryRouter>);
+  expect(screen.getByText(/↪ 🌱 Why Berlin/)).toBeInTheDocument();
 });

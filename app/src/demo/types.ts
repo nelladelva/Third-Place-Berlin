@@ -19,7 +19,7 @@ export type DemoMeetup = S & { id: string; circleId: string; hostId: string; tit
   cancelledAt: string | null; createdAt: string };
 export type DemoRsvp = S & { meetupId: string; userId: string; checkedInAt: string | null };
 export type DemoMessage = S & { id: string; circleId: string | null; meetupId: string | null; authorId: string; body: string;
-  kind: 'text' | 'poll'; pollId: string | null; replyTo: string | null; mentions: string[]; createdAt: string; deletedAt: string | null };
+  kind: 'text' | 'poll' | 'question'; pollId: string | null; replyTo: string | null; mentions: string[]; createdAt: string; deletedAt: string | null };
 export type DemoReaction = S & { messageId: string; userId: string; emoji: string };
 export type DemoPoll = S & { id: string; circleId: string; question: string; closesAt: string | null; createdAt: string };
 export type DemoPollOption = S & { id: string; pollId: string; label: string };

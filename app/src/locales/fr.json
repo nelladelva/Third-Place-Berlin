@@ -200,7 +200,11 @@
     "poll": "📊 Sondage",
     "pin": "📌 Épingler au tableau",
     "meetup": "📅 Proposer une rencontre",
-    "title": "Chat"
+    "title": "Chat",
+    "question": {
+      "tag": "🌱 Question de la semaine",
+      "answer": "Répondre ↩"
+    }
   },
   "poll": {
     "question": "Question",

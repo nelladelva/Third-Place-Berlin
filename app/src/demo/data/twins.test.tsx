@@ -47,6 +47,18 @@ test('sending a message shows it in the chat', async () => {
   await screen.findByText('hello from the test');
 });
 
+function Card() {
+  const { messages } = chat.useMessages({ circleId: 'c-bbb' });
+  const q = messages.find((m) => m.kind === 'question');
+  const answers = messages.filter((m) => q && m.replyTo === q.id);
+  return <div>{q && <p data-testid="q">{q.authorName}: {q.body} ({answers.length} answers)</p>}</div>;
+}
+test('BBB has a sample question of the week from Third Place, with answers', async () => {
+  render(<Card />);
+  expect((await screen.findByTestId('q')).textContent)
+    .toBe('Third Place: Is there a version of you that stayed home? What is that person doing today? (2 answers)');
+});
+
 function Unread() {
   return <span data-testid="unread">{notifications.useUnreadCount()}</span>;
 }

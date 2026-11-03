@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 export type ChatScope = { circleId: string } | { meetupId: string };
 export type Reaction = { emoji: string; count: number; mine: boolean };
 export type ChatMessage = {
-  id: string; authorId: string; authorName: string; authorAvatar: string | null; body: string; kind: 'text' | 'poll';
+  id: string; authorId: string; authorName: string; authorAvatar: string | null; body: string; kind: 'text' | 'poll' | 'question';
   pollId: string | null; replyTo: string | null; mentions: string[]; createdAt: string; deleted: boolean; reactions: Reaction[];
 };
 export type PollData = { id: string; question: string; closesAt: string | null; myOptionId: string | null; options: { id: string; label: string; votes: number }[] };
@@ -25,7 +25,7 @@ const scopeCol = (s: ChatScope) => ('circleId' in s ? ['circle_id', s.circleId] 
 async function hydrate(rows: Record<string, unknown>[]): Promise<ChatMessage[]> {
   if (!rows.length) return [];
   const uid = await me();
-  const authorIds = [...new Set(rows.map((r) => r.author_id as string))];
+  const authorIds = [...new Set(rows.map((r) => r.author_id as string | null).filter((x): x is string => !!x))]; // question cards have no author
   const people = check(await supabase.from('profiles').select('id, display_name, avatar_url').in('id', authorIds)) ?? [];
   const byId = new Map(people.map((p: Record<string, unknown>) => [p.id as string, p]));
   const reacts = check(await supabase.from('reactions').select('message_id, user_id, emoji').in('message_id', rows.map((r) => r.id as string))) ?? [];
@@ -37,8 +37,9 @@ async function hydrate(rows: Record<string, unknown>[]): Promise<ChatMessage[]> 
       mine: mine.some((x: Record<string, unknown>) => x.emoji === e && x.user_id === uid),
     })).filter((x) => x.count > 0);
     return {
-      id: r.id as string, authorId: r.author_id as string, authorName: (p?.display_name as string) ?? '…',
-      authorAvatar: (p?.avatar_url as string) ?? null, body: r.body as string, kind: r.kind as 'text' | 'poll',
+      id: r.id as string, authorId: (r.author_id as string) ?? '',
+      authorName: r.kind === 'question' ? 'Third Place' : (p?.display_name as string) ?? '…',
+      authorAvatar: (p?.avatar_url as string) ?? null, body: r.body as string, kind: r.kind as ChatMessage['kind'],
       pollId: (r.poll_id as string) ?? null, replyTo: (r.reply_to as string) ?? null, mentions: (r.mentions as string[]) ?? [],
       createdAt: r.created_at as string, deleted: !!r.deleted_at, reactions,
     };

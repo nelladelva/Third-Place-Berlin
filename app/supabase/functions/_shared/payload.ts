@@ -1,6 +1,6 @@
 // Push message text in EN/DE/FR. Plain TypeScript (no Deno APIs) so Vitest can test it.
 export type NotificationKind = 'meetup_new' | 'poll_new' | 'mention' | 'reply' | 'message_new' | 'member_approved'
-  | 'join_request' | 'join_decided' | 'proposal_new' | 'proposal_decided' | 'recommended';
+  | 'join_request' | 'join_decided' | 'proposal_new' | 'proposal_decided' | 'recommended' | 'weekly_question';
 export type Lang = 'en' | 'de' | 'fr';
 type D = Record<string, unknown>;
 
@@ -35,6 +35,8 @@ const TEXT: Record<NotificationKind, (d: D, lang: Lang) => { title: string; body
     body: s(d, 'note'), url: d.circle_id ? `#/circles/${s(d, 'circle_id')}` : '#/circles/propose' }),
   recommended: (d, l) => ({ title: t(l, `${s(d, 'author')} recommends you for ${s(d, 'circle')}`, `${s(d, 'author')} empfiehlt dir ${s(d, 'circle')}`, `${s(d, 'author')} te recommande pour ${s(d, 'circle')}`),
     body: '', url: `#/circles/${s(d, 'circle_id')}` }),
+  weekly_question: (d, l) => ({ title: t(l, `🌱 Question of the week in ${s(d, 'circle')}`, `🌱 Frage der Woche in ${s(d, 'circle')}`,
+      `🌱 Question de la semaine dans ${s(d, 'circle')}`), body: s(d, 'body'), url: `#/circles/${s(d, 'circle_id')}` }),
 };
 
 export function buildPushPayload(kind: NotificationKind, data: D, lang: Lang): { title: string; body: string; url: string } {
