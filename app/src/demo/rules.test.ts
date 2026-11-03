@@ -31,6 +31,25 @@ test('admins join any circle directly, closed ones included (same as the databas
   expect(s.joinRequests.some((j) => j.userId === 'demo-you' && j.circleId === 'c-sports')).toBe(false);
 });
 
+test('closed circle: asked first, then a member recommends -> in at once', () => {
+  // p-chloe has a pending request for Women Events in the seed (jr-1); "You" are a member there
+  expect(s.joinRequests.find((j) => j.id === 'jr-1')!.status).toBe('pending');
+  r.recommend(s, 'c-women', 'p-chloe');
+  expect(members('c-women')).toContain('p-chloe');
+  expect(s.joinRequests.find((j) => j.id === 'jr-1')!.status).toBe('approved');
+  expect(notesFor('p-chloe', 'join_decided')).toHaveLength(1);
+});
+
+test('closed circle: a recommendation alone adds nobody, but asking afterwards gets you in at once', () => {
+  s.me.viewAs = 'member';
+  r.leaveCircle(s, 'c-karaoke');
+  s.recommendations.push({ circleId: 'c-karaoke', userId: 'demo-you', byId: 'p-amara', createdAt: '2026-10-23T10:00:00Z', sample: false });
+  expect(members('c-karaoke')).not.toContain('demo-you');
+  r.requestJoin(s, 'c-karaoke');
+  expect(members('c-karaoke')).toContain('demo-you');
+  expect(s.joinRequests.some((j) => j.userId === 'demo-you' && j.circleId === 'c-karaoke' && j.status === 'pending')).toBe(false);
+});
+
 test('approving a join request adds the member and tells them', () => {
   r.decideJoin(s, 'jr-1', true);
   expect(members('c-women')).toContain('p-chloe');

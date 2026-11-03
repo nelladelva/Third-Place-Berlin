@@ -82,7 +82,7 @@
   "circles": {
     "title": "Cercles",
     "intro": "Rejoins ceux qui te tiennent à cœur. Chacun a ses propres rencontres, son chat et son tableau.",
-    "legend": "🔓 Ouvert : rejoins-le directement · 🔒 Fermé : un membre te recommande, puis un·e hôte valide",
+    "legend": "🔓 Ouvert : rejoins-le directement · 🔒 Fermé : demande à rejoindre, puis un membre te recommande ou un·e hôte valide",
     "open": "🔓 Ouvert",
     "closed": "🔒 Fermé",
     "members": "{{count}} membres",
@@ -100,19 +100,18 @@
       "members": "Membres",
       "board": "Tableau"
     },
-    "closedInfo": "Ce cercle est fermé. Un membre te recommande, puis un·e hôte valide ta demande.",
+    "closedInfo": "Ce cercle est fermé. Demande à le rejoindre : ensuite, il suffit qu'un membre te recommande ou qu'un·e hôte valide ta demande.",
     "steps": {
       "sent": "Demande envoyée",
+      "either": "Ensuite, l'un des deux :",
       "recommended": "Recommandé·e par un membre",
       "approved": "Validé·e par un·e hôte"
     },
     "membersOnly": "Les rencontres, le chat et les membres sont visibles une fois que tu as rejoint le cercle.",
     "host": "hôte",
     "requests": "Demandes d'adhésion",
-    "recommendations": "{{count}} recommandations",
     "approve": "Accepter",
     "decline": "Refuser",
-    "needsRecommendation": "Un membre doit d'abord recommander cette personne.",
     "notFound": "Ce cercle n'existe pas ou n'est pas disponible."
   },
   "propose": {

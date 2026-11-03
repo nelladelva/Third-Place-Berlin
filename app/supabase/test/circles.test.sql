@@ -46,17 +46,13 @@ begin
   perform tests.logout();
   perform tests.login(h);
   perform tests.assert_eq((select count(*) from join_requests where circle_id = women)::int, 1, 'host sees join requests');
-  perform tests.assert_raises(format('select decide_join(%L, true)', req), 'needs_recommendation', 'host cannot approve without recommendation');
   perform tests.logout();
   perform tests.login(b);
-  perform recommend(women, a);
   perform tests.assert_raises(format('select decide_join(%L, true)', req), 'not_circle_host', 'plain member cannot decide join');
-  perform tests.logout();
-  perform tests.login(h);
-  perform decide_join(req, true);
+  perform recommend(women, a); -- a asked first, so a member's recommendation lets them in
   perform tests.logout();
   perform tests.login(a);
-  perform tests.assert_true(is_circle_member(women), 'host approves after recommendation');
+  perform tests.assert_true(is_circle_member(women), 'member recommendation after request lets them in');
   perform tests.assert_eq((select count(*) from circle_members where circle_id = women)::int, 3, 'new member sees closed circle members');
   perform tests.logout();
 

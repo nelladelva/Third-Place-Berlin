@@ -79,7 +79,7 @@ function profile(p: P, startedAt: string): DemoProfile {
 }
 
 /** Bump when the sample data changes, so browsers holding an older demo start fresh. */
-export const SEED_VERSION = 2;
+export const SEED_VERSION = 3;
 
 export function seed(startedAt: string): DemoState {
   const t = (days: number, hhmm: string) => at(startedAt, days, hhmm);
@@ -200,7 +200,7 @@ export function seed(startedAt: string): DemoState {
     circles,
     circleMembers,
     joinRequests: [{ id: 'jr-1', circleId: 'c-women', userId: 'p-chloe', status: 'pending', createdAt: t(-1, '11:00'), sample: true }],
-    recommendations: [{ circleId: 'c-women', userId: 'p-chloe', byId: 'p-sofia', createdAt: t(-1, '11:30'), sample: true }],
+    recommendations: [], // a recommendation would already have let Chloé in (asked + recommended = in)
     proposals: [{ id: 'prop-1', name: 'Language Exchange', description: 'Swap languages over coffee: German, Spanish, French and more.',
       emoji: '🗣️', visibility: 'open', proposerId: 'p-diego', cohosts: [], status: 'pending', adminNote: null, createdAt: t(-1, '20:00'), sample: true }],
     meetups,

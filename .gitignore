@@ -1,3 +1,6 @@
 .superpowers/
 dist-demo/
 notes/
+
+# Supabase CLI cache
+app/supabase/.temp/

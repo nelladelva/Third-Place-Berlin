@@ -82,7 +82,7 @@
   "circles": {
     "title": "Circles",
     "intro": "Join the ones you care about. Each has its own meetups, chat and board.",
-    "legend": "🔓 Open: join instantly · 🔒 Closed: a member recommends you, then a host approves",
+    "legend": "🔓 Open: join instantly · 🔒 Closed: ask to join, then a member recommends you or a host approves",
     "open": "🔓 Open",
     "closed": "🔒 Closed",
     "members": "{{count}} members",
@@ -100,19 +100,18 @@
       "members": "Members",
       "board": "Board"
     },
-    "closedInfo": "This circle is closed. A member recommends you, then a host approves your request.",
+    "closedInfo": "This circle is closed. Ask to join: then either a member recommends you or a host approves, and you're in.",
     "steps": {
       "sent": "Request sent",
+      "either": "Then one of these:",
       "recommended": "Recommended by a member",
       "approved": "Approved by a host"
     },
     "membersOnly": "Meetups, chat and members are visible after you join.",
     "host": "host",
     "requests": "Join requests",
-    "recommendations": "{{count}} recommendations",
     "approve": "Approve",
     "decline": "Decline",
-    "needsRecommendation": "A member needs to recommend this person first.",
     "notFound": "This circle doesn't exist or isn't available."
   },
   "propose": {

@@ -52,6 +52,10 @@ export function requestJoin(s: DemoState, circleId: string): void {
   const c = circleOf(s, circleId);
   if (isMember(s, circleId, me(s))) return;
   if (c.visibility === 'open' || isAdmin(s)) return joinCircle(s, circleId); // same as the database
+  if (s.recommendations.some((x) => x.circleId === circleId && x.userId === me(s))) { // recommended already: in at once
+    s.circleMembers.push({ circleId, userId: me(s), role: 'member', sample: false });
+    return;
+  }
   if (s.joinRequests.some((j) => j.circleId === circleId && j.userId === me(s) && j.status === 'pending')) return;
   s.joinRequests.push({ id: newId('jr'), circleId, userId: me(s), status: 'pending', createdAt: nowIso(), sample: false });
   notify(s, [...hostsOf(s, circleId), ...admins(s)], 'join_request', { circle: c.name, circle_id: circleId, author: nameOf(s, me(s)) });
@@ -61,6 +65,12 @@ export function recommend(s: DemoState, circleId: string, userId: string): void 
   const c = circleOf(s, circleId);
   s.recommendations.push({ circleId, userId, byId: me(s), createdAt: nowIso(), sample: false });
   notify(s, [userId], 'recommended', { author: nameOf(s, me(s)), circle: c.name, circle_id: circleId });
+  // Asked already? A member's recommendation lets them in now (same as the database).
+  for (const j of s.joinRequests.filter((x) => x.circleId === circleId && x.userId === userId && x.status === 'pending')) {
+    j.status = 'approved';
+    if (!isMember(s, circleId, userId)) s.circleMembers.push({ circleId, userId, role: 'member', sample: false });
+    notify(s, [userId], 'join_decided', { approved: true, circle: c.name, circle_id: circleId });
+  }
 }
 
 export function decideJoin(s: DemoState, requestId: string, approve: boolean): void {

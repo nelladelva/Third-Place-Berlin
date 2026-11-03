@@ -31,7 +31,7 @@ function Members({ circle }: { circle: CircleCard }) {
     try {
       await decideJoin(id, approve);
     } catch (e) {
-      setError(t((e as Error).message.includes('needs_recommendation') ? 'circles.needsRecommendation' : 'common.error'));
+      setError(t('common.error'));
     }
     load();
   }
@@ -46,7 +46,7 @@ function Members({ circle }: { circle: CircleCard }) {
               <Avatar id={r.userId} name={r.displayName} url={r.avatarUrl} size={34} />
               <div style={{ flex: 1 }}>
                 <Link to={`/people/${r.userId}`}><strong>{r.displayName}</strong></Link>
-                <div className="muted">{r.field} · {t('circles.recommendations', { count: r.recommendations })}</div>
+                {r.field && <div className="muted">{r.field}</div>}
               </div>
               <button className="btn" onClick={() => void decide(r.id, true)}>{t('circles.approve')}</button>
               <button className="btn secondary" onClick={() => void decide(r.id, false)}>{t('circles.decline')}</button>
@@ -90,8 +90,12 @@ export function CircleScreen() {
             <p>{t('circles.closedInfo')}</p>
             <ol className="steps">
               <li>{circle.myRequestStatus ? '✓' : '○'} {t('circles.steps.sent')}</li>
-              <li>○ {t('circles.steps.recommended')}</li>
-              <li>○ {t('circles.steps.approved')}</li>
+              <li>{t('circles.steps.either')}
+                <ul>
+                  <li>{t('circles.steps.recommended')}</li>
+                  <li>{t('circles.steps.approved')}</li>
+                </ul>
+              </li>
             </ol>
           </div>
         )}
