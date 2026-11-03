@@ -4,3 +4,4 @@ notes/
 
 # Supabase CLI cache
 app/supabase/.temp/
+.DS_Store
