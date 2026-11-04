@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Screen } from '../../ui/Screen';
 import { Avatar } from '../../ui/Avatar';
+import { Linkify } from '../../ui/Linkify';
 import { cancelMeetup, cancelRsvp, checkIn, getMeetup, rsvp, updatePin, watchMeetup, type Meetup } from '../../data/meetups';
 import { currentUserId } from '../../data/session';
 import { formatMeetupTime } from '../../lib/time';
@@ -78,7 +79,7 @@ export function MeetupScreen() {
       )}
       {msg && <p className="notice" role="status">{msg}</p>}
       {m.bring && <p><strong>{t('meetup.bring')}:</strong> {m.bring}</p>}
-      {m.description && <p style={{ whiteSpace: 'pre-wrap' }}>{m.description}</p>}
+      {m.description && <p style={{ whiteSpace: 'pre-wrap' }}><Linkify text={m.description} /></p>}
       <p className="muted">
         {t('meetup.goingCount', { count: m.goingCount })}{spots !== null && spots > 0 ? ` · ${t('meetup.spotsLeft', { count: spots })}` : ''}
       </p>
