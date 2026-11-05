@@ -13,7 +13,7 @@ function toCard(c: DemoCircle): CircleCard {
   const mine = s.joinRequests.filter((j) => j.circleId === c.id && j.userId === ME).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
   return { id: c.id, name: c.name, description: c.description, emoji: c.emoji, color: c.color, visibility: c.visibility,
     memberCount: members.length, isMember: members.some((m) => m.userId === ME),
-    isHost: members.some((m) => m.userId === ME && m.role === 'host'), myRequestStatus: mine?.status ?? null };
+    isHost: s.me.viewAs === 'admin' || members.some((m) => m.userId === ME && m.role === 'host'), myRequestStatus: mine?.status ?? null };
 }
 
 export async function listCircles(): Promise<CircleCard[]> {

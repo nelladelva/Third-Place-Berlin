@@ -26,4 +26,15 @@ begin
   perform tests.assert_true(req is not null, 'member request_join creates a pending request');
   perform tests.assert_true(not is_circle_member(karaoke), 'member is not in the closed circle yet');
   perform tests.logout();
+
+  -- admin sees the join requests panel in any circle (is_host) and can approve
+  perform tests.login(adm);
+  perform tests.assert_true((select is_host from circle_cards where id = karaoke), 'admin counts as host in circle_cards');
+  perform tests.assert_eq((select count(*) from join_requests where circle_id = karaoke and status = 'pending')::int, 1, 'admin sees the pending request');
+  perform decide_join(req, true);
+  perform tests.logout();
+  perform tests.login(a);
+  perform tests.assert_true(is_circle_member(karaoke), 'member is in after admin approval');
+  perform tests.assert_true(not (select is_host from circle_cards where id = karaoke), 'ordinary member is not host');
+  perform tests.logout();
 end $$;
